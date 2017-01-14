@@ -2,7 +2,7 @@
 
 ## 项目结构
 
-/client： 前端开发目录
+/app： 前端开发目录
 
 - /static： 静态文件目录（依赖库，图片，字体等）
 
@@ -44,4 +44,17 @@ package.json：项目依赖管理文件
 2. 引入pm2对服务器进程进行控制，为后端开发提供自动重启支持。当添加或修改后端代码时，由pm2监听文件变化并重启服务器进程，同时维护服务器日志文件。（配置文件为ecosystem.config.js）
 
 ### 脚本命令
+
+```shell
+npm start					# 编译前端代码并启动开发服务器，显示log数据（dev）
+npm restart					# 重新启动服务器进程（dev）
+npm stop 				    # 关闭服务器并结束进程（dev）
+npm run state				# 显示服务器进程状态（dev）
+npm run build:webpack		 # 编译前端代码并生成文件至BUILD_PATH（prod）
+npm run build				# 清理前端目录并编译生成新的目录（prod）
+npm run clean				# 清理前端目录（prod）
+npm run produce				# 编译生成前端目录并启动发布服务器（prod）
+```
+
+
 
