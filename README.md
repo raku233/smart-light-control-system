@@ -58,5 +58,5 @@ npm run produce				# 编译生成前端目录并启动发布服务器（prod）
 
 ### 服务器地址
 
-开发&发布： http:localhost:3000
+开发&发布： http://localhost:3000
 
