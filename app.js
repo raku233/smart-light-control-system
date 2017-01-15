@@ -1,9 +1,6 @@
 'use strict';
 
-const
-    Koa = require('koa'),
-    bodyParser = require('koa-bodyparser'),
-    convert = require('koa-convert');
+const Koa = require('koa');
 
 const
     port = 3000,
@@ -11,11 +8,15 @@ const
     app = new Koa();
 
 // import common middlewares
-const 
+const
+    convert = require('koa-convert'),
+    bodyParser = require('koa-bodyparser'),
+    historyApiFallback = require('koa-connect-history-api-fallback');
+const
     staticFiles = require('./server/middlewares/static-files'),
     router = require('./server/middlewares/router');
 
-if(isDev) {
+if (isDev) {
     const
         webpack = require('webpack'),
         webpackDevConfig = require('./webpack.config.dev.js');
@@ -28,6 +29,9 @@ if(isDev) {
         webpackHot = require('koa-webpack-hot-middleware');
 
     // use middlewares
+    app.use(historyApiFallback({
+        verbose: false
+    }));
     app.use(convert(webpackDev(compiler, {
         // public path should be the same with webpack config
         publicPath: webpackDevConfig.output.publicPath,
@@ -48,6 +52,9 @@ if(isDev) {
 } else {
 
     // use middlewares
+    app.use(historyApiFallback({
+        verbose: false
+    }));
     app.use(bodyParser());
     app.use(router());
     app.use(staticFiles('/', './build'));
@@ -57,6 +64,3 @@ if(isDev) {
         console.log(`App(production) is running at ${port}...`);
     });
 }
-
-
-
