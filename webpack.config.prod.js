@@ -28,7 +28,7 @@ module.exports = {
             include: APP_PATH
         }, {
             test: /\.(png|jpg\gif)$/,
-            loader: 'url?limit=8192&context=client&name=[path][name].[ext]'
+            loader: 'url-loader?limit=8192&name=images/[name].[ext]?[hash:8]'
         }, {
             test: /\.scss$/,
             loader: 'style!css?sourceMap!resolve-url!sass?sourceMap'
