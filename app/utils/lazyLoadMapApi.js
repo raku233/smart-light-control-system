@@ -9,11 +9,7 @@ const DEFAULT_CONFIG = {
 
 const lazyLoadMapApi = (config = DEFAULT_CONFIG) => {
     const _config = { ...DEFAULT_CONFIG, ...config };
-    const getScriptSrc = cfg => {
-        let scriptSrc = `${cfg.protocol}//${cfg.hostname}?v=${cfg.v}&key=${cfg.key}&callback=${cfg.callback}`;
-        if (cfg.plugin.length) scriptSrc += `&plugin=${cfg.plugin.join(',')}`;
-        return scriptSrc;
-    };
+    const getScriptSrc = cfg => `${cfg.protocol}//${cfg.hostname}?v=${cfg.v}&key=${cfg.key}&callback=${cfg.callback}`;
 
     if(window.AMap) return Promise.resolve();
 
