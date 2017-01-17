@@ -52,7 +52,8 @@ npm stop 				    # 关闭服务器并结束进程（dev）
 npm run state				# 显示服务器进程状态（dev）
 npm run build:webpack		 # 编译前端代码并生成文件至BUILD_PATH（prod）
 npm run build				# 清理前端目录并编译生成新的目录（prod）
-npm run clean				# 清理前端目录（prod）
+npm run clean:build			# 清理前端编译目录（prod）
+npm run clean:logs			# 清理服务器日志文件夹
 npm run produce				# 编译生成前端目录并启动发布服务器（prod）
 ```
 

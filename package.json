@@ -6,12 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "pm2 start ecosystem.config.js && pm2 logs server",
-    "restart": "pm2 restart server",
+    "restart": "pm2 restart server && pm2 logs server",
     "stop": "pm2 stop server && pm2 delete server",
     "state": "pm2 show server",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "build": "npm run clean && npm run build:webpack",
-    "clean": "rimraf build/",
+    "build": "npm run clean:build && npm run build:webpack",
+    "clean:build": "rimraf build/",
+    "clean:logs": "rimraf logs/",
     "produce": "npm run build && cross-env NODE_ENV=production node start.js"
   },
   "dependencies": {
