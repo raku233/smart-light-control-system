@@ -19,9 +19,9 @@ const
 if (isDev) {
     const
         webpack = require('webpack'),
-        webpackDevConfig = require('./webpack.config.dev.js');
+        webpackConfig = require('./webpack.config.js');
 
-    const compiler = webpack(webpackDevConfig);
+    const compiler = webpack(webpackConfig);
 
     // import middlewares for development
     const
@@ -34,7 +34,7 @@ if (isDev) {
     }));
     app.use(convert(webpackDev(compiler, {
         // public path should be the same with webpack config
-        publicPath: webpackDevConfig.output.publicPath,
+        publicPath: webpackConfig.output.publicPath,
         noInfo: true,
         stats: {
             colors: true

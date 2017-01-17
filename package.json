@@ -9,7 +9,7 @@
     "restart": "pm2 restart server",
     "stop": "pm2 stop server && pm2 delete server",
     "state": "pm2 show server",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "build": "npm run clean && npm run build:webpack",
     "clean": "rimraf build/",
     "produce": "npm run build && cross-env NODE_ENV=production node start.js"
