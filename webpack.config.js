@@ -38,6 +38,9 @@ module.exports = {
         path: options.buildPath,
         publicPath: options.publicPath
     },
+    resolve: {
+        extensions: ['', '.jsx', '.js', '.sass']
+    },
 
     devtool: isDev ? 'eval-source-map': 'cheap-source-map',
     module: {
