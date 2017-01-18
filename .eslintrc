@@ -9,7 +9,6 @@
     "rules": {
         "indent": [ 1, 4 ],
         "quotes": [ 2, "single" ],
-        "linebreak-style": [ 1, "windows" ],
         "semi": [ 1, "always" ],
         "no-console": "off",
         "no-unused-vars": [1, { "vars": "all", "args": "after-used" }]
