@@ -30,7 +30,13 @@ if (isDev) {
 
     // use middlewares
     app.use(historyApiFallback({
-        verbose: false
+        verbose: false,
+        rewrites: [{
+            from: /^\/api\/.*$/,
+            to: function (context) {
+                return context.parsedUrl.pathname.substring(4);
+            }
+        }]
     }));
     app.use(convert(webpackDev(compiler, {
         // public path should be the same with webpack config
@@ -53,7 +59,13 @@ if (isDev) {
 
     // use middlewares
     app.use(historyApiFallback({
-        verbose: false
+        verbose: false,
+        rewrites: [{
+            from: /^\/api\/.*$/,
+            to: function (context) {
+                return context.parsedUrl.pathname.substring(4);
+            }
+        }]
     }));
     app.use(bodyParser());
     app.use(router());
