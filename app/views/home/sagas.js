@@ -1,0 +1,1 @@
+export { watchFetchData as previewListSaga } from '../../components/home/previewListSaga';

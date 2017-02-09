@@ -1,12 +1,21 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 
-import { DatePicker } from 'antd';
+import configureStore from './redux/configureStore';
+import routes from './routes/index';
 
-import 'antd/dist/antd.css';
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
 const container = document.body.appendChild(
     document.createElement('div')
 );
 
-render(<DatePicker />, container);
+render((
+    <Provider store={store}>
+        {routes(history)}
+    </Provider>
+), container);
