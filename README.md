@@ -6,11 +6,21 @@
 
 - /static： 静态文件目录（依赖库，图片，字体等）
 
+- ／api： 前端数据请求api
+
+- ／components： 所有应用组件
+
+- ／views： 页面入口组件（路由组件）
+
+- ／containers： 容器型组件
+
 /server：服务器端开发目录
 
 - /middleware：中间件目录——供服务器调用，形成处理流，降低具体业务逻辑的耦合度
   - hot-reload.js：集成于服务器端，为前端开发提供热加载支持。承担server及browser间的桥梁作用，当添加或修改前端代码时启动代码编译并告知浏览器以实现浏览器的无刷新更新。【配置文件：webpack.config.js】
   - static-files.js：处理前端静态文件的传输问题
+
+- ／routes：服务端路由（主要处理前端api数据请求）
 
 /logs：服务器运行日志（输出日志及错误日志）
 
@@ -23,6 +33,10 @@ ecosystem.config.js：pm2配置文件
 webpack.config.js：webpack配置文件
 
 package.json：项目依赖管理文件
+
+.babelrc：babel配置文件（js代码编译规则）
+
+.eslintrc：eslint配置文件（js代码格式规则）
 
 .gitignore：配置文件以排除于git的管理
 
