@@ -31,8 +31,8 @@ var options = {
 
 module.exports = {
     entry: isDev
-            ? { 'app': [ 'babel-polyfill', path.resolve(options.srcPath, 'app.dev.jsx'), options.script ]}
-            : [ 'babel-polyfill',path.resolve(options.srcPath, 'app.prod.jsx') ],
+            ? { 'app': [ 'babel-polyfill', path.resolve(options.srcPath, 'app.dev.js'), options.script ]}
+            : [ 'babel-polyfill',path.resolve(options.srcPath, 'app.prod.js') ],
     output: {
         filename: 'bundle.js',
         path: options.buildPath,
