@@ -5,14 +5,15 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start ecosystem.config.js && pm2 logs server",
-    "restart": "pm2 restart server && pm2 logs server",
-    "stop": "pm2 stop server && pm2 delete server",
-    "state": "pm2 show server",
+    "start": "pm2 start ecosystem.config.js --only web-server && pm2 logs web-server",
+    "restart": "pm2 restart web-server && pm2 logs web-server",
+    "stop": "pm2 kill",
+    "status": "pm2 status",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "build": "npm run clean:build && npm run build:webpack",
     "clean:build": "rimraf build/",
     "clean:logs": "rimraf logs/",
+    "api": "pm2 start ecosystem.config.js --only api-server && pm2 logs api-server",
     "produce": "npm run build && cross-env NODE_ENV=production node start.js"
   },
   "dependencies": {

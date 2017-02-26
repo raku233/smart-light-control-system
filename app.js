@@ -4,6 +4,7 @@ const Koa = require('koa');
 
 const
     port = 3000,
+    mode = process.env.NODE_ENV,
     isDev = process.env.NODE_ENV !== 'production',
     app = new Koa();
 
@@ -16,63 +17,70 @@ const
     staticFiles = require('./server/middlewares/static-files'),
     router = require('./server/middlewares/router');
 
-if (isDev) {
-    const
-        webpack = require('webpack'),
-        webpackConfig = require('./webpack.config.js');
+switch(mode) {
+    case 'development': {
+        const
+            webpack = require('webpack'),
+            webpackConfig = require('./webpack.config.js');
 
-    const compiler = webpack(webpackConfig);
+        const compiler = webpack(webpackConfig);
 
-    // import middlewares for development
-    const
-        webpackDev = require('koa-webpack-dev-middleware'),
-        webpackHot = require('koa-webpack-hot-middleware');
+        // import middlewares for development
+        const
+            webpackDev = require('koa-webpack-dev-middleware'),
+            webpackHot = require('koa-webpack-hot-middleware');
 
-    // use middlewares
-    app.use(historyApiFallback({
-        verbose: false,
-        rewrites: [{
-            from: /^\/api\/.*$/,
-            to: function (context) {
-                return context.parsedUrl.pathname.substring(4);
+        // use middlewares
+        app.use(historyApiFallback({
+            verbose: false
+        }));
+        app.use(convert(webpackDev(compiler, {
+            // public path should be the same with webpack config
+            publicPath: webpackConfig.output.publicPath,
+            noInfo: true,
+            stats: {
+                colors: true
             }
-        }]
-    }));
-    app.use(convert(webpackDev(compiler, {
-        // public path should be the same with webpack config
-        publicPath: webpackConfig.output.publicPath,
-        noInfo: true,
-        stats: {
-            colors: true
-        }
-    })));
-    app.use(convert(webpackHot(compiler)));
-    app.use(bodyParser());
-    app.use(router());
-    app.use(staticFiles('/', './build'));
+        })));
+        app.use(convert(webpackHot(compiler)));
+        app.use(bodyParser());
+        app.use(router());
+        app.use(staticFiles('/', './build'));
 
-    //start server
-    app.listen(port, () => {
-        console.log(`App(dev) is now running on port ${port}...`);
-    });
-} else {
+        //start server
+        app.listen(port, () => {
+            console.log(`App(dev) is now running on port ${port}...`);
+        });
 
-    // use middlewares
-    app.use(historyApiFallback({
-        verbose: false,
-        rewrites: [{
-            from: /^\/api\/.*$/,
-            to: function (context) {
-                return context.parsedUrl.pathname.substring(4);
-            }
-        }]
-    }));
-    app.use(bodyParser());
-    app.use(router());
-    app.use(staticFiles('/', './build'));
+        break;
+    }
+    case 'production': {
+        // use middlewares
+        app.use(historyApiFallback({
+            verbose: false
+        }));
+        app.use(bodyParser());
+        app.use(router());
+        app.use(staticFiles('/', './build'));
 
-    //start server
-    app.listen(port, () => {
-        console.log(`App(production) is running at ${port}...`);
-    });
+        //start server
+        app.listen(port, () => {
+            console.log(`App(production) is running at ${port}...`);
+        });
+
+        break;
+    }
+    case 'api': {
+        // use middlewares
+        app.use(bodyParser());
+        app.use(router());
+
+        //start server
+        app.listen(port, () => {
+            console.log(`App(api) is running at ${port}...`);
+        });
+
+        break;
+    }
+    default: { break; }
 }
