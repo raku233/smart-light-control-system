@@ -4,7 +4,7 @@ export default class Preview extends Component {
     static propTypes = {
         title: PropTypes.string,
         link: PropTypes.string,
-        push: PropTypes.func
+        push: PropTypes.func,
     };
 
     handleNavigate(id, e) {

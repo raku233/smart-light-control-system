@@ -2,22 +2,22 @@ import React from 'react';
 import { Menu, Layout, Icon } from 'antd';
 import './content.css';
 
-const{ SubMenu } = Menu;
-const{ Content, Sider } = Layout;
+const { SubMenu } = Menu;
+const { Content, Sider } = Layout;
 
 class FrameContent extends React.Component {
     render() {
         return (
-            <Content className='content'>
-                <Layout className='layout'>
-                    <Sider width={200} className='sider'>
+            <Content className="content">
+                <Layout className="layout">
+                    <Sider width={200} className="sider">
                         <Menu
-                            mode="inline"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            style={{height: '100%'}}
+                          mode="inline"
+                          defaultSelectedKeys={['1']}
+                          defaultOpenKeys={['sub1']}
+                          style={{ height: '100%' }}
                         >
-                            <SubMenu key='sub1' title={<span><Icon type='bars' />集中控制管理</span>}>
+                            <SubMenu key="sub1" title={<span><Icon type="bars" />集中控制管理</span>}>
                                 <Menu.Item key="sub1-1">手动开关灯</Menu.Item>
                                 <Menu.Item key="sub1-2">开关灯时间</Menu.Item>
                                 <Menu.Item key="sub1-3">详细电参数</Menu.Item>
@@ -27,7 +27,7 @@ class FrameContent extends React.Component {
                                 <Menu.Item key="sub1-7">记录查询</Menu.Item>
                                 <Menu.Item key="sub1-8">当前警报</Menu.Item>
                             </SubMenu>
-                            <SubMenu key='sub2' title={<span><Icon type='bulb' />单灯控制管理</span>}>
+                            <SubMenu key="sub2" title={<span><Icon type="bulb" />单灯控制管理</span>}>
                                 <Menu.Item key="sub2-1">单灯地图</Menu.Item>
                                 <Menu.Item key="sub2-2">单灯校时</Menu.Item>
                                 <Menu.Item key="sub2-3">强制开关灯</Menu.Item>
@@ -38,12 +38,12 @@ class FrameContent extends React.Component {
                             </SubMenu>
                         </Menu>
                     </Sider>
-                    <Content className='container'>
+                    <Content className="container">
                         {this.props.children}
                     </Content>
                 </Layout>
             </Content>
-        )
+        );
     }
 }
 

@@ -6,8 +6,8 @@ const
 
 
 function addMapping(router, mapping) {
-    for(const req in mapping) {
-        switch(true) {
+    for (const req in mapping) {
+        switch (true) {
             case req.startsWith('GET'):
                 var path = req.substring(4);
                 router.get(path, mapping[req]);
@@ -31,7 +31,7 @@ function addRoutes(router, dir) {
         return f.endsWith('.js');
     });
 
-    for(const f of js_files) {
+    for (const f of js_files) {
         console.log(`Process controller: ${f}`);
         let mapping = require(`${fpath}/${f}`);
         addMapping(router, mapping);

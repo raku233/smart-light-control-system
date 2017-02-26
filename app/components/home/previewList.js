@@ -8,7 +8,7 @@ export default class PreviewList extends Component {
         error: PropTypes.bool,
         articleList: PropTypes.arrayOf(PropTypes.object),
         loadArticles: PropTypes.func,
-        push: PropTypes.func
+        push: PropTypes.func,
     };
 
     componentDidMount() {
@@ -28,7 +28,7 @@ export default class PreviewList extends Component {
         return (
             <div>
                 {articleList.map(item => {
-                    return (<Preview { ...item } key={item.id} push={push} />)
+                    return (<Preview { ...item } key={item.id} push={push} />);
                 })}
             </div>
         );

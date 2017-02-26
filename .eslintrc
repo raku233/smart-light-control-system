@@ -1,26 +1,56 @@
 {
-    "parserOptions": {
-        "ecmaVersion": 7,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "rules": {
-        "indent": [ 1, 4 ],
-        "quotes": [ 2, "single" ],
-        "semi": [ 1, "always" ],
-        "no-console": "off",
-        "no-unused-vars": [1, { "vars": "all", "args": "after-used" }]
-    },
-    "env": {
-        "es6": true,
-        "node": true,
-        "browser": true
-    },
-    "globals": {
-        "window": true
-    },
-    "extends": "eslint:recommended",
-    "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "indent": [1, 4],
+    "generator-star-spacing": [0],
+    "consistent-return": [0],
+    "react/forbid-prop-types": [0],
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "global-require": [1],
+    "import/prefer-default-export": [0],
+    "react/jsx-no-bind": [0],
+    "react/prop-types": [0],
+    "react/jsx-indent": [0],
+    "react/self-closing-comp": ["error",{"component": false}],
+    "react/prefer-stateless-function": [0],
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "off",
+    "react/jsx-curly-spacing": "off",
+    "no-else-return": [0],
+    "no-restricted-syntax": [0],
+    "import/no-extraneous-dependencies": [0],
+    "no-use-before-define": [0],
+    "jsx-a11y/no-static-element-interactions": [0],
+    "no-nested-ternary": [0],
+    "arrow-parens": "off",
+    "arrow-body-style": [0],
+    "import/extensions": [0],
+    "no-bitwise": [0],
+    "no-cond-assign": [0],
+    "import/no-unresolved": [0],
+    "require-yield": [1],
+    "comma-dangle": "off",
+    "eol-last": "off",
+    "no-shadow": "off",
+    "vars-on-top": "off",
+    "no-redeclare": "off",
+    "guard-for-in": "off",
+    "strict": "off",
+    "camelcase": "off",
+    "one-var": "off",
+    "no-var": "off",
+    "global-require": "off",
+    "import/no-dynamic-require": "off"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
 }

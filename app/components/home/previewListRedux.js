@@ -32,7 +32,7 @@ export function loadArticlesError(error) {
         payload: {
             error
         }
-    }
+    };
 }
 
 function previewList(state = initialState, action) {
@@ -42,7 +42,7 @@ function previewList(state = initialState, action) {
                 ...state,
                 loading: true,
                 error: false
-            }
+            };
         }
 
         case LOAD_ARTICLES_SUCCESS: {
@@ -51,7 +51,7 @@ function previewList(state = initialState, action) {
                 loading: false,
                 error: false,
                 articleList: action.payload.articleList
-            }
+            };
         }
 
         case LOAD_ARTICLES_ERROR: {
