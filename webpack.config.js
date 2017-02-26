@@ -45,7 +45,7 @@ module.exports = {
     devtool: isDev ? 'eval-source-map': 'cheap-source-map',
     module: {
         loaders: [{
-            test: /\.jsx?$/,
+            test: /\.js?$/,
             loader: 'babel',
             include: options.srcPath
         }, {
