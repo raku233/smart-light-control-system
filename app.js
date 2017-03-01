@@ -17,7 +17,7 @@ const
     staticFiles = require('./server/middlewares/static-files'),
     router = require('./server/middlewares/router');
 
-switch(mode) {
+switch (mode) {
     case 'development': {
         const
             webpack = require('webpack'),
@@ -35,7 +35,7 @@ switch(mode) {
             verbose: false,
             rewrites: [{
                 from: /^\/api\/.*$/,
-                to: function (context) {
+                to(context) {
                     return context.parsedUrl.pathname.substring(4);
                 }
             }]
@@ -67,7 +67,7 @@ switch(mode) {
             verbose: false,
             rewrites: [{
                 from: /^\/api\/.*$/,
-                to: function (context) {
+                to(context) {
                     return context.parsedUrl.pathname.substring(4);
                 }
             }]
