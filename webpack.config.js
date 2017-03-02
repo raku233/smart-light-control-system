@@ -31,8 +31,8 @@ var options = {
 
 module.exports = {
     entry: isDev
-            ? { 'app': [ 'babel-polyfill', path.resolve(options.srcPath, 'app.dev.js'), options.script ]}
-            : [ 'babel-polyfill',path.resolve(options.srcPath, 'app.prod.js') ],
+            ? { app: ['babel-polyfill', path.resolve(options.srcPath, 'app.dev.js'), options.script] }
+            : ['babel-polyfill', path.resolve(options.srcPath, 'app.prod.js')],
     output: {
         filename: 'bundle.js',
         path: options.buildPath,
@@ -42,14 +42,14 @@ module.exports = {
         extensions: ['', '.jsx', '.js', '.sass']
     },
 
-    devtool: isDev ? 'eval-source-map': 'cheap-source-map',
+    devtool: isDev ? 'eval-source-map' : 'cheap-source-map',
     module: {
         loaders: [{
             test: /\.js?$/,
             loader: 'babel',
             include: options.srcPath
         }, {
-            test: /\.(png|jpg\gif)$/,
+            test: /\.(png|jpg|gif)$/,
             loader: 'url-loader?limit=8192&name=images/[name].[ext]?[hash:8]'
         }, {
             test: /\.scss$/,
@@ -73,7 +73,7 @@ module.exports = {
         !isDev
             ? new webpack.DefinePlugin({
                 'process.env': {
-                    'NODE_ENV': JSON.stringify('production')
+                    NODE_ENV: JSON.stringify('production')
                 }
             })
             : null,

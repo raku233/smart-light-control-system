@@ -3,6 +3,7 @@
   "extends": "airbnb",
   "rules": {
     "indent": [1, 4],
+    "keyword-spacing": [1],
     "generator-star-spacing": [0],
     "consistent-return": [0],
     "react/forbid-prop-types": [0],

@@ -8,12 +8,12 @@ let data = [{
     text: 'This is another comment.'
 }];
 
-const fn_sendComment = async(ctx, next) => {
+const fn_sendComment = async (ctx, next) => {
     const dataString = JSON.stringify(data);
     ctx.response.body = dataString;
 };
 
-const fn_commitComment = async(ctx, next) => {
+const fn_commitComment = async (ctx, next) => {
     const
         req_data = ctx.request.body.data || '',
         comment = JSON.parse(req_data);
