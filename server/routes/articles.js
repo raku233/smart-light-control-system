@@ -12,7 +12,7 @@ let data = [{
     description: 'every night every day'
 }];
 
-const fn_sendArticles = async(ctx, next) => {
+const fn_sendArticles = async (ctx, next) => {
     const dataString = JSON.stringify(data);
     ctx.response.body = dataString;
 };
