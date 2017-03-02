@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Row, Col } from 'antd';
-import Sider from './sider.js';
-import './content.css';
+import Sider from '../sider/';
+import './index.css';
 
 const { Content } = Layout;
 

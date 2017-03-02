@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Layout } from 'antd';
-import FrameHeader from './header/header.js';
-import FrameContent from './content/content.js';
-import FrameFooter from './footer/footer.js';
+import FrameHeader from './header/';
+import FrameContent from './content/';
+import FrameFooter from './footer/';
 
 class Frame extends React.Component {
     render() {
