@@ -20,22 +20,17 @@ class Sider extends React.Component {
 
         let nextOpenKeys = [];
         if (latestOpenKey) {
-            nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
+            nextOpenKeys = [].concat(latestOpenKey);
         }
         if (latestCloseKey) {
-            nextOpenKeys = this.getAncestorKeys(latestCloseKey);
+            nextOpenKeys = [];
         }
         this.setState({ openKeys: nextOpenKeys });
     }
 
-    getAncestorKeys = (key) => {
-        const map = {};
-        return map[key] || [];
-    }
-
     handleClick = (e) => {
         this.setState({ current: e.key });
-        this.props.push(`/${e.key}/123`);
+        this.props.push(`/${e.key}`);
     }
 
     render() {
