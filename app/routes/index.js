@@ -11,8 +11,8 @@ const routes = history => (
     <Router history={history}>
         <Route path="/" component={Frame}>
             <IndexRoute component={Home} />
-            <Route path="manual_lamp_switching" component={ManualLampSwitching} />
-            <Route path="lamp_switching_time" component={LampSwitchingTime} />
+            <Route path="/integrated_terminal/manual_lamp_switching" component={ManualLampSwitching} />
+            <Route path="/integrated_terminal/lamp_switching_time" component={LampSwitchingTime} />
             <Route path="/detail/:id" component={Detail} />
         </Route>
     </Router>

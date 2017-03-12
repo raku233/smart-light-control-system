@@ -1,15 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Menu, Icon } from 'antd';
+import './index.css';
 
 const { SubMenu } = Menu;
 
-class Sider extends React.Component {
+class SiderMenu extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            current: '1',
-            openKeys: []
+            openKeys: [this.props.pathname[1]]
         };
     }
 
@@ -29,21 +30,21 @@ class Sider extends React.Component {
     }
 
     handleClick = (e) => {
-        this.setState({ current: e.key });
-        this.props.push(`/${e.key}`);
+        this.props.push(`/${`${e.keyPath[1]}/${e.key}`}`);
     }
 
     render() {
         return (
             <Menu
-              mode="inline"
+              theme="dark"
+              mode={this.props.mode}
               openKeys={this.state.openKeys}
-              selectedKeys={[this.state.current]}
+              selectedKeys={[this.props.pathname[2]]}
               onOpenChange={this.onOpenChange}
               onClick={this.handleClick}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '100%' }}
             >
-                <SubMenu key="sub1" title={<span><Icon type="bars" />集中控制管理</span>}>
+                <SubMenu key="integrated_terminal" title={<span><Icon type="bars" /><span className="nav-text">集中控制管理</span></span>}>
                     <Menu.Item key="manual_lamp_switching">手动开关灯</Menu.Item>
                     <Menu.Item key="lamp_switching_time">开关灯时间</Menu.Item>
                     <Menu.Item key="electrical_parameter">详细电参数</Menu.Item>
@@ -53,7 +54,7 @@ class Sider extends React.Component {
                     <Menu.Item key="record_query">记录查询</Menu.Item>
                     <Menu.Item key="current_warning">当前警报</Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub2" title={<span><Icon type="bulb" />单灯控制管理</span>}>
+                <SubMenu key="single_lamp" title={<span><Icon type="bulb" /><span className="nav-text">单灯控制管理</span></span>}>
                     <Menu.Item key="single_lamp_map">单灯地图</Menu.Item>
                     <Menu.Item key="single_lamp_timing">单灯校时</Menu.Item>
                     <Menu.Item key="compulsive_lamp_switching">强制开关灯</Menu.Item>
@@ -67,4 +68,12 @@ class Sider extends React.Component {
     }
 }
 
-export default Sider;
+export default connect(state => {
+    const path = state.routing.locationBeforeTransitions.pathname.split('/');
+    return {
+        pathname: path
+    };
+}, dispatch => {
+    return {
+    };
+})(SiderMenu);
