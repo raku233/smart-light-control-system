@@ -43,7 +43,7 @@ function deviceList(state = initialState, action) {
             ...state,
             loading: true,
             error: false,
-            groupType: action.payload.groupType
+            groupType: action.payload.DevGroup
         };
     }
 

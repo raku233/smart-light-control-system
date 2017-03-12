@@ -1,4 +1,4 @@
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 import { Select, Tree } from 'antd';
 
@@ -7,6 +7,7 @@ import './index.css';
 const { Option } = Select,
       { TreeNode } = Tree;
 
+// TODO: 修复切换路由时组件状态重置问题，添加列表生成逻辑
 export default class DeviceList extends Component {
 
     constructor(props) {
@@ -26,7 +27,7 @@ export default class DeviceList extends Component {
             <div className="c-dl-container">
                 <div className="c-dl-group-selector">
                     <span className="c-dl-label">设备分组：</span>
-                    <Select className="c-dl-selector" dropdownMatchSelectWidth defaultValue={groupType} onSelect={this.fillDeviceList}>
+                    <Select className="c-dl-selector" dropdownMatchSelectWidth value={groupType} onSelect={this.fillDeviceList}>
                         <Option value="区域分组">区域分组</Option>
                         <Option value="电话分组">电话分组</Option>
                         <Option value="自定义分组">自定义分组</Option>
