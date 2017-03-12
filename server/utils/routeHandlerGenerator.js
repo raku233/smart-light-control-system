@@ -5,7 +5,7 @@ const parseParam = param => {
 
     if (typeof param === 'object') {
         for (const key in param) {
-            str_param += `${key}=${param[key]}&`;
+            str_param += `${key}=${encodeURIComponent(param[key])}&`;
         }
         return str_param.substring(0, str_param.length - 1);
     }
@@ -32,17 +32,20 @@ const fetchData = (url, method, param) => {
 };
 
 // 默认数据处理函数
-const defaultDataHandler = (data) => { return data; };
+const defaultDataHandler = (data) => { return JSON.stringify(data); };
 
 // 享元模式
 const routeHandlerGenerator = common_api => (specific_api, dataHandler = defaultDataHandler) => {
     const method = specific_api.method,
-        url = common_api.rootURL + specific_api.pathName;
+        url = common_api.rootURL + specific_api.pathName,
+        param = specific_api.param;
 
     return async (ctx, next) => {
-        const param = ctx.request.body || {};
+        const req_param = Object.assign({}, param, ctx.request.body || {});
+        console.log(ctx.request.body);
 
-        const data = await fetchData(url, method, param);
+        const data = await fetchData(url, method, req_param);
+        console.log(data);
         ctx.response.body = dataHandler(data);
     };
 };
