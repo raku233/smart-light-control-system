@@ -16,9 +16,12 @@ const fetchData = (url, method, param) => {
 
     param = parseParam(param);
 
+    console.log('param', param);
+
     switch (method) {
     case 'get': {
         if (param) url += `?${param}`;
+        console.log('url', url);
         return fetch(url).then(dataParser);
     }
     case 'post': {
@@ -41,11 +44,11 @@ const routeHandlerGenerator = common_api => (specific_api, dataHandler = default
         param = specific_api.param;
 
     return async (ctx, next) => {
-        const req_param = Object.assign({}, param, ctx.request.body || {});
-        console.log(ctx.request.body);
+        const req_param = Object.assign({}, ctx.request.body || {}, param);
+        console.log(req_param);
 
         const data = await fetchData(url, method, req_param);
-        console.log(data);
+        console.log('data', data);
         ctx.response.body = dataHandler(data);
     };
 };
