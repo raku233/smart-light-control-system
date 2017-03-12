@@ -13,7 +13,7 @@ export function loadDeviceList(groupType) {
     return {
         type: LOAD_DEVICELIST,
         payload: {
-            groupType
+            DevGroup: groupType
         }
     };
 }
