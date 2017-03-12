@@ -1,0 +1,76 @@
+.c-dl-container {
+    max-width: 200px;
+    height: 100%;
+    padding: 0 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.c-dl-container::after {
+    content: '';
+    width: 1px;
+    height: 95%;
+    background: #E9E9E9;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto 0;
+}
+
+.c-dl-group-selector {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-dl-label {
+
+}
+
+.c-dl-selector {
+    width: 100px;
+}
+
+.c-dl-wrapper {
+    width: 100%;
+    border: 1px solid #E9E9E9;
+    border-radius: 4px;
+    margin: 5px 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-dl-title {
+    width: 100%;
+    font-size: 16px;
+    color: #404040;
+    text-align: center;
+    margin: 8px 0;
+    padding: 2px 0;
+    position: relative;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.c-dl-title::after {
+    content: '';
+    width: 80px;
+    height: 1px;
+    background: #404040;
+    display: block;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.c-dl-list {
+    align-self: flex-start;
+}
