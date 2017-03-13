@@ -42,7 +42,7 @@ class SiderMenu extends React.Component {
               selectedKeys={[this.props.pathname[2]]}
               onOpenChange={this.onOpenChange}
               onClick={this.handleClick}
-              style={{ width: '100%', 'font-size': '16px' }}
+              style={{ width: '100%', fontSize: '16px' }}
             >
                 <SubMenu key="integrated_terminal" title={<span><Icon type="bars" /><span className="nav-text">集中控制管理</span></span>}>
                     <Menu.Item key="manual_lamp_switching">手动开关灯</Menu.Item>

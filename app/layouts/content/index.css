@@ -1,5 +1,5 @@
 .l-c-content {
-    height: 100%;
+    height: calc(100vh - 210px);
     margin: 16px;
     padding: 24px;
     background: #fff;
