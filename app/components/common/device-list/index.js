@@ -20,8 +20,20 @@ export default class DeviceList extends Component {
         this.props.loadDeviceList(groupType);
     }
     render() {
-        const { groupType } = this.props;
-        console.log(this.props);
+        const { groupType, deviceList } = this.props,
+            treeNodes = [];
+
+        // 根据设备列表数据生成视图
+        if (deviceList) {
+            for (const deviceGroup in deviceList) {
+                treeNodes.push(<TreeNode title={deviceGroup} key={deviceGroup} >
+                    {deviceList[deviceGroup].map(device => (
+                        <TreeNode title={device} key={device}></TreeNode>
+                    ))}
+                </TreeNode>);
+            }
+        }
+
 
         return (
             <div className="c-dl-container">
@@ -38,11 +50,7 @@ export default class DeviceList extends Component {
                         设备列表
                     </div>
                     <Tree className="c-dl-list">
-                        <TreeNode title="组1" key="0-0">
-                            <TreeNode title="设备1" key="0-0-1"></TreeNode>
-                        </TreeNode>
-                        <TreeNode title="组2" key="0-1"></TreeNode>
-                        <TreeNode title="组3" key="0-2"></TreeNode>
+                        { treeNodes }
                     </Tree>
                 </div>
             </div>

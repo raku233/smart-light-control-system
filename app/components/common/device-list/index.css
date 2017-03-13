@@ -1,5 +1,5 @@
 .c-dl-container {
-    max-width: 200px;
+    max-width: 220px;
     height: 100%;
     padding-right: 24px;
     margin-right: 16px;
@@ -73,5 +73,7 @@
 }
 
 .c-dl-list {
+    width: 100%;
+    overflow: auto;
     align-self: flex-start;
 }
