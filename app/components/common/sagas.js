@@ -1,5 +1,5 @@
-import watchFetchData from './device-list/saga';
+import { watchFetchData as deviceListWatcher } from './device-list/saga';
 
 export const commonSagas = [
-    watchFetchData
+    deviceListWatcher
 ];

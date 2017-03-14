@@ -12,6 +12,6 @@ function* fetchData(action) {
     }
 }
 
-export default function* watchFetchData() {
+export function* watchFetchData() {
     yield takeEvery(LOAD_DEVICELIST, fetchData);
 }
