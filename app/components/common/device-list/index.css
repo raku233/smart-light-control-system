@@ -43,7 +43,6 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    align-items: center;
 }
 
 .c-dl-title {
@@ -51,6 +50,7 @@
     font-size: 16px;
     color: #404040;
     text-align: center;
+    align-self: center;
     margin: 8px 0;
     padding: 2px 0;
     position: relative;
@@ -72,8 +72,9 @@
     right: 0;
 }
 
-.c-dl-list {
-    width: 100%;
+/* Spin组件 */
+.ant-spin-nested-loading {
+    display: flex;
+    flex: 1;
     overflow: auto;
-    align-self: flex-start;
 }

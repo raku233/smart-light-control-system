@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Select, Tree } from 'antd';
+import { Select, Tree, Spin } from 'antd';
 
 import './index.css';
 
@@ -14,13 +14,25 @@ export default class DeviceList extends Component {
         super(props);
 
         this.fillDeviceList = this.fillDeviceList.bind(this);
+        this.handleDeviceSelected = this.handleDeviceSelected.bind(this);
+    }
+
+    componentDidMount() {
+        const { groupType, loadDeviceList } = this.props;
+        loadDeviceList(groupType);
     }
 
     fillDeviceList(groupType) {
         this.props.loadDeviceList(groupType);
     }
+
+    handleDeviceSelected(selectedKey, e) {
+        console.log('selectedKey', selectedKey);
+        console.log('e', e);
+    }
+
     render() {
-        const { groupType, deviceList } = this.props,
+        const { loading, groupType, deviceList } = this.props,
             treeNodes = [];
 
         // 根据设备列表数据生成视图
@@ -49,9 +61,11 @@ export default class DeviceList extends Component {
                     <div className="c-dl-title">
                         设备列表
                     </div>
-                    <Tree className="c-dl-list">
-                        { treeNodes }
-                    </Tree>
+                    <Spin spinning={loading} tip="加载中...">
+                        <Tree className="c-dl-list" onSelect={this.handleDeviceSelected}>
+                            { treeNodes }
+                        </Tree>
+                    </Spin>
                 </div>
             </div>
         );
