@@ -60,7 +60,8 @@ function deviceList(state = initialState, action) {
         return {
             ...state,
             loading: false,
-            error: true
+            error: true,
+            deviceList: []
         };
     }
 

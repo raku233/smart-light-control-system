@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 
-import { Select, Tree, Spin } from 'antd';
+import { Select, Tree, Spin, notification } from 'antd';
 
 import './index.css';
 
 const { Option } = Select,
-      { TreeNode } = Tree;
+    { TreeNode } = Tree;
 
-// TODO: 修复切换路由时组件状态重置问题，添加列表生成逻辑
 export default class DeviceList extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            treeNodes: []
+        };
 
         this.fillDeviceList = this.fillDeviceList.bind(this);
         this.handleDeviceSelected = this.handleDeviceSelected.bind(this);
@@ -20,6 +23,26 @@ export default class DeviceList extends Component {
     componentDidMount() {
         const { groupType, loadDeviceList } = this.props;
         loadDeviceList(groupType);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { error, deviceList } = nextProps;
+        const treeNodes = [];
+
+        if (error) this.openErrorNotification();
+
+        // 根据设备列表数据生成视图
+        if (deviceList && !error) {
+            for (const deviceGroup in deviceList) {
+                treeNodes.push(<TreeNode title={deviceGroup} key={deviceGroup} >
+                    {deviceList[deviceGroup].map(device => (
+                        <TreeNode title={device} key={device}></TreeNode>
+                    ))}
+                </TreeNode>);
+            }
+        }
+
+        this.setState({ treeNodes });
     }
 
     fillDeviceList(groupType) {
@@ -31,21 +54,16 @@ export default class DeviceList extends Component {
         console.log('e', e);
     }
 
+    openErrorNotification() {
+        notification.error({
+            message: '设备列表加载失败',
+            description: '请检查网络连接后重试'
+        });
+    }
+
     render() {
-        const { loading, groupType, deviceList } = this.props,
-            treeNodes = [];
-
-        // 根据设备列表数据生成视图
-        if (deviceList) {
-            for (const deviceGroup in deviceList) {
-                treeNodes.push(<TreeNode title={deviceGroup} key={deviceGroup} >
-                    {deviceList[deviceGroup].map(device => (
-                        <TreeNode title={device} key={device}></TreeNode>
-                    ))}
-                </TreeNode>);
-            }
-        }
-
+        const { loading, groupType } = this.props,
+            { treeNodes } = this.state;
 
         return (
             <div className="c-dl-container">
