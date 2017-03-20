@@ -1,7 +1,7 @@
 .l-c-content {
+    min-width: 1380px;
     height: calc(100vh - 210px);
     margin: 16px;
     padding: 24px;
     background: #fff;
-
 }
