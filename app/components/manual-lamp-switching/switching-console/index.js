@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Table, Switch, Badge, Icon } from 'antd';
 
+import './index.css';
+
 const { Column } = Table;
 
 export default class SwitchingConsole extends Component {
@@ -32,7 +34,7 @@ export default class SwitchingConsole extends Component {
         const { data } = this.state;
 
         return (
-            <Table size="small" pagination={false} dataSource={data}>
+            <Table className="c-sls-sc-table" size="small" pagination={false} dataSource={data}>
                 <Column
                   width={120}
                   title="8路支路输出"
