@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { actions as commonActions } from '../../components/common/redux';
 
 import DeviceList from '../../components/common/device-list';
-import SwitchingConsole from '../../components/single-light-switching/switching-console';
-import ConfigConsole from '../../components/single-light-switching/config-console';
+import SwitchingConsole from '../../components/manual-lamp-switching/switching-console';
+import ConfigConsole from '../../components/manual-lamp-switching/config-console';
 
 import './index.css';
 
