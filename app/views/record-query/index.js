@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 
-class ManualLampSwitching extends Component {
+import RecordInfoTable from '../../components/record-query/record-info-table/index';
+
+import './index.css';
+
+class RecordQuery extends Component {
     render() {
         return (
-            <div>手动开关灯</div>
+            <div className="v-rq-container">
+                <div className="v-rq-title">记录查询</div>
+                <RecordInfoTable />
+            </div>
         );
     }
 }
 
-export default ManualLampSwitching;
+export default RecordQuery;
