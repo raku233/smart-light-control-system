@@ -40,12 +40,11 @@ class Frame extends React.Component {
                     <div className="l-f-logo"></div>
                     <SiderMenu mode={this.state.mode} push={push} />
                 </Sider>
-                <Layout>
+                <Layout style={{ minWidth: '900px' }}>
                     <FrameHeader />
                     <FrameContent push={ push }>
                         {this.props.children}
                     </FrameContent>
-                    <FrameFooter />
                 </Layout>
             </Layout>
         );
