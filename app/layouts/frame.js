@@ -45,7 +45,6 @@ class Frame extends React.Component {
                     <FrameContent push={ push }>
                         {this.props.children}
                     </FrameContent>
-                    <FrameFooter />
                 </Layout>
             </Layout>
         );
