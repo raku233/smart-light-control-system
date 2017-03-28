@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
+import TimeRange from '../../components/common/time-range';
+
 class LampSwitchingTime extends Component {
     render() {
         return (
-            <div>开关灯时间</div>
+            <div>
+                <TimeRange />
+            </div>
         );
     }
 }
