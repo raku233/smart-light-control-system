@@ -4,8 +4,8 @@ const $ = require('node-httpclient');
 
 const parseParam = param => {
     let str = '';
-    for(var [ key, value ] of param) {
-        str +=`${key}=${value}&`;
+    for (var [key, value] of param) {
+        str += `${key}=${value}&`;
     }
     return str.substring(0, str.length - 1);
 };
@@ -16,7 +16,7 @@ const fetchData = (url, param = undefined) => {
 
     return new Promise((resolve, reject) => {
         $.get(url, (data, status) => {
-            if(status == 200 && data) {
+            if (status === 200 && data) {
                 resolve(data);
             } else {
                 reject(null);
@@ -26,5 +26,5 @@ const fetchData = (url, param = undefined) => {
 };
 
 module.exports = {
-    fetchData: fetchData
+    fetchData
 };

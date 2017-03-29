@@ -1,13 +1,13 @@
 var webServerConfig = {
         name: 'web-server',
         env: {
-            'NODE_ENV': 'development'
+            NODE_ENV: 'development'
         }
     },
     apiServerConfig = {
         name: 'api-server',
         env: {
-            'NODE_ENV': 'api'
+            NODE_ENV: 'api'
         }
     };
 

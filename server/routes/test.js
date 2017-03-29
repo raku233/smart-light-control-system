@@ -1,4 +1,4 @@
-const routeHandlerGenerator = require('../utils/route-handler-generator.js');
+const routeHandlerGenerator = require('../utils/routeHandlerGenerator.js');
 
 const API = require('../api/test.js'),
       SPECIFIC_API = API.SPECIFIC_API,
