@@ -1,0 +1,54 @@
+.c-lst-msc-container {
+    width: 300px;
+    margin-left: 18px;
+    justify-content: center;
+}
+
+.c-lst-msc-title {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.c-lst-msc-config-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-lst-msc-config {
+    text-align: center;
+    margin: 12px 0;
+}
+
+.c-lst-msc-label {
+    margin-right: 8px;
+}
+
+.c-lst-msc-checkbox4all {
+    width: 100%;
+    padding-bottom: 6px;
+    margin: 4px 0;
+    position: relative;
+}
+
+.c-lst-msc-checkbox4all::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #3e3e3e;
+    display: block;
+    position: absolute;
+    bottom: 0;
+}
+
+.c-lst-msc-btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-lst-msc-btn {
+    width: 80%;
+    margin: 8px 0;
+}
