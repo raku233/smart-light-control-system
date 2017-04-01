@@ -5,7 +5,6 @@ const Koa = require('koa');
 const
     port = 3000,
     mode = process.env.NODE_ENV,
-    isDev = process.env.NODE_ENV !== 'production',
     app = new Koa();
 
 // import common middlewares
@@ -61,7 +60,6 @@ case 'development': {
     break;
 }
 case 'production': {
-
     // use middlewares
     app.use(historyApiFallback({
         verbose: false,
@@ -84,7 +82,6 @@ case 'production': {
     break;
 }
 case 'api': {
-
     // import middlewares for api
     const rewrite = require('koa-rewrite');
 
