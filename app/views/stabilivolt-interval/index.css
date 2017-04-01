@@ -1,0 +1,10 @@
+.v-si-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.v-si-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+}

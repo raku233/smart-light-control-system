@@ -7,6 +7,7 @@ import Detail from '../views/detail';
 import ManualLampSwitching from '../views/manual-lamp-switching';
 import LampSwitchingTime from '../views/lamp-switching-time';
 import ElectricalParameter from '../views/electrical-parameter';
+import StabilivoltInterval from '../views/stabilivolt-interval';
 
 
 const routes = history => (
@@ -16,6 +17,7 @@ const routes = history => (
             <Route path="/integrated_terminal/manual_lamp_switching" component={ManualLampSwitching} />
             <Route path="/integrated_terminal/lamp_switching_time" component={LampSwitchingTime} />
             <Route path="/integrated_terminal/electrical_parameter" component={ElectricalParameter} />
+            <Route path="/integrated_terminal/stabilivolt_interval" component={StabilivoltInterval} />
             <Route path="/detail/:id" component={Detail} />
         </Route>
     </Router>
