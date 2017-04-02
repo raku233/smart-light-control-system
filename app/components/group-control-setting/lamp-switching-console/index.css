@@ -1,0 +1,19 @@
+.c-gcs-lsc-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 400px;
+}
+
+.c-gcs-lsc-config-wrapper {
+    margin: 8px 0;
+}
+
+.c-gcs-lsc-config-wrapper .ant-card-body{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
