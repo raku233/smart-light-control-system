@@ -1,0 +1,17 @@
+.v-gcs-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.v-gcs-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.v-gcs-config {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
