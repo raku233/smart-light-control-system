@@ -68,10 +68,9 @@ const defaultDataHandler = ([data]) => { return JSON.stringify(data); };
  * @param {Function} dataHandler 服务端响应数据处理函数
  */
 const routeHandlerGenerator = commonAPI => (specificAPI, dataHandler = defaultDataHandler) => {
-    const promises = [];
-
     return async (ctx, next) => {
-        const reqParam = ctx.request.body;
+        const reqParam = ctx.request.body,
+            promises = [];
 
         for (const API of specificAPI) {
             const { method, param, requiredParamKeys } = API,

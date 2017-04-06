@@ -8,6 +8,7 @@ module.exports = {
             log_name: 'admin',
             log_pass: 'changhe123',
             sn_node_mode: '1'
-        }
+        },
+        requiredParamKeys: ['DevGroup']
     }
 };
