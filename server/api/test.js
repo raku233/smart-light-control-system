@@ -4,7 +4,8 @@ const SPECIFIC_API = {
     GET_CS_TABLE: {
         method: 'get',
         pathName: '/Onoff/Get_cs_table',
-        param: {}
+        param: {},
+        requiredParamKeys: []
     }
 };
 

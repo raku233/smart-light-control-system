@@ -6,7 +6,13 @@ import Home from '../views/home';
 import Detail from '../views/detail';
 import ManualLampSwitching from '../views/manual-lamp-switching';
 import LampSwitchingTime from '../views/lamp-switching-time';
+<<<<<<< HEAD
 import RecordQuery from '../views/record-query';
+=======
+import ElectricalParameter from '../views/electrical-parameter';
+import CurrentWarning from '../views/current-warning';
+
+>>>>>>> dev
 
 const routes = history => (
     <Router history={history}>
@@ -15,6 +21,8 @@ const routes = history => (
             <Route path="/integrated_terminal/manual_lamp_switching" component={ManualLampSwitching} />
             <Route path="/integrated_terminal/lamp_switching_time" component={LampSwitchingTime} />
             <Route path="/integrated_terminal/record_query" component={RecordQuery} />
+            <Route path="/integrated_terminal/electrical_parameter" component={ElectricalParameter} />
+            <Route path="/integrated_terminal/current_warning" component={CurrentWarning} />
             <Route path="/detail/:id" component={Detail} />
         </Route>
     </Router>
