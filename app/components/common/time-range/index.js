@@ -30,14 +30,14 @@ export default class TimeRange extends Component {
             if (moment(time).isAfter(endTime) && couldDeal) {
                 isStartTimeRight = false;
             }
-            this.setState({ startTime: time, isStartTimeRight });
+            this.setState({ startTime: time, isStartTimeRight, isEndTimeRight });
             break;
         }
         case 'end': {
             if (moment(time).isBefore(startTime) && couldDeal) {
                 isEndTimeRight = false;
             }
-            this.setState({ endTime: time, couldDeal: true, isEndTimeRight });
+            this.setState({ endTime: time, couldDeal: true, isStartTimeRight, isEndTimeRight });
             break;
         }
         default: break;
