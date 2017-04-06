@@ -10,6 +10,7 @@ import RecordQuery from '../views/record-query';
 import ElectricalParameter from '../views/electrical-parameter';
 import CurrentWarning from '../views/current-warning';
 import GroupControlSetting from '../views/group-control-setting';
+import StabilivoltInterval from '../views/stabilivolt-interval';
 
 
 const routes = history => (
@@ -22,6 +23,7 @@ const routes = history => (
             <Route path="/integrated_terminal/electrical_parameter" component={ElectricalParameter} />
             <Route path="/integrated_terminal/current_warning" component={CurrentWarning} />
             <Route path="/integrated_terminal/group_control_setting" component={GroupControlSetting} />
+            <Route path="/integrated_terminal/stabilivolt_interval" component={StabilivoltInterval} />
             <Route path="/detail/:id" component={Detail} />
         </Route>
     </Router>
