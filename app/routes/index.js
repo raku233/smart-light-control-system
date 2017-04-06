@@ -11,6 +11,7 @@ import CurrentWarning from '../views/current-warning';
 import GroupControlSetting from '../views/group-control-setting';
 import StabilivoltInterval from '../views/stabilivolt-interval';
 import SingleLampMap from '../views/single-lamp-map';
+import SingLampControl from '../views/single-lamp-control';
 
 const routes = history => (
     <Router history={history}>
@@ -24,6 +25,7 @@ const routes = history => (
             <Route path="/integrated_terminal/group_control_setting" component={GroupControlSetting} />
             <Route path="/integrated_terminal/stabilivolt_interval" component={StabilivoltInterval} />
             <Route path="/single_lamp/single_lamp_map" component={SingleLampMap} />
+            <Route path="/single_lamp/single_lamp_control" component={SingLampControl} />
         </Route>
     </Router>
 );
