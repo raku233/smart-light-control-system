@@ -45,7 +45,14 @@ class SiderMenu extends React.Component {
               style={{ width: '100%', fontSize: '16px' }}
             >
                 <SubMenu key="integrated_terminal" title={<span><Icon type="bars" /><span className="nav-text">集中控制管理</span></span>}>
-                    g
+                    <Menu.Item key="manual_lamp_switching">手动开关灯</Menu.Item>
+                    <Menu.Item key="lamp_switching_time">开关灯时间</Menu.Item>
+                    <Menu.Item key="electrical_parameter">详细电参数</Menu.Item>
+                    <Menu.Item key="stabilivolt_interval">时段稳压</Menu.Item>
+                    <Menu.Item key="group_control_setting">组控设置</Menu.Item>
+                    <Menu.Item key="baidu_map">百度地图</Menu.Item>
+                    <Menu.Item key="record_query">记录查询</Menu.Item>
+                    <Menu.Item key="current_warning">当前警报</Menu.Item>
                 </SubMenu>
                 <SubMenu key="single_lamp" title={<span><Icon type="bulb" /><span className="nav-text">单灯控制管理</span></span>}>
                     <Menu.Item key="single_lamp_map">单灯地图</Menu.Item>
