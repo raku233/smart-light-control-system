@@ -1,0 +1,21 @@
+.ant-row > div {
+  padding: 0 8px;
+}
+
+.ant-spin-container {
+    width: 100%;
+}
+
+.v-cls-row {
+    margin-bottom: 8px;
+}
+
+.v-cls-button {
+    margin: 0 8px;
+    flex: 1;
+}
+
+.v-cls-title {
+    font-size: 16px;
+    padding: 8px;
+}

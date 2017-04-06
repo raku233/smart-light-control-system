@@ -12,6 +12,7 @@ import GroupControlSetting from '../views/group-control-setting';
 import StabilivoltInterval from '../views/stabilivolt-interval';
 import SingleLampMap from '../views/single-lamp-map';
 import SingLampControl from '../views/single-lamp-control';
+import CompulsiveLampSwitching from '../views/compulsive-lamp-switching';
 
 const routes = history => (
     <Router history={history}>
@@ -26,6 +27,7 @@ const routes = history => (
             <Route path="/integrated_terminal/stabilivolt_interval" component={StabilivoltInterval} />
             <Route path="/single_lamp/single_lamp_map" component={SingleLampMap} />
             <Route path="/single_lamp/single_lamp_control" component={SingLampControl} />
+            <Route path="/single_lamp/compulsive_lamp_switching" component={CompulsiveLampSwitching} />
         </Route>
     </Router>
 );
