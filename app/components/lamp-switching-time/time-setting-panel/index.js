@@ -7,7 +7,7 @@ import TimeRange from '../../common/time-range/index';
 const { Column } = Table,
     { Option } = Select;
 
-export default class TimeSettingConsole extends Component {
+export default class TimeSettingPanel extends Component {
     constructor(props) {
         super(props);
 

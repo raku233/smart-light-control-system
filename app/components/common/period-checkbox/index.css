@@ -1,0 +1,20 @@
+.c-pc-container {
+    text-align: center;
+}
+
+.c-pc-checkbox4all {
+    width: 100%;
+    padding-bottom: 6px;
+    margin: 4px 0;
+    position: relative;
+}
+
+.c-pc-checkbox4all::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #3e3e3e;
+    display: block;
+    position: absolute;
+    bottom: 0;
+}

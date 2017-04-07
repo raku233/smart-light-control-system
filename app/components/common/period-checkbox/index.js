@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import { Checkbox, Button } from 'antd';
+import { Checkbox } from 'antd';
 
 import './index.css';
 
 const CheckboxGroup = Checkbox.Group;
 
-export default class ModeSettingConsole extends Component {
+export default class PeriodCheckbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,24 +43,20 @@ export default class ModeSettingConsole extends Component {
         const { plainOptions, checkedList, indeterminate, checkAll } = this.state;
 
         return (
-            <div className="c-gcs-msc-container">
-                <div className="c-gcs-msc-title">配置</div>
-                <div className="c-gcs-msc-config">
-                    <div className="c-gcs-msc-label">周期配置：</div>
-                        <Checkbox
-                          className="c-gcs-msc-checkbox4all"
-                          indeterminate={indeterminate}
-                          onChange={this.handleCheckAllChange}
-                          checked={checkAll}
-                        >
-                            全选
-                        </Checkbox>
-                        <CheckboxGroup options={plainOptions} value={checkedList} onChange={this.handleChange} />
-                </div>
-                <div className="c-gcs-msc-btn-group">
-                    <Button className="c-gcs-msc-btn" type="default">刷新</Button>
-                    <Button className="c-gcs-msc-btn" type="danger">设置</Button>
-                </div>
+            <div className="c-pc-container">
+                <Checkbox
+                  className="c-pc-checkbox4all"
+                  indeterminate={indeterminate}
+                  onChange={this.handleCheckAllChange}
+                  checked={checkAll}
+                >
+                    全选
+                </Checkbox>
+                <CheckboxGroup
+                  options={plainOptions}
+                  value={checkedList}
+                  onChange={this.handleChange}
+                />
             </div>
         );
     }

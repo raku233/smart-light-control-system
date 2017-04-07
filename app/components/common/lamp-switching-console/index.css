@@ -1,42 +1,37 @@
-.c-sls-cc-container {
+.c-lsc-container {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.c-sls-cc-title {
-    font-size: 16px;
-    text-align: center;
-}
-
-.c-sls-cc-config-group {
+.c-lsc-config-group {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.c-sls-cc-config {
+.c-lsc-config {
     width: 180px;
     margin: 5px 0px;
     display: flex;
     justify-content: space-between;
 }
 
-.c-sls-cc-label {
+.c-lsc-label {
     line-height: 28px;
 }
 
-.c-sls-cc-selector {
+.c-lsc-selector {
     width: 90px;
 }
 
-.c-sls-cc-button-group {
+.c-lsc-button-group {
     margin: 8px 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
-.c-sls-cc-button {
-    margin: 5px 0;
+.c-lsc-button {
+    margin: 8px;
 }

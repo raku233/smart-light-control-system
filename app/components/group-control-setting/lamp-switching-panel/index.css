@@ -1,4 +1,4 @@
-.c-gcs-lsc-container {
+.c-gcs-lsp-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -6,11 +6,11 @@
     max-width: 400px;
 }
 
-.c-gcs-lsc-config-wrapper {
-    margin: 8px 0;
+.c-gcs-lsp-config-wrapper {
+    margin: 4px 0;
 }
 
-.c-gcs-lsc-config-wrapper .ant-card-body{
+.c-gcs-lsp-config-wrapper .ant-card-body{
     padding: 10px;
     display: flex;
     flex-direction: row;

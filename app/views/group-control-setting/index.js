@@ -6,11 +6,10 @@ import { actions as commonActions } from '../../components/common/redux';
 
 
 import DeviceList from '../../components/common/device-list';
-import LampSwitchingConsole from '../../components/group-control-setting/lamp-switching-console';
-import TimeSettingConsole from '../../components/group-control-setting/time-setting-console';
-import ModeSettingConsole from '../../components/group-control-setting/mode-setting-console';
-// 暂时公用组件
-import ConfigConsole from '../../components/manual-lamp-switching/config-console/index';
+import LampSwitchingPanel from '../../components/group-control-setting/lamp-switching-panel';
+import TimeSettingPanel from '../../components/group-control-setting/time-setting-panel';
+import LampSwitchingConsole from '../../components/common/lamp-switching-console';
+import TimeSettingConsole from '../../components/common/time-setting-console';
 
 
 
@@ -25,16 +24,14 @@ class GroupControlSetting extends Component {
                 <div className="v-gcs-config-panel">
                     <div className="v-gcs-title">开关灯时间组控</div>
                     <div className="v-gcs-config">
+                        <TimeSettingPanel />
                         <TimeSettingConsole />
-                        <ModeSettingConsole />
                     </div>
                     <div className="v-gcs-title">手动开关灯组控</div>
                     <div className="v-gcs-config">
+                        <LampSwitchingPanel />
                         <LampSwitchingConsole />
-                        <ConfigConsole />
                     </div>
-                    
-                    
                 </div>
             </div>
         );

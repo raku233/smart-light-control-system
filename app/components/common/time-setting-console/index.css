@@ -1,0 +1,31 @@
+.c-tsc-container {
+    flex: 1;
+    margin-left: 18px;
+    justify-content: center;
+}
+
+.c-tsc-config-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-tsc-config {
+    text-align: center;
+    margin: 8px 0;
+}
+
+.c-tsc-label {
+    margin-right: 8px;
+}
+
+.c-tsc-btn-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-tsc-btn {
+    margin: 8px;
+}

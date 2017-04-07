@@ -6,7 +6,7 @@ import { actions as commonActions } from '../../components/common/redux';
 
 import DeviceList from '../../components/common/device-list';
 import SwitchingConsole from '../../components/manual-lamp-switching/switching-console';
-import ConfigConsole from '../../components/manual-lamp-switching/config-console';
+import LampSwitchingConsole from '../../components/common/lamp-switching-console';
 
 import './index.css';
 
@@ -18,7 +18,7 @@ class ManualLampSwitching extends Component {
             <div className="v-mls-container">
                 <DeviceList {...deviceList} {...deviceListActions} />
                 <SwitchingConsole />
-                <ConfigConsole />
+                <LampSwitchingConsole />
             </div>
         );
     }
