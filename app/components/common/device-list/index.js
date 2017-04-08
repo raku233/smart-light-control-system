@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Select, Tree, Spin, notification } from 'antd';
+import { Select, Tree, Spin, message } from 'antd';
 
 import './index.css';
 
@@ -29,7 +29,7 @@ export default class DeviceList extends Component {
         const { error, deviceList } = nextProps;
         const treeNodes = [];
 
-        if (error) this.openErrorNotification();
+        if (error) message.error('设备列表获取失败！');
 
         // 根据设备列表数据生成视图
         if (deviceList && !error) {
@@ -52,13 +52,6 @@ export default class DeviceList extends Component {
     handleDeviceSelected(selectedKey, e) {
         console.log('selectedKey', selectedKey);
         console.log('e', e);
-    }
-
-    openErrorNotification() {
-        notification.error({
-            message: '设备列表加载失败',
-            description: '请检查网络连接后重试'
-        });
     }
 
     render() {
