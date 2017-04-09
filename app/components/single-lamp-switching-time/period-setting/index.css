@@ -1,0 +1,11 @@
+.c-slst-ps-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-slst-ps-button {
+    width: 120px;
+    margin: 2px 0;
+}

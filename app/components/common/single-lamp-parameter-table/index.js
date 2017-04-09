@@ -23,8 +23,8 @@ export default class SingleLampParameterTable extends Component {
 
         return (
             <div>
-                <div className="c-slpt-title ">单灯参数信息</div>
-                <Table style={{ padding: '0 8px' }} rowSelection={rowSelection} >
+                <h2>单灯参数信息</h2>
+                <Table rowSelection={rowSelection} >
                     <Column title="灯杆名" dataIndex="" key="" />
                     <Column title="灯杆号" dataIndex="" key="" />
                     <Column title="更新时间" dataIndex="" key="" />
