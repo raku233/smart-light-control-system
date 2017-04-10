@@ -1,10 +1,7 @@
-.v-slc-button {
-    margin: 0 4px;
-    flex: 1;
+.v-mls-container .ant-row > div {
+    padding: 0 8px;
 }
 
-.v-slc-card-container {
-    display: flex;
+.v-mls-container .ant-spin-container {
     width: 100%;
-    margin: 4px 0;
 }
