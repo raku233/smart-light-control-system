@@ -17,7 +17,7 @@ export default class DeviceList extends Component {
         };
 
         this.fillDeviceList = this.fillDeviceList.bind(this);
-        this.handleDeviceSelected = this.handleDeviceSelected.bind(this);
+        this.handleDeviceSelect = this.handleDeviceSelect.bind(this);
     }
 
     componentDidMount() {
@@ -49,7 +49,15 @@ export default class DeviceList extends Component {
         this.props.loadDeviceList(groupType);
     }
 
-    handleDeviceSelected(selectedKey, e) {
+    handleDeviceSelect(selectedKey, e) {
+        console.log('selectedKey', selectedKey);
+        console.log('e', e);
+        const devID = selectedKey[0].substring(0, selectedKey[0].indexOf('-'));
+        console.log(devID);
+        this.props.loadManualSwitchingStatus(devID);
+    }
+
+    handleDeviceGroupSelect(selectedKey, e) {
         console.log('selectedKey', selectedKey);
         console.log('e', e);
     }
@@ -73,7 +81,7 @@ export default class DeviceList extends Component {
                         设备列表
                     </div>
                     <Spin spinning={loading} tip="加载中...">
-                        <Tree className="c-dl-list" onSelect={this.handleDeviceSelected}>
+                        <Tree className="c-dl-list" onSelect={this.handleDeviceSelect}>
                             { treeNodes }
                         </Tree>
                     </Spin>

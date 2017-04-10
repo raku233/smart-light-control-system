@@ -86,6 +86,8 @@ const routeHandlerGenerator = commonAPI => (specificAPI, dataHandler = defaultDa
                 return values;
             });
 
+        console.log('data', data);
+
         ctx.response.body = dataHandler(data);
     };
 };
