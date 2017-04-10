@@ -1,0 +1,12 @@
+.v-slst-button-group {
+    display: flex;
+}
+
+.v-slst-button {
+    flex: 1;
+    margin: 8px 8px 0 8px;
+}
+
+.v-slst-button:first-child {
+    margin-left: 0;
+}
