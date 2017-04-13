@@ -11,12 +11,22 @@ export default class LampSwitchingConsole extends Component {
         super(props);
 
         this.handleModeSelect = this.handleModeSelect.bind(this);
+        this.refreshData = this.refreshData.bind(this);
+        this.uploadData = this.uploadData.bind(this);
     }
 
     handleModeSelect(mode) {
         const { config } = this.props;
         config.mode = mode;
         this.props.updateViewData({ config });
+    }
+
+    refreshData() {
+        this.props.loadViewData();
+    }
+
+    uploadData() {
+        this.props.uploadViewData();
     }
 
     render() {
@@ -38,9 +48,9 @@ export default class LampSwitchingConsole extends Component {
                         </Select>
                     </div>
                     <div className="c-lsc-button-group">
-                        <Button className="c-lsc-button" type="default">刷新</Button>
+                        <Button className="c-lsc-button" type="default" onClick={this.refreshData}>刷新</Button>
                         <Button className="c-lsc-button" type="primary">全部开灯</Button>
-                        <Button className="c-lsc-button" type="danger">设置</Button>
+                        <Button className="c-lsc-button" type="danger" onClick={this.uploadData}>设置</Button>
                     </div>
                 </div>
             </div>

@@ -17,5 +17,11 @@ module.exports = {
         pathName: '/Onoff/Gset_Onoff_read',
         param: {},
         requiredParamKeys: ['Dev_id']
-    } // 支路开关状态
+    }, // 支路开关状态
+    SET_ONOFF: {
+        method: 'get',
+        pathName: '/wcf/set_onoff',
+        param: {},
+        requiredParamKeys: ['Dev_id', 'N8_str', 'mode_str']
+    }, // 设置支路开关状态
 };

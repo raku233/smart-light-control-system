@@ -5,7 +5,7 @@ const COMMON_API = require('../api/common.js');
 const sharedRouteHandlerGenerator = routeHandlerGenerator(COMMON_API);
 
 // 获取设备列表
-const fn_fetchDeviceList = sharedRouteHandlerGenerator([COMMON_API.GET_DEVICE_LIST], ([data]) => {
+const fn_fetchDeviceList = sharedRouteHandlerGenerator([COMMON_API.GET_DEVICE_LIST], undefined, ([data]) => {
     const { bigtree, smalltree } = data;
     const deviceList = {};
 

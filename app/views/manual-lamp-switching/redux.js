@@ -13,12 +13,13 @@ export const LOAD_MANUALSWITCHINGSTATUS = 'LOAD_MANUALSWITCHINGSTATUS';
 export const LOAD_MANUALSWITCHINGSTATUS_SUCCESS = 'LOAD_MANUALSWITCHINGSTATUS_SUCCESS';
 export const LOAD_MANUALSWITCHINGSTATUS_ERROR = 'LOAD_MANUALSWITCHINGSTATUS_ERROR';
 export const UPDATE_MANUALSWITCHINGSTATUS = 'UPDATE_MANUALSWITCHINGSTATUS';
+export const UPLOAD_MANUALSWITCHINGSTATUS = 'UPLOAD_MANUALSWITCHINGSTATUS';
 
 export function loadViewData(devID) {
     return {
         type: LOAD_MANUALSWITCHINGSTATUS,
         payload: {
-            Dev_id: devID
+            Dev_id: devID || ''
         }
     };
 }
@@ -54,6 +55,13 @@ export function updateViewData(status) {
     };
 }
 
+export function uploadViewData() {
+    return {
+        type: UPLOAD_MANUALSWITCHINGSTATUS,
+        payload: {}
+    };
+}
+
 function viewData(state = initialState, action) {
     switch(action.type) {
     case LOAD_MANUALSWITCHINGSTATUS: {
@@ -61,7 +69,7 @@ function viewData(state = initialState, action) {
             ...state,
             loading: true,
             error: false,
-            devID: action.payload.Dev_id
+            devID: action.payload.Dev_id || state.devID
         };
     }
 
@@ -103,5 +111,6 @@ export default combineReducers({
 
 export const actions = {
     loadViewData,
-    updateViewData
+    updateViewData,
+    uploadViewData
 };

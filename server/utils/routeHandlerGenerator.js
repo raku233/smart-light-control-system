@@ -61,15 +61,18 @@ const fetchData = (url, method, param) => {
 // 默认数据处理函数
 const defaultDataHandler = ([data]) => { return JSON.stringify(data); };
 
+// 默认参数处理函数
+const defaultParamHandler = (param) => { return param; };
+
 /**
  * 路由中间件处理函数生成器（享元模式）
  * @param {Object} commonAPI 公共API
  * @param {Array} specificAPI 特定功能API
  * @param {Function} dataHandler 服务端响应数据处理函数
  */
-const routeHandlerGenerator = commonAPI => (specificAPI, dataHandler = defaultDataHandler) => {
+const routeHandlerGenerator = commonAPI => (specificAPI, paramHandler = defaultParamHandler, dataHandler = defaultDataHandler) => {
     return async (ctx, next) => {
-        const reqParam = ctx.request.body,
+        const reqParam = paramHandler(ctx.request.body),
             promises = [];
 
         for (const API of specificAPI) {
