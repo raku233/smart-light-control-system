@@ -50,11 +50,8 @@ export default class DeviceList extends Component {
     }
 
     handleDeviceSelect(selectedKey, e) {
-        console.log('selectedKey', selectedKey);
-        console.log('e', e);
         const devID = selectedKey[0].substring(0, selectedKey[0].indexOf('-'));
-        console.log(devID);
-        this.props.loadManualSwitchingStatus(devID);
+        this.props.loadViewData(devID);
     }
 
     handleDeviceGroupSelect(selectedKey, e) {

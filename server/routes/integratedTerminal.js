@@ -1,4 +1,5 @@
 const routeHandlerGenerator = require('../utils/routeHandlerGenerator.js');
+const getTimeString = require('../utils/time.js');
 
 const COMMON_API = require('../api/common.js'),
     SPECIFIC_API = require('../api/integratedTerminal.js');
@@ -17,8 +18,10 @@ const fn_fetchSwitchingStatus = sharedRouteHandlerGenerator(
         for (let i = 0; i < availableBranches.length; i++) {
             if (availableBranches[i]) {
                 var statusItem = {};
+                statusItem.key = i + 1;
                 statusItem.outputGroup = `第${i + 1}路输出`;
                 statusItem.state = branchStatus[i];
+                statusItem.updateTime = getTimeString(new Date());
                 statusItem.checked = branchStatus[i];
                 statusGroup.push(statusItem);
             }

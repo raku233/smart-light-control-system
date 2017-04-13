@@ -25,21 +25,21 @@ export default class SwitchingConsole extends Component {
     }
 
     handleChanged(key, checked) {
-        const { data } = this.state;
-        data[key - 1].checked = checked;
-        this.setState({ data });
+        const { statusGroup } = this.props;
+        statusGroup[key - 1].checked = checked;
+        this.props.updateViewData({ statusGroup });
     }
 
     render() {
-        const { data } = this.state;
+        const { statusGroup } = this.props;
 
         return (
-            <Table className="c-sls-sc-table" size="small" pagination={false} dataSource={data}>
+            <Table className="c-sls-sc-table" size="small" pagination={false} dataSource={statusGroup}>
                 <Column
                   width={120}
                   title="8路支路输出"
-                  dataIndex="outputGroups"
-                  key="outputGroups"
+                  dataIndex="outputGroup"
+                  key="outputGroup"
                 />
                 <Column
                   width={120}

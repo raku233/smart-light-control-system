@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { actions as commonActions } from '../../components/common/redux';
-import { actions as manualSwitchingStatusActions } from '../../views/manual-lamp-switching/redux';
+import { actions as viewActions } from '../../views/manual-lamp-switching/redux';
 
 import DeviceList from '../../components/common/device-list';
 import SwitchingConsole from '../../components/manual-lamp-switching/switching-console';
@@ -13,13 +13,13 @@ import './index.css';
 
 class ManualLampSwitching extends Component {
     render() {
-        const { deviceList, deviceListActions, manualSwitchingStatusActions } = this.props;
+        const { deviceList, deviceListActions, viewData, viewActions } = this.props;
 
         return (
             <div className="v-mls-container">
-                <DeviceList {...deviceList} {...deviceListActions} {...manualSwitchingStatusActions} />
-                <SwitchingConsole />
-                <LampSwitchingConsole />
+                <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
+                <SwitchingConsole {...viewData} {...viewActions} />
+                <LampSwitchingConsole {...viewData} {...viewActions} />
             </div>
         );
     }
@@ -28,11 +28,11 @@ class ManualLampSwitching extends Component {
 export default connect(state => {
     return {
         deviceList: state.common.deviceList,
-        switchingStatus: state.ManualLampSwitching.switchingStatus
+        viewData: state.ManualLampSwitching.viewData
     };
 }, dispatch => {
     return {
         deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch),
-        manualSwitchingStatusActions: bindActionCreators(manualSwitchingStatusActions, dispatch)
+        viewActions: bindActionCreators(viewActions, dispatch)
     };
 })(ManualLampSwitching);
