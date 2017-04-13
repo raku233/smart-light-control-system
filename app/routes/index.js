@@ -15,6 +15,7 @@ import SingLampControl from '../views/single-lamp-control';
 import CompulsiveLampSwitching from '../views/compulsive-lamp-switching';
 import SingleLampSwitchingTime from '../views/single_lamp_switching_time';
 import History from '../views/history';
+import SingLampWarningInfo from '../views/single-lamp-warning-info';
 
 const routes = history => (
     <Router history={history}>
@@ -32,6 +33,7 @@ const routes = history => (
             <Route path="/single_lamp/compulsive_lamp_switching" component={CompulsiveLampSwitching} />
             <Route path="/single_lamp/single_lamp_switching_time" component={SingleLampSwitchingTime} />
             <Route path="/single_lamp/history" component={History} />
+            <Route path="/single_lamp/single_lamp_warning_info" component={SingLampWarningInfo} />
         </Route>
     </Router>
 );
