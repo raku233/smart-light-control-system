@@ -21,7 +21,7 @@ export default class LampSwitchingConsole extends Component {
 
     render() {
         const { config } = this.props;
-        const { mode, method } = config;
+        const { mode, method } = config || { mode: '', method: '' };
 
         return (
             <div className="c-lsc-container">
