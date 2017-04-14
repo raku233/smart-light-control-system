@@ -36,7 +36,7 @@ export default class DeviceList extends Component {
             for (const deviceGroup in deviceList) {
                 treeNodes.push(<TreeNode title={deviceGroup} key={deviceGroup} >
                     {deviceList[deviceGroup].map(device => (
-                        <TreeNode title={device} key={device}></TreeNode>
+                        <TreeNode title={device.name} key={device.name}></TreeNode>
                     ))}
                 </TreeNode>);
             }

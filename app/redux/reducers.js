@@ -7,3 +7,5 @@ export default {
     common: commonReducer,
     ManualLampSwitching
 };
+
+// todo: 考虑使用高阶reducer

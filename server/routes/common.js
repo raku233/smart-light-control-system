@@ -6,14 +6,29 @@ const sharedRouteHandlerGenerator = routeHandlerGenerator(COMMON_API);
 
 // 获取设备列表
 const fn_fetchDeviceList = sharedRouteHandlerGenerator([COMMON_API.GET_DEVICE_LIST], undefined, ([data]) => {
-    const { bigtree, smalltree } = data;
-    const deviceList = {};
+    const { bigtree, smalltree, linktree, DevXDevY } = data;
+    const deviceGroup = {},
+        deviceList = [];
+    let i = 0;
 
-    for (let index = 0; index < bigtree.length; index++) {
-        deviceList[bigtree[index]] = smalltree[index];
+    for (const devices of smalltree) {
+        let j = 0;
+        const deviceSet = devices.map(device => {
+            return {
+                name: device,
+                connection: linktree[i][j++],
+                location: DevXDevY[i][j++]
+            };
+        }, this);
+        deviceList.push(deviceSet);
+        i++;
     }
 
-    return JSON.stringify(deviceList);
+    for (let index = 0; index < bigtree.length; index++) {
+        deviceGroup[bigtree[index]] = deviceList[index];
+    }
+
+    return JSON.stringify(deviceGroup);
 });
 
 module.exports = {
