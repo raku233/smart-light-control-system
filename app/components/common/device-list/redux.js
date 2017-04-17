@@ -2,7 +2,7 @@ const initialState = {
     loading: false,
     error: false,
     groupType: '区域分组',
-    deviceList: []
+    deviceList: {}
 };
 
 export const LOAD_DEVICELIST = 'LOAD_DEVICELIST';
