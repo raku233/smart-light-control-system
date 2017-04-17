@@ -1,6 +1,7 @@
 import { homeSagas } from '../views/home/sagas';
 import { commonSagas } from '../components/common/sagas';
 import { ManualLampSwitching } from '../views/manual-lamp-switching/sagas';
+import { ElectricalParameter } from '../views/electrical-parameter/sagas';
 
 function combineSagas(...sagaArrays) {
     let sagaList = [];
@@ -12,7 +13,7 @@ function combineSagas(...sagaArrays) {
 }
 
 export default function* rootSaga() {
-    const saga = combineSagas(homeSagas, commonSagas, ManualLampSwitching);
+    const saga = combineSagas(homeSagas, commonSagas, ManualLampSwitching, ElectricalParameter);
 
     yield saga;
 }
