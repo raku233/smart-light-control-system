@@ -2,59 +2,70 @@ import React, { Component } from 'react';
 
 import { Table } from 'antd';
 
+import './index.css';
+
 const { Column } = Table;
 
 export default function ContractorInfoTable(props) {
-    const data = [
-
-    ];
-    const defaultColumnWidth = 74;
+    const data = props.contactorParameter,
+        loading = props.loading;
 
     return (
-        <Table dataSource={data} size="small">
+        <Table className="c-ep-cit-table" dataSource={data} loading={loading} size="small" pagination={false}>
             <Column
-              width={defaultColumnWidth}
               title="1路"
+              key="con1"
+              dataIndex="con1"
             />
             <Column
-              width={defaultColumnWidth}
               title="2路"
+              key="con2"
+              dataIndex="con2"
             />
             <Column
-              width={defaultColumnWidth}
               title="3路"
+              key="con3"
+              dataIndex="con3"
             />
             <Column
-              width={defaultColumnWidth}
               title="4路"
+              key="con4"
+              dataIndex="con4"
             />
             <Column
-              width={defaultColumnWidth}
               title="5路"
+              key="con5"
+              dataIndex="con5"
             />
             <Column
-              width={defaultColumnWidth}
               title="6路"
+              key="con6"
+              dataIndex="con6"
             />
             <Column
-              width={defaultColumnWidth}
               title="7路"
+              key="con7"
+              dataIndex="con7"
             />
             <Column
-              width={defaultColumnWidth}
               title="8路"
+              key="con8"
+              dataIndex="con8"
             />
             <Column
-              width={defaultColumnWidth}
               title="节能/旁路"
+              key="savings"
+              dataIndex="saving"
             />
             <Column
-              width={defaultColumnWidth}
               title="门禁一"
+              key="door1"
+              dataIndex="door1"
             />
             <Column
-              width={defaultColumnWidth}
               title="门禁二"
+              key="door2"
+              dataIndex="door2"
             />
         </Table>
     );

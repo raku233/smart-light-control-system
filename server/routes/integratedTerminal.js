@@ -61,7 +61,60 @@ const fn_setSwitchingStatus = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOF
     };
 });
 
+// 获取详细电参数
+const fn_fetchElectricalParameter = sharedRouteHandlerGenerator([SPECIFIC_API.GET_CS_TABLE], undefined, ([dataX]) => {
+    const parameter = dataX.cs_table;
+    // 终端电参数
+    const groupA = {
+        groupType: 'A组',
+        voltage: parameter.Ua,
+        current: parameter.Ia,
+        outputVoltage: parameter.Ua_out,
+        powerFactor: parameter.PF_a,
+        activePower: parameter.kWa,
+        reactivePower: parameter.kVARa
+    };
+    const groupB = {
+        groupType: 'B组',
+        voltage: parameter.Ub,
+        current: parameter.Ib,
+        outputVoltage: parameter.Ub_out,
+        powerFactor: parameter.PF_b,
+        activePower: parameter.kWb,
+        reactivePower: parameter.kVARb
+    };
+    const groupC = {
+        groupType: 'C组',
+        voltage: parameter.Uc,
+        current: parameter.Ic,
+        outputVoltage: parameter.Uc_out,
+        powerFactor: parameter.PF_c,
+        activePower: parameter.kWc,
+        reactivePower: parameter.kVARc
+    };
+    const deviceParameter = [groupA, groupB, groupC];
+    console.log(deviceParameter);
+    // 接触器参数
+    const contactorParameter = [{
+        con1: parameter.con1,
+        con2: parameter.con2,
+        con3: parameter.con3,
+        con4: parameter.con4,
+        con5: parameter.con5,
+        con6: parameter.con6,
+        con7: parameter.con7,
+        con8: parameter.con8,
+        saving: parameter.saving,
+        door1: parameter.door1,
+        door2: parameter.door2
+    }];
+
+    const data = { deviceParameter, contactorParameter };
+    return JSON.stringify(data);
+});
+
 module.exports = {
     'POST /manual_lamp_switching/get_status': fn_fetchSwitchingStatus,
-    'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus
+    'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus,
+    'POST /electrical_parameter/get_status': fn_fetchElectricalParameter
 };

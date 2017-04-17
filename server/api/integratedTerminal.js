@@ -24,4 +24,10 @@ module.exports = {
         param: {},
         requiredParamKeys: ['Dev_id', 'N8_str', 'mode_str']
     }, // 设置支路开关状态
+    GET_CS_TABLE: {
+        method: 'get',
+        pathName: '/Onoff/Get_cs_table',
+        param: {},
+        requiredParamKeys: ['Dev_id']
+    }, // 获取详细电参
 };
