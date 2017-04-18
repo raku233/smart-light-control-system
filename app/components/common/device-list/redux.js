@@ -61,7 +61,7 @@ function deviceList(state = initialState, action) {
             ...state,
             loading: false,
             error: true,
-            deviceList: []
+            deviceList: {}
         };
     }
 
