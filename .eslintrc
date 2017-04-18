@@ -21,6 +21,7 @@
     "react/jsx-curly-spacing": "off",
     "no-else-return": [0],
     "no-restricted-syntax": [0],
+    "class-methods-use-this": "off",
     "import/no-extraneous-dependencies": [0],
     "no-use-before-define": [0],
     "jsx-a11y/no-static-element-interactions": [0],
