@@ -11,7 +11,6 @@ export default class PeriodCheckbox extends Component {
         super(props);
         this.state = {
             plainOptions: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'],
-            checkedList: [],
             indeterminate: true,
             checkAll: false
         };
@@ -20,10 +19,18 @@ export default class PeriodCheckbox extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { checkedList } = nextProps;
+        const { plainOptions } = this.state;
+        if (checkedList && checkedList.length === plainOptions.length) {
+            this.setState({ checkAll: true });
+        }
+    }
+
     handleChange(checkedList) {
         const { plainOptions } = this.state;
+        this.props.updateCheckedList(checkedList);
         this.setState({
-            checkedList,
             indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
             checkAll: checkedList.length === plainOptions.length
         });
@@ -32,15 +39,16 @@ export default class PeriodCheckbox extends Component {
     handleCheckAllChange(e) {
         const { plainOptions } = this.state;
 
+        this.props.updateCheckedList(e.target.checked ? plainOptions : []);
         this.setState({
-            checkedList: e.target.checked ? plainOptions : [],
             indeterminate: false,
             checkAll: e.target.checked
         });
     }
 
     render() {
-        const { plainOptions, checkedList, indeterminate, checkAll } = this.state;
+        const { plainOptions, indeterminate, checkAll } = this.state;
+        const { checkedList } = this.props;
 
         return (
             <div className="c-pc-container">

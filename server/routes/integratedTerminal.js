@@ -113,8 +113,37 @@ const fn_fetchElectricalParameter = sharedRouteHandlerGenerator([SPECIFIC_API.GE
     return JSON.stringify(data);
 });
 
+// 获取时控信息
+const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_TIME_CLASS, SPECIFIC_API.GONOFF_R_MAX_VIEW], undefined, ([dataX, dataY]) => {
+    const availableBranches = dataX.enable_time_class,
+        timeControlInfo = dataY.Onoff_r_max_view;
+
+    const statusGroup = [];
+    for (let i = 0; i < availableBranches.length; i++) {
+        if (availableBranches[i]) {
+            const statusItem = {
+                key: i + 1,
+                outputGroups: `第${i + 1}路输出`,
+                startTime: timeControlInfo[`switch${i + 1}_timeOff`],
+                endTime: timeControlInfo[`switch${i + 1}_timeOn`]
+            };
+            statusGroup.push(statusItem);
+        }
+    }
+
+    let workPeriod = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+    workPeriod = workPeriod.filter((value, index) => {
+        return timeControlInfo.versionId[index] == true;
+    });
+    const config = { workPeriod };
+
+    const data = { statusGroup, config };
+    return JSON.stringify(data);
+});
+
 module.exports = {
     'POST /manual_lamp_switching/get_status': fn_fetchSwitchingStatus,
     'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus,
-    'POST /electrical_parameter/get_status': fn_fetchElectricalParameter
+    'POST /electrical_parameter/get_status': fn_fetchElectricalParameter,
+    'POST /lamp_switching_time/get_status': fn_fetchTimeControlInfo
 };

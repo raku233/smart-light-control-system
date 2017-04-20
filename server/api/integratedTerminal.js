@@ -30,4 +30,10 @@ module.exports = {
         param: {},
         requiredParamKeys: ['Dev_id']
     }, // 获取详细电参
+    GONOFF_R_MAX_VIEW: {
+        method: 'get',
+        pathName: '/Onoff/GOnoff_r_max_view',
+        param: {},
+        requiredParamKeys: ['Dev_id', 'term_str']
+    }, // 获取时控数据
 };

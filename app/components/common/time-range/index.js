@@ -10,8 +10,6 @@ export default class TimeRange extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startTime: moment('00:00:00', 'HH:mm:ss'),
-            endTime: moment('00:00:00', 'HH:mm:ss'),
             couldDeal: false,
             isStartTimeRight: true,
             isEndTimeRight: true
@@ -21,23 +19,30 @@ export default class TimeRange extends Component {
     }
 
     handleChange(type, time, timeStr) {
-        const { startTime, endTime, couldDeal } = this.state;
+        const { startTime, endTime } = this.props;
+        let { couldDeal } = this.state;
         let isStartTimeRight = true,
             isEndTimeRight = true;
 
+        if (!(startTime === '0:00' && endTime === '0:00')) {
+            couldDeal = true;
+        }
+
         switch (type) {
         case 'start': {
-            if (moment(time).isAfter(endTime) && couldDeal) {
+            if (moment(time).isAfter(moment(endTime, 'HH:mm')) && couldDeal) {
                 isStartTimeRight = false;
             }
-            this.setState({ startTime: time, isStartTimeRight, isEndTimeRight });
+            this.props.updateTimeRange({ startTime: time.format('HH:mm'), endTime });
+            this.setState({ isStartTimeRight, isEndTimeRight });
             break;
         }
         case 'end': {
-            if (moment(time).isBefore(startTime) && couldDeal) {
+            if (moment(time).isBefore(moment(startTime, 'HH:mm')) && couldDeal) {
                 isEndTimeRight = false;
             }
-            this.setState({ endTime: time, couldDeal: true, isStartTimeRight, isEndTimeRight });
+            this.props.updateTimeRange({ startTime, endTime: time.format('HH:mm') });
+            this.setState({ couldDeal: true, isStartTimeRight, isEndTimeRight });
             break;
         }
         default: break;
@@ -45,7 +50,11 @@ export default class TimeRange extends Component {
     }
 
     render() {
-        const { startTime, endTime, isStartTimeRight, isEndTimeRight } = this.state;
+        const { isStartTimeRight, isEndTimeRight } = this.state;
+        let { startTime, endTime } = this.props;
+        startTime = moment(startTime, 'HH:mm');
+        endTime = moment(endTime, 'HH:mm');
+
         const sTimePickerClass = classNames({
                 'c-tr-start-time': true,
                 'c-tr-wrong-time': !isStartTimeRight
@@ -58,11 +67,11 @@ export default class TimeRange extends Component {
         return (
             <div className="c-tr-container">
                 <Tooltip visible={!isStartTimeRight} title="起始时间晚于结束时间">
-                    <TimePicker className={sTimePickerClass} size="small" value={startTime} onChange={this.handleChange.bind(this, 'start')} />
+                    <TimePicker className={sTimePickerClass} size="small" format="HH:mm" value={startTime} onChange={this.handleChange.bind(this, 'start')} />
                 </Tooltip>
                 <span className="c-tr-divider">--</span>
                 <Tooltip visible={!isEndTimeRight} title="结束时间早于起始时间">
-                    <TimePicker className={eTimePickerClass} size="small" value={endTime} onChange={this.handleChange.bind(this, 'end')} />
+                    <TimePicker className={eTimePickerClass} size="small" format="HH:mm" value={endTime} onChange={this.handleChange.bind(this, 'end')} />
                 </Tooltip>
             </div>
         );

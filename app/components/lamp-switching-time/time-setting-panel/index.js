@@ -8,28 +8,19 @@ const { Column } = Table,
     { Option } = Select;
 
 export default class TimeSettingPanel extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            data: [
-                { key: 1, outputGroups: '第1路输出' },
-                { key: 2, outputGroups: '第2路输出' },
-                { key: 3, outputGroups: '第3路输出' },
-                { key: 4, outputGroups: '第4路输出' },
-                { key: 5, outputGroups: '第5路输出' },
-                { key: 6, outputGroups: '第6路输出' },
-                { key: 7, outputGroups: '第7路输出' },
-                { key: 8, outputGroups: '第8路输出' }
-            ]
-        };
+    updateTimeRange(index, timeRange) {
+        const { statusGroup } = this.props;
+        statusGroup[index].startTime = timeRange.startTime;
+        statusGroup[index].endTime = timeRange.endTime;
+        this.props.updateViewData(statusGroup);
     }
 
     render() {
-        const { data } = this.state;
+        const { statusGroup } = this.props;
 
         return (
-            <Table size="small" pagination={false} dataSource={data}>
+            <Table size="small" pagination={false} dataSource={statusGroup}>
                 <Column
                   width={100}
                   title="8路支路输出"
@@ -41,9 +32,9 @@ export default class TimeSettingPanel extends Component {
                   title="起止时间"
                   dataIndex="timeRange"
                   key="timeRange"
-                  render={(text, record) => {
+                  render={(text, record, index) => {
                       return (
-                          <TimeRange />
+                          <TimeRange startTime={record.startTime} endTime={record.endTime} updateTimeRange={this.updateTimeRange.bind(this, index)} />
                       );
                   }}
                 />

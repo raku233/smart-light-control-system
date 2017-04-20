@@ -12,12 +12,23 @@ export default class TimeSettingConsole extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        this.refreshData = this.refreshData.bind(this);
+        this.updateCheckedList = this.updateCheckedList.bind(this);
+    }
 
-        };
+    refreshData() {
+        this.props.loadViewData();
+    }
+
+    updateCheckedList(workPeriod) {
+        const { config } = this.props;
+        config.workPeriod = workPeriod;
+        this.props.updateViewData({ config });
     }
 
     render() {
+        const { workPeriod } = this.props.config;
+
         return (
             <div className="c-tsc-container">
                 <div className="c-tsc-config-group">
@@ -34,11 +45,11 @@ export default class TimeSettingConsole extends Component {
                     </div>
                     <div className="c-tsc-config">
                         <div className="c-tsc-label">周期配置：</div>
-                        <PeriodCheckbox />
+                        <PeriodCheckbox checkedList={workPeriod} updateCheckedList={this.updateCheckedList} />
                     </div>
                 </div>
                 <div className="c-tsc-btn-group">
-                    <Button type="default" className="c-tsc-btn">刷新</Button>
+                    <Button type="default" className="c-tsc-btn" onClick={this.refreshData}>刷新</Button>
                     <Button type="danger" className="c-tsc-btn">设置</Button>
                 </div>
             </div>

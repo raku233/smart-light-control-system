@@ -4,42 +4,40 @@ const initialState = {
     loading: false,
     error: false,
     devID: '',
+    period: '时间段1',
     statusGroup: [],
-    config: {},
-    uid: ''
+    config: {}
 };
 
-export const LOAD_MANUALSWITCHINGSTATUS = 'LOAD_MANUALSWITCHINGSTATUS';
-export const LOAD_MANUALSWITCHINGSTATUS_SUCCESS = 'LOAD_MANUALSWITCHINGSTATUS_SUCCESS';
-export const LOAD_MANUALSWITCHINGSTATUS_ERROR = 'LOAD_MANUALSWITCHINGSTATUS_ERROR';
-export const UPDATE_MANUALSWITCHINGSTATUS = 'UPDATE_MANUALSWITCHINGSTATUS';
-export const UPLOAD_MANUALSWITCHINGSTATUS = 'UPLOAD_MANUALSWITCHINGSTATUS';
+export const LOAD_TIMECONTROLINFO = 'LOAD_TIMECONTROLINFO';
+export const LOAD_TIMECONTROLINFO_SUCESS = 'LOAD_TIMECONTROLINFO_SUCESS';
+export const LOAD_TIMECONTROLINFO_ERROR = 'LOAD_TIMECONTROLINFO_ERROR';
+export const UPDATE_TIMECONTROLINFO = 'UPDATE_TIMECONTROLINFO';
 
 export function loadViewData(devID) {
     return {
-        type: LOAD_MANUALSWITCHINGSTATUS,
+        type: LOAD_TIMECONTROLINFO,
         payload: {
-            Dev_id: devID || ''
+            Dev_id: devID || '',
         }
     };
 }
 
 export function loadViewDataSuccess(status) {
-    const { statusGroup, config, uid } = status;
+    const { statusGroup, config } = status;
 
     return {
-        type: LOAD_MANUALSWITCHINGSTATUS_SUCCESS,
+        type: LOAD_TIMECONTROLINFO_SUCESS,
         payload: {
             statusGroup,
-            config,
-            uid
+            config
         }
     };
 }
 
 export function loadViewDataError(error) {
     return {
-        type: LOAD_MANUALSWITCHINGSTATUS_ERROR,
+        type: LOAD_TIMECONTROLINFO_ERROR,
         payload: {
             error
         }
@@ -48,23 +46,16 @@ export function loadViewDataError(error) {
 
 export function updateViewData(status) {
     return {
-        type: UPDATE_MANUALSWITCHINGSTATUS,
+        type: UPDATE_TIMECONTROLINFO,
         payload: {
             status
         }
     };
 }
 
-export function uploadViewData() {
-    return {
-        type: UPLOAD_MANUALSWITCHINGSTATUS,
-        payload: {}
-    };
-}
-
 function viewData(state = initialState, action) {
-    switch(action.type) {
-    case LOAD_MANUALSWITCHINGSTATUS: {
+    switch (action.type) {
+    case LOAD_TIMECONTROLINFO: {
         return {
             ...state,
             loading: true,
@@ -73,26 +64,25 @@ function viewData(state = initialState, action) {
         };
     }
 
-    case LOAD_MANUALSWITCHINGSTATUS_SUCCESS: {
+    case LOAD_TIMECONTROLINFO_SUCESS: {
         return {
             ...state,
             loading: false,
             error: false,
             statusGroup: action.payload.statusGroup,
-            config: action.payload.config,
-            uid: action.payload.uid
-        };
+            config: action.payload.config
+        }
     }
 
-    case LOAD_MANUALSWITCHINGSTATUS_ERROR: {
+    case LOAD_TIMECONTROLINFO_ERROR: {
         return {
             ...state,
             loading: false,
-            error: true,
+            error: true
         };
     }
 
-    case UPDATE_MANUALSWITCHINGSTATUS: {
+    case UPDATE_TIMECONTROLINFO: {
         return {
             ...state,
             ...action.payload.status
@@ -111,6 +101,5 @@ export default combineReducers({
 
 export const actions = {
     loadViewData,
-    updateViewData,
-    uploadViewData
+    updateViewData
 };
