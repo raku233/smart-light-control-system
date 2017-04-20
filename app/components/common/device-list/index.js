@@ -35,8 +35,8 @@ export default class DeviceList extends Component {
         if (deviceList && !error) {
             for (const deviceGroup in deviceList) {
                 treeNodes.push(<TreeNode title={deviceGroup} key={deviceGroup} >
-                    {deviceList[deviceGroup].map(device => (
-                        <TreeNode title={device.name} key={device.name}></TreeNode>
+                    {deviceList[deviceGroup].map(deviceInfo => (
+                        <TreeNode title={deviceInfo.name} key={deviceInfo.name} deviceInfo={deviceInfo} ></TreeNode>
                     ))}
                 </TreeNode>);
             }
@@ -50,8 +50,9 @@ export default class DeviceList extends Component {
     }
 
     handleDeviceSelect(selectedKey, e) {
-        const devID = selectedKey[0].substring(0, selectedKey[0].indexOf('-'));
-        this.props.loadViewData(devID);
+        const [deviceNode] = e.selectedNodes;
+        const { deviceInfo } = deviceNode.props;
+        this.props.loadViewData(deviceInfo);
     }
 
     handleDeviceGroupSelect(selectedKey, e) {

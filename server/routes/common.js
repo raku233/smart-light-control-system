@@ -16,6 +16,7 @@ const fn_fetchDeviceList = sharedRouteHandlerGenerator([COMMON_API.GET_DEVICE_LI
         const deviceSet = devices.map(device => {
             return {
                 name: device,
+                devID: device.substring(0, device.indexOf('-')),
                 connection: linktree[i][j++],
                 location: DevXDevY[i][j++]
             };

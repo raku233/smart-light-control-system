@@ -15,7 +15,8 @@ export const LOAD_MANUALSWITCHINGSTATUS_ERROR = 'LOAD_MANUALSWITCHINGSTATUS_ERRO
 export const UPDATE_MANUALSWITCHINGSTATUS = 'UPDATE_MANUALSWITCHINGSTATUS';
 export const UPLOAD_MANUALSWITCHINGSTATUS = 'UPLOAD_MANUALSWITCHINGSTATUS';
 
-export function loadViewData(devID) {
+export function loadViewData(deviceInfo) {
+    const { devID } = deviceInfo || {};
     return {
         type: LOAD_MANUALSWITCHINGSTATUS,
         payload: {

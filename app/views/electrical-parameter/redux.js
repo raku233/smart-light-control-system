@@ -16,7 +16,9 @@ export const LOAD_ELECTRICALPARAMETER = 'LOAD_ELECTRICALPARAMETER';
 export const LOAD_ELECTRICALPARAMETER_SUCCESS = 'LOAD_ELECTRICALPARAMETER_SUCCESS';
 export const LOAD_ELECTRICALPARAMETER_ERROR = 'LOAD_ELECTRICALPARAMETER_ERROR';
 
-export function loadViewData(devID) {
+export function loadViewData(deviceInfo) {
+    const { devID } = deviceInfo;
+
     return {
         type: LOAD_ELECTRICALPARAMETER,
         payload: {

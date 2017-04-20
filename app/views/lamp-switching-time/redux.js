@@ -14,7 +14,8 @@ export const LOAD_TIMECONTROLINFO_SUCESS = 'LOAD_TIMECONTROLINFO_SUCESS';
 export const LOAD_TIMECONTROLINFO_ERROR = 'LOAD_TIMECONTROLINFO_ERROR';
 export const UPDATE_TIMECONTROLINFO = 'UPDATE_TIMECONTROLINFO';
 
-export function loadViewData(devID) {
+export function loadViewData(deviceInfo) {
+    const { devID } = deviceInfo || {};
     return {
         type: LOAD_TIMECONTROLINFO,
         payload: {
