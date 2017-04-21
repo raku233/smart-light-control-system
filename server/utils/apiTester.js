@@ -10,8 +10,8 @@ const parseParam = param => {
 };
 
 const rootURL = 'http://localhost:3000';
-const pathName = '/device_list';
-const param = { DevGroup: '区域分组' };
+const pathName = '/current_warning/get_status';
+const param = {log_name: 'admin', log_pass: 'changhe123' , sn_node_mode: '1'};
 const url = rootURL + pathName;
 
 fetch(url, {
