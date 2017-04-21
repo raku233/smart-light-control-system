@@ -13,11 +13,17 @@ export default class TimeSettingConsole extends Component {
         super(props);
 
         this.refreshData = this.refreshData.bind(this);
+        this.uploadData = this.uploadData.bind(this);
         this.updateCheckedList = this.updateCheckedList.bind(this);
+        this.updatePeriod = this.updatePeriod.bind(this);
     }
 
     refreshData() {
         this.props.loadViewData();
+    }
+
+    uploadData() {
+        this.props.uploadViewData();
     }
 
     updateCheckedList(workPeriod) {
@@ -26,15 +32,20 @@ export default class TimeSettingConsole extends Component {
         this.props.updateViewData({ config });
     }
 
+    updatePeriod(period) {
+        this.props.updateViewData({ period });
+    }
+
     render() {
         const { workPeriod } = this.props.config;
+        const { period } = this.props;
 
         return (
             <div className="c-tsc-container">
                 <div className="c-tsc-config-group">
                     <div className="c-tsc-config">
                         <span className="c-tsc-label">当前时间段：</span>
-                        <Select style={{ width: 80 }}>
+                        <Select style={{ width: 80 }} value={period} onChange={this.updatePeriod} >
                             <Option value="时间段1">时间段1</Option>
                             <Option value="时间段2">时间段2</Option>
                         </Select>
@@ -50,7 +61,7 @@ export default class TimeSettingConsole extends Component {
                 </div>
                 <div className="c-tsc-btn-group">
                     <Button type="default" className="c-tsc-btn" onClick={this.refreshData}>刷新</Button>
-                    <Button type="danger" className="c-tsc-btn">设置</Button>
+                    <Button type="danger" className="c-tsc-btn" onClick={this.uploadData}>设置</Button>
                 </div>
             </div>
         );

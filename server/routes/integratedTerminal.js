@@ -141,69 +141,84 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
     return JSON.stringify(data);
 });
 
-//网页：单灯报警信息——终端信息 移动端：单灯报警——终端信息
+// 网页：单灯报警信息——终端信息 移动端：单灯报警——终端信息
 const fn_fetchSingleAlarmTerminalMessage = sharedRouteHandlerGenerator([SPECIFIC_API.GET_TERMINAL_MES], undefined, ([data]) =>{
-    const {DevNo , DevName , alarm_count} = data;
+    const { DevNo, DevName, alarm_count } = data;
     const terminalAlarmMes = [];
     let i = 0;
-    for(const devNo of DevNo)
-    {
-         const devalarmSet =  {
-                devId: DevNo[i],
-                devName: DevName[i],
-                devAlarm: alarm_count[i]
-            };
+    for (const devNo of DevNo) {
+        const devalarmSet = {
+            devId: DevNo[i],
+            devName: DevName[i],
+            devAlarm: alarm_count[i]
+        };
         terminalAlarmMes.push(devalarmSet);
-        i++
+        i++;
     }
-    const returndata = {terminalAlarmMes: terminalAlarmMes};
-    console.log(returndata);
-    return JSON.stringify(returndata);
-}); 
-
-//网页：单灯报警信息——单灯信息 移动端：单灯报警——单灯信息
-const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SPECIFIC_API.GET_SINGLE_ALARM_MES], undefined, ([data]) => {
-    const {single_volt_detail} = data;
-    let i = 0;
-    const singleAlarmDetail = [];
-    for(const singleAlarmGroup of single_volt_detail)
-    {
-        const singleAlarmSet = {
-           
-                rodNum: singleAlarmGroup.rod_num,
-                alarmInfo: singleAlarmGroup.alarm_info,
-                updateTime: singleAlarmGroup.update_dtm
-            };
-        singleAlarmDetail.push(singleAlarmSet);
-    }
-    const returndata = {singleAlarmDetail: singleAlarmDetail};
+    const returndata = { terminalAlarmMes: terminalAlarmMes };
     console.log(returndata);
     return JSON.stringify(returndata);
 });
 
-/*网页——当前警报,移动端——警报*/
+// 网页：单灯报警信息——单灯信息 移动端：单灯报警——单灯信息
+const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SPECIFIC_API.GET_SINGLE_ALARM_MES], undefined, ([data]) => {
+    const { single_volt_detail } = data;
+    let i = 0;
+    const singleAlarmDetail = [];
+    for (const singleAlarmGroup of single_volt_detail) {
+        const singleAlarmSet = {
+            rodNum: singleAlarmGroup.rod_num,
+            alarmInfo: singleAlarmGroup.alarm_info,
+            updateTime: singleAlarmGroup.update_dtm
+        };
+        singleAlarmDetail.push(singleAlarmSet);
+    }
+    const returndata = { singleAlarmDetail };
+    console.log(returndata);
+    return JSON.stringify(returndata);
+});
+
+/* 网页——当前警报,移动端——警报 */
 const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM], undefined, ([data]) => {
-    const{node_name, alarm_info, alarm_time} = data;
+    const { node_name, alarm_info, alarm_time } = data;
     let i = 0;
     const alarmNow = [];
-    for(const nodeNameI of node_name){
+    for (const nodeNameI of node_name){
         let j = 0;
-        for(const nodeNameJ of nodeNameI)
-        {
+        for (const nodeNameJ of nodeNameI) {
             const alarmNowSet = {
                 nodeName: node_name[i][j],
                 alarmInfo: alarm_info[i][j],
                 alarmTime: alarm_time[i][j]
             };
             alarmNow.push(alarmNowSet);
-            j++
+            j++;
         }
        i++;
     }
-    const returndata = {
-        alarmNow: alarmNow
-    };
+    const returndata = { alarmNow };
     return JSON.stringify(returndata);
+});
+
+// 设置时控信息
+const fn_setTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOFFTIME], param => {
+    const { devID, period, statusGroup, config } = param,
+        { workPeriod } = config;
+
+    const weekArray = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+    let week_str = '';
+    for (const weekDay of weekArray) {
+        if (workPeriod.includes(weekDay)) week_str += '1';
+        else week_str += '0';
+    }
+
+    let parameter = {};
+    for (let i = 0; i < 8; i++) {
+        parameter[`time${i + 1}_on`] = statusGroup[i].startTime || '0:00';
+        parameter[`time${i + 1}_off`] = statusGroup[i].endTime || '0:00';
+    }
+
+    return { ...parameter, Dev_id: devID, term_str: period, week_str };
 });
 
 module.exports = {
@@ -211,6 +226,7 @@ module.exports = {
     'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus,
     'POST /electrical_parameter/get_status': fn_fetchElectricalParameter,
     'POST /lamp_switching_time/get_status': fn_fetchTimeControlInfo,
+    'POST /lamp_switching_time/set_status': fn_setTimeControlInfo,
     'POST /single_alarm_terminal_message/get_status': fn_fetchSingleAlarmTerminalMessage,
     'POST /single_lamp_warning_info/get_status': fn_fetchSingleAlarmSingleMessage,
     'POST /current_warning/get_status': fn_fetchAlarmNow

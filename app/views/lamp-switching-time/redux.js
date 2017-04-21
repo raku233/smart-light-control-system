@@ -13,6 +13,7 @@ export const LOAD_TIMECONTROLINFO = 'LOAD_TIMECONTROLINFO';
 export const LOAD_TIMECONTROLINFO_SUCESS = 'LOAD_TIMECONTROLINFO_SUCESS';
 export const LOAD_TIMECONTROLINFO_ERROR = 'LOAD_TIMECONTROLINFO_ERROR';
 export const UPDATE_TIMECONTROLINFO = 'UPDATE_TIMECONTROLINFO';
+export const UPLOAD_TIMECONTROLINFO = 'UPLOAD_TIMECONTROLINFO';
 
 export function loadViewData(deviceInfo) {
     const { devID } = deviceInfo || {};
@@ -51,6 +52,13 @@ export function updateViewData(status) {
         payload: {
             status
         }
+    };
+}
+
+export function uploadViewData() {
+    return {
+        type: UPLOAD_TIMECONTROLINFO,
+        payload: {}
     };
 }
 
@@ -102,5 +110,6 @@ export default combineReducers({
 
 export const actions = {
     loadViewData,
-    updateViewData
+    updateViewData,
+    uploadViewData
 };
