@@ -21,15 +21,15 @@ export default class LampMap extends Component {
             return null;
         }
 
-        if (JSON.stringify(this.props.deviceList.deviceList) === '{}') {
+        if (JSON.stringify(this.props.deviceList.deviceGroup) === '{}') {
             return null;
         }
 
-        const { deviceList } = this.props.deviceList;
+        const { deviceGroup } = this.props.deviceList;
 
         let test = [];
-        for (const value in deviceList) {
-            test = test.concat(deviceList[value]);
+        for (const value in deviceGroup) {
+            test = test.concat(deviceGroup[value]);
         }
 
         const positionArray = test.filter((value) => {

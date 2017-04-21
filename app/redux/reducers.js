@@ -1,12 +1,12 @@
 import homeReducer from '../views/home/redux';
-import commonReducer from '../components/common/redux';
+import Common from '../components/common/redux';
 import ManualLampSwitching from '../views/manual-lamp-switching/redux';
 import ElectricalParameter from '../views/electrical-parameter/redux';
 import LampSwitchingTime from '../views/lamp-switching-time/redux';
 
 export default {
     home: homeReducer,
-    common: commonReducer,
+    Common,
     ManualLampSwitching,
     ElectricalParameter,
     LampSwitchingTime

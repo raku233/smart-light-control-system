@@ -34,7 +34,7 @@ class ElectricalParameter extends Component {
 
 export default connect(state => {
     return {
-        deviceList: state.common.deviceList,
+        deviceList: state.Common.deviceList,
         viewData: state.ElectricalParameter.viewData
     };
 }, dispatch => {

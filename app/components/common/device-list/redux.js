@@ -2,7 +2,7 @@ const initialState = {
     loading: false,
     error: false,
     groupType: '区域分组',
-    deviceList: {}
+    deviceGroup: {}
 };
 
 export const LOAD_DEVICELIST = 'LOAD_DEVICELIST';
@@ -18,11 +18,11 @@ export function loadDeviceList(groupType) {
     };
 }
 
-export function loadDeviceListSuccess(deviceList) {
+export function loadDeviceListSuccess(deviceGroup) {
     return {
         type: LOAD_DEVICELIST_SUCCESS,
         payload: {
-            deviceList
+            deviceGroup
         }
     };
 }
@@ -52,7 +52,7 @@ function deviceList(state = initialState, action) {
             ...state,
             loading: false,
             error: false,
-            deviceList: action.payload.deviceList
+            deviceGroup: action.payload.deviceGroup
         };
     }
 
@@ -61,7 +61,7 @@ function deviceList(state = initialState, action) {
             ...state,
             loading: false,
             error: true,
-            deviceList: {}
+            deviceGroup: {}
         };
     }
 
