@@ -206,6 +206,17 @@ const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM
     return JSON.stringify(returndata);
 });
 
+const fn_fetchAssetRatio = sharedRouteHandlerGenerator([SPECIFIC_API.GET_ASSET_RATIO], undefined, ([data]) => {
+     const{highcharts} = data;
+     
+     //highcharts = highcharts.replaceAll("fun", "");
+
+     const returnData = {
+        code: highcharts
+    };
+    return JSON.stringify(returnData);
+});
+
 module.exports = {
     'POST /manual_lamp_switching/get_status': fn_fetchSwitchingStatus,
     'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus,
@@ -213,5 +224,6 @@ module.exports = {
     'POST /lamp_switching_time/get_status': fn_fetchTimeControlInfo,
     'POST /single_alarm_terminal_message/get_status': fn_fetchSingleAlarmTerminalMessage,
     'POST /single_lamp_warning_info/get_status': fn_fetchSingleAlarmSingleMessage,
-    'POST /current_warning/get_status': fn_fetchAlarmNow
+    'POST /current_warning/get_status': fn_fetchAlarmNow,
+    'POST /asset_ratio_chart/get_status': fn_fetchAssetRatio,
 };
