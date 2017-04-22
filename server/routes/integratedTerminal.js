@@ -206,17 +206,7 @@ const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM
     return JSON.stringify(returndata);
 });
 
-/*移动端——资产比例图*/
-const fn_fetchAssetRatio = sharedRouteHandlerGenerator([SPECIFIC_API.GET_ASSET_RATIO], undefined, ([data]) => {
-     const{highcharts} = data;
-     
-     
 
-     const returnData = {
-        code: highcharts
-    };
-    return JSON.stringify(returnData);
-});
 /*移动端——集中故障查询*/
 const fn_fetchCentralizedFault = sharedRouteHandlerGenerator([SPECIFIC_API.GET_CENTRALIZED_FAULT], undefined, ([data]) => {
     const{Alarm_table_list}=data;
@@ -254,6 +244,6 @@ module.exports = {
     'POST /single_alarm_terminal_message/get_status': fn_fetchSingleAlarmTerminalMessage,
     'POST /single_lamp_warning_info/get_status': fn_fetchSingleAlarmSingleMessage,
     'POST /current_warning/get_status': fn_fetchAlarmNow,
-    'POST /asset_ratio_chart/get_status': fn_fetchAssetRatio,
+
     'POST /centralized_fault_query/get_status': fn_fetchCentralizedFault,
 };

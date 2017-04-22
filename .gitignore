@@ -3,3 +3,4 @@ logs/
 build/
 .vscode/
 /server/utils/apiTester.js
+npm-debug.log
