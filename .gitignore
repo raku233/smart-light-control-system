@@ -2,3 +2,4 @@ node_modules/
 logs/
 build/
 .vscode/
+/server/utils/apiTester.js

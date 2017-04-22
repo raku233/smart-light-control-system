@@ -71,6 +71,18 @@ module.exports = {
            
         },
         requiredParamKeys: ['DevNo_str','Group_type_str', 'pen_type_str', 'Query_type_str','table_type']
-    }//获取返回的js代码
+    },//获取返回的js代码
+
+    /*集中故障查询*/
+    GET_CENTRALIZED_FAULT:{
+        method: 'get',
+        pathName: '/Onoff/GetAlarm_table',
+        param: {
+           
+        },
+        //终端号、报警起始时间，后两个为0（貌似没用）
+        requiredParamKeys: ['Dev_id','begin_date_str', 'end_date_str', 'pageSize','CurrentPageIndex']
+    },//获取报警内容和时间
+
 
 };
