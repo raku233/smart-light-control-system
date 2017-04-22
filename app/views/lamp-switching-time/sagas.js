@@ -26,6 +26,7 @@ function* fetchData(action) {
 function* uploadData(action) {
     const data = yield select(getStatus);
     const param = {
+        devID: data.devID,
         period: data.period,
         statusGroup: data.statusGroup,
         config: data.config
