@@ -141,6 +141,7 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
     return JSON.stringify(data);
 });
 
+
 //网页：单灯报警信息——终端信息 移动端：单灯报警——终端信息
 const fn_fetchSingleAlarmTerminalMessage = sharedRouteHandlerGenerator([SPECIFIC_API.GET_TERMINAL_MES], undefined, ([data]) =>{
     const {DevNo , DevName , alarm_count} = data;
@@ -206,6 +207,7 @@ const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM
     return JSON.stringify(returndata);
 });
 
+/*移动端——资产比例图*/
 const fn_fetchAssetRatio = sharedRouteHandlerGenerator([SPECIFIC_API.GET_ASSET_RATIO], undefined, ([data]) => {
      const{highcharts} = data;
      
@@ -217,6 +219,7 @@ const fn_fetchAssetRatio = sharedRouteHandlerGenerator([SPECIFIC_API.GET_ASSET_R
     return JSON.stringify(returnData);
 });
 
+
 module.exports = {
     'POST /manual_lamp_switching/get_status': fn_fetchSwitchingStatus,
     'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus,
@@ -226,4 +229,5 @@ module.exports = {
     'POST /single_lamp_warning_info/get_status': fn_fetchSingleAlarmSingleMessage,
     'POST /current_warning/get_status': fn_fetchAlarmNow,
     'POST /asset_ratio_chart/get_status': fn_fetchAssetRatio,
+
 };

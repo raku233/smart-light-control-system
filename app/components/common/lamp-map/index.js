@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { message } from 'antd';
 import { Map, Markers } from 'react-amap';
 
 export default class LampMap extends Component {
@@ -10,26 +10,46 @@ export default class LampMap extends Component {
             loading: this.props.deviceList.loading,
             markers: null
         };
+
+        this.renderMarkers = this.renderMarkers.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-        this.renderMarkers();
+        const { selectedDevice } = nextProps;
+        this.renderMarkers(nextProps);
+        if ('location' in selectedDevice) {
+            const position = {
+                longitude: parseFloat(selectedDevice.location.split(',')[0], 10),
+                latitude: parseFloat(selectedDevice.location.split(',')[1], 10)
+            };
+            this.locateToMarker(position);
+        } else {
+            message.error('所选设备不存在地理位置');
+        }
     }
 
-    renderMarkers() {
-        if (this.props.deviceList.loading) {
+    locateToMarker(position) {
+        this.setState({
+            center: position
+        });
+    }
+
+    renderMarkers(nextProps) {
+        const { deviceList } = nextProps;
+
+        if (deviceList.loading) {
             return null;
         }
 
-        if (JSON.stringify(this.props.deviceList.deviceList) === '{}') {
+        if (JSON.stringify(deviceList.deviceList) === '{}') {
             return null;
         }
 
-        const { deviceList } = this.props.deviceList;
-
+        const deviceListObject = deviceList.deviceList;
         let test = [];
-        for (const value in deviceList) {
-            test = test.concat(deviceList[value]);
+
+        for (const value in deviceListObject) {
+            test = test.concat(deviceListObject[value]);
         }
 
         const positionArray = test.filter((value) => {
@@ -57,7 +77,6 @@ export default class LampMap extends Component {
     render() {
         const AMAP_KEY = 'a8501da295b13fe4f4d1ebf51da6bf3c';
         const plugins = ['Scale', 'OverView', 'ToolBar'];
-        console.log(this.state.markers);
         return (
             <Map
               amapkey={AMAP_KEY}
