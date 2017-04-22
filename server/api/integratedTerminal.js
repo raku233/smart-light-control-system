@@ -49,14 +49,6 @@ module.exports = {
         requiredParamKeys: []
     }, // 获取当前警报
 
-    /* 资产比例图 */
-    GET_ASSET_RATIO: {
-        method: 'get',
-        pathName: '/Home/get_pen_light_info',
-        param: {},
-        requiredParamKeys: ['DevNo_str', 'Group_type_str', 'pen_type_str', 'Query_type_str', 'table_type']
-    }, // 获取返回的js代码
-
     /* 集中故障查询 */
     GET_CENTRALIZED_FAULT: {
         method: 'get',

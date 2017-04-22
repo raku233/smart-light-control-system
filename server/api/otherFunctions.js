@@ -28,4 +28,14 @@ module.exports = {
         },
         requiredParamKeys: ['DevNo_str','date_type_str','dtpBeginDate_str','dtpEndDate_str','chart_type','para_index']
     },
+     /*资产比例图*/
+    GET_ASSET_RATIO:{
+        method: 'get',
+        pathName: '/Home/get_pen_light_info',
+        param: {
+           
+        },
+        requiredParamKeys: ['DevNo_str','Group_type_str', 'pen_type_str', 'Query_type_str','table_type']
+    },//获取返回的js代码
+
 };

@@ -15,9 +15,19 @@ const fn_fetchThreePhaseElectricParameter = sharedRouteHandlerGenerator([OTHERPH
 //手机端——日用电量
 const fn_fetchDailyPower = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_DEV_KWH_PER]);
 
-
+/*移动端——资产比例图*/
+const fn_fetchAssetRatio = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ASSET_RATIO], undefined, ([data]) => {
+     const{highcharts} = data;
+     
+     
+     const returnData = {
+        code: highcharts
+    };
+    return JSON.stringify(returnData);
+});
 module.exports = {
    'POST /energy_search/get_status': fn_fetchEnergySearch,
    'POST /three_phase_electric_parameter/get_status': fn_fetchThreePhaseElectricParameter,
    'POST /daily_power/get_status': fn_fetchDailyPower,
+   'POST /asset_ratio_chart/get_status': fn_fetchAssetRatio,
 };
