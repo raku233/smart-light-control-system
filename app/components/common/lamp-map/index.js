@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { message } from 'antd';
-import { Map, Markers } from 'react-amap';
+import { Map, Markers, InfoWindow } from 'react-amap';
+import './index.css';
 
 export default class LampMap extends Component {
     constructor(props) {
@@ -8,69 +9,88 @@ export default class LampMap extends Component {
 
         this.state = {
             loading: this.props.deviceList.loading,
-            markers: null
+            markers: null,
+            center: null,
+            windowVisible: false,
+            windowContent: ''
         };
 
         this.renderMarkers = this.renderMarkers.bind(this);
+        this.markersEvents = {
+            click: (mapOption, marker) => {
+                this.setState({
+                    center: {
+                        latitude: mapOption.lnglat.lat,
+                        longitude: mapOption.lnglat.lng
+                    },
+                    windowVisible: true,
+                    windowContent: marker.si.extData.myLabel
+                });
+            }
+        };
+        this.windowEvents = {
+            close: () => {
+                this.setState({
+                    windowVisible: false
+                });
+            }
+        };
     }
 
     componentWillReceiveProps(nextProps) {
-        const { selectedDevice } = nextProps;
-        this.renderMarkers(nextProps);
+        const { selectedDevice, deviceList } = nextProps;
+
+        this.renderMarkers(deviceList);
+        this.locateToMarker(selectedDevice);
+    }
+
+    locateToMarker(selectedDevice) {
         if ('location' in selectedDevice) {
             const position = {
                 longitude: parseFloat(selectedDevice.location.split(',')[0], 10),
                 latitude: parseFloat(selectedDevice.location.split(',')[1], 10)
             };
-            this.locateToMarker(position);
-        } else {
+
+            this.setState({
+                center: position,
+                windowVisible: true,
+                windowContent: selectedDevice.name
+            });
+        } else if (JSON.stringify(selectedDevice) !== '{}') {
             message.error('所选设备不存在地理位置');
         }
     }
 
-    locateToMarker(position) {
-        this.setState({
-            center: position
-        });
-    }
-
-    renderMarkers(nextProps) {
-        const { deviceList } = nextProps;
+    renderMarkers(deviceList) {
+        let composeDeviceList = [];
 
         if (deviceList.loading) {
             return null;
         }
 
-        if (JSON.stringify(deviceList.deviceList) === '{}') {
+        if (JSON.stringify(deviceList) === '{}') {
             return null;
         }
 
-        const deviceListObject = deviceList.deviceList;
-        let test = [];
-
-        for (const value in deviceListObject) {
-            test = test.concat(deviceListObject[value]);
+        for (const value in deviceList) {
+            composeDeviceList = composeDeviceList.concat(deviceList[value]);
         }
 
-        const positionArray = test.filter((value) => {
+        const hasPositionDeviceList = composeDeviceList.filter((value) => {
             return ('location' in value);
         });
 
-        const center = {
-            longitude: parseFloat(positionArray[0].location.split(',')[0], 10),
-            latitude: parseFloat(positionArray[0].location.split(',')[1], 10)
-        };
-
-        const renderMarkersArray = Array(positionArray.length).fill(true).map((e, idx) => ({
+        const renderMarkersArray = Array(hasPositionDeviceList.length).fill(true).map((e, idx) => ({
             position: {
-                longitude: parseFloat(positionArray[idx].location.split(',')[0], 10),
-                latitude: parseFloat(positionArray[idx].location.split(',')[1], 10)
-            }
+                longitude: parseFloat(hasPositionDeviceList[idx].location.split(',')[0], 10),
+                latitude: parseFloat(hasPositionDeviceList[idx].location.split(',')[1], 10)
+            },
+            myLabel: hasPositionDeviceList[idx].name,
+            myIndex: idx
         }));
 
         this.setState({
-            markers: renderMarkersArray,
-            center
+            markers: renderMarkersArray
         });
     }
 
@@ -82,9 +102,21 @@ export default class LampMap extends Component {
               amapkey={AMAP_KEY}
               plugins={plugins}
               center={this.state.center}
-              zoom={13}
+              zoom={15}
             >
-                <Markers markers={this.state.markers} />
+                <Markers
+                  markers={this.state.markers}
+                  events={this.markersEvents}
+                />
+                <InfoWindow
+                  position={this.state.center}
+                  visible={this.state.windowVisible}
+                  content={this.state.windowContent}
+                  size={{ width: 100, height: 70 }}
+                  offset={[0, -20]}
+                  events={this.windowEvents}
+                  closeWhenClickMap
+                />
             </Map>
         );
     }
