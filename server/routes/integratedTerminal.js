@@ -142,7 +142,7 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
 });
 
 
-//网页：单灯报警信息——终端信息 移动端：单灯报警——终端信息
+// 网页：单灯报警信息——终端信息 移动端：单灯报警——终端信息
 const fn_fetchSingleAlarmTerminalMessage = sharedRouteHandlerGenerator([SPECIFIC_API.GET_TERMINAL_MES], undefined, ([data]) =>{
     const {DevNo , DevName , alarm_count} = data;
     const terminalAlarmMes = [];
@@ -210,39 +210,38 @@ const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM
 /*移动端——资产比例图*/
 const fn_fetchAssetRatio = sharedRouteHandlerGenerator([SPECIFIC_API.GET_ASSET_RATIO], undefined, ([data]) => {
      const{highcharts} = data;
-     
-     
 
      const returnData = {
         code: highcharts
     };
     return JSON.stringify(returnData);
 });
-/*移动端——集中故障查询*/
+
+/* 移动端——集中故障查询 */
 const fn_fetchCentralizedFault = sharedRouteHandlerGenerator([SPECIFIC_API.GET_CENTRALIZED_FAULT], undefined, ([data]) => {
-    const{Alarm_table_list}=data;
+    const { Alarm_table_list } = data;
     let AlarmList = [];
     let item = {};
-    for(let i = 0 ;i < Alarm_table_list.length ; i++){
+    for(let i = 0; i < Alarm_table_list.length; i++){
         item = {};
-        for(let k in Alarm_table_list[i]){
+        for(let k in Alarm_table_list[i]) {
             
-            let {AddTime,DevNo,DevName,AlarmType,AlarmInfor} = Alarm_table_list[i];
-            //处理返回的时间
+            let { AddTime, DevNo, DevName, AlarmType, AlarmInfor } = Alarm_table_list[i];
+            // 处理返回的时间
             AddTime = AddTime.replace(/[^0-9]/g, '');
             let date = new Date(parseInt(AddTime));
-            date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate())+' '+date.getHours()+':'+date.getMinutes();
+            date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' +(date.getDate()) + ' '+ date.getHours() + ':' + date.getMinutes();
             item = {
-                date:date,
-                devNo:DevNo.toString().trim(),
-                devName:DevName.trim(),
-                alarmType:AlarmType.trim(),
-                alarmInfo:AlarmInfor.trim()
+                date: date,
+                devNo: DevNo.toString().trim(),
+                devName: DevName.trim(),
+                alarmType: AlarmType.trim(),
+                alarmInfo: AlarmInfor.trim()
             }
         }
         AlarmList.push(item);
     }
-    const returnData = {statusGroup: AlarmList};
+    const returnData = { statusGroup: AlarmList };
     return JSON.stringify(returnData);
 });
 
@@ -257,5 +256,4 @@ module.exports = {
     'POST /current_warning/get_status': fn_fetchAlarmNow,
     'POST /asset_ratio_chart/get_status': fn_fetchAssetRatio,
     'POST /centralized_fault_query/get_status': fn_fetchCentralizedFault,
-
 };

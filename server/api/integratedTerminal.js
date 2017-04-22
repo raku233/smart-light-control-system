@@ -36,23 +36,9 @@ module.exports = {
         param: {},
         requiredParamKeys: ['Dev_id', 'term_str']
     }, // 获取时控数据
-    
-    /* 单灯报警 */
-    GET_TERMINAL_MES:{
-        method: 'get',
-        pathName: '/Single/GetAlarm_single_dev_count',
-        param: {},
-        requiredParamKeys: []
-    },//获取终端号、名字、报警内容
-    GET_SINGLE_ALARM_MES:{
-        method: 'get',
-        pathName: '/Single/Getsingle_volt_detail',
-        param:{},
-        requiredParamKeys: ['Dev_id']
-    },//获取相应终端下杆号、报警内容、时间
 
-    /*当前警报*/
-    GET_NOW_ALARM:{
+    /* 当前警报 */
+    GET_NOW_ALARM: {
         method: 'get',
         pathName: '/Tree/DevInfoAlarm',
         param: {
@@ -61,28 +47,22 @@ module.exports = {
             sn_node_mode: '1'
         },
         requiredParamKeys: []
-    },//获取当前警报
-    
-    /*资产比例图*/
-    GET_ASSET_RATIO:{
+    }, // 获取当前警报
+
+    /* 资产比例图 */
+    GET_ASSET_RATIO: {
         method: 'get',
         pathName: '/Home/get_pen_light_info',
-        param: {
-           
-        },
-        requiredParamKeys: ['DevNo_str','Group_type_str', 'pen_type_str', 'Query_type_str','table_type']
-    },//获取返回的js代码
+        param: {},
+        requiredParamKeys: ['DevNo_str', 'Group_type_str', 'pen_type_str', 'Query_type_str', 'table_type']
+    }, // 获取返回的js代码
 
-    /*集中故障查询*/
-    GET_CENTRALIZED_FAULT:{
+    /* 集中故障查询 */
+    GET_CENTRALIZED_FAULT: {
         method: 'get',
         pathName: '/Onoff/GetAlarm_table',
-        param: {
-           
-        },
-        //终端号、报警起始时间，后两个为0（貌似没用）
-        requiredParamKeys: ['Dev_id','begin_date_str', 'end_date_str', 'pageSize','CurrentPageIndex']
-    },//获取报警内容和时间
-
-
+        param: {},
+        // 终端号、报警起始时间，后两个为0（貌似没用）
+        requiredParamKeys: ['Dev_id', 'begin_date_str', 'end_date_str', 'pageSize', 'CurrentPageIndex']
+    }, //获取报警内容和时间
 };
