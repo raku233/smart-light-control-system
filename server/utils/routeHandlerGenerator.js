@@ -46,7 +46,6 @@ const fetchData = (url, method, param) => {
     switch (method) {
     case 'get': {
         if (parsedParam) url += `?${parsedParam}`;
-        // console.log('url', url);
         return fetch(url).then(dataParser);
     }
     case 'post': {
@@ -73,7 +72,6 @@ const defaultParamHandler = (param) => { return param; };
  */
 const routeHandlerGenerator = commonAPI => (specificAPI, paramHandler = defaultParamHandler, dataHandler = defaultDataHandler) => {
     return async (ctx, next) => {
-        console.log('ctx.request.body',ctx.request.body);
         const reqParam = paramHandler(ctx.request.body),
             promises = [];
 
@@ -90,7 +88,9 @@ const routeHandlerGenerator = commonAPI => (specificAPI, paramHandler = defaultP
             .then(values => {
                 return values;
             });
-            console.log(data);
+
+        console.log('data', data);
+
         ctx.response.body = dataHandler(data);
     };
 };

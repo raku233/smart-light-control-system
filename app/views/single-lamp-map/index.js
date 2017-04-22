@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Map } from 'react-amap';
+
 import { actions as commonActions } from '../../components/common/redux';
+import { actions as viewActions } from './redux';
 import DeviceList from '../../components/common/device-list';
 import LampMap from '../../components/common/lamp-map';
 
 class SingleLampMap extends Component {
     render() {
-        const { deviceList, deviceListActions } = this.props;
+        const { deviceList, deviceListActions, viewData, viewActions } = this.props;
 
         return (
             <div style={{ height: '100%', width: '100%', display: 'flex' }}>
-                <DeviceList {...deviceList} {...deviceListActions}></DeviceList>
+                <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
                 <div style={{ flex: 1, height: '100%' }}>
-                    <LampMap deviceList={deviceList} />
+                    <LampMap {...deviceList} {...viewData} />
                 </div>
             </div>
         );
@@ -23,10 +24,13 @@ class SingleLampMap extends Component {
 
 export default connect(state => {
     return {
-        deviceList: state.Common.deviceList
+        deviceList: state.Common.deviceList,
+        viewData: state.SingleLampMap.viewData
+
     };
 }, dispatch => {
     return {
-        deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch)
+        deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch),
+        viewActions: bindActionCreators(viewActions, dispatch)
     };
 })(SingleLampMap);
