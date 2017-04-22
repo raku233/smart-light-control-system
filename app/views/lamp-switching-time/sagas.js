@@ -1,6 +1,6 @@
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 
-import { fetchTimeControlInfo } from '../../api/integratedTerminal';
+import { fetchTimeControlInfo, uploadTimeControlInfo } from '../../api/integratedTerminal';
 import { LOAD_TIMECONTROLINFO, loadViewDataSuccess, loadViewDataError } from './redux';
 
 // 获取store中LampSwitchingTime视图数据
@@ -21,6 +21,18 @@ function* fetchData(action) {
     } catch (error) {
         yield put(loadViewDataError(error));
     }
+}
+
+function* uploadData(action) {
+    const data = yield select(getStatus);
+    const param = {
+        devID: data.devID,
+        period: data.period,
+        statusGroup: data.statusGroup,
+        config: data.config
+    };
+
+    yield call(uploadTimeControlInfo, param);
 }
 
 export function* watchFetchData() {

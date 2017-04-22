@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { actions as commonActions } from '../../components/common/redux';
+import { actions as viewActions } from '../../views/group-control-setting/redux';
 
 
 import DeviceList from '../../components/common/device-list';
@@ -17,7 +18,8 @@ import './index.css';
 
 class GroupControlSetting extends Component {
     render() {
-        const { deviceList, deviceListActions } = this.props;
+        const { deviceList, deviceListActions, viewData, viewActions } = this.props;
+        const { timeSettingConfig, lampSwitchingConfig } = viewData;
         return (
             <div className="v-gcs-container">
                 <DeviceList {...deviceList} {...deviceListActions} />
@@ -25,12 +27,12 @@ class GroupControlSetting extends Component {
                     <div className="v-gcs-title">开关灯时间组控</div>
                     <div className="v-gcs-config">
                         <TimeSettingPanel />
-                        <TimeSettingConsole />
+                        <TimeSettingConsole {...viewActions} config={timeSettingConfig} />
                     </div>
                     <div className="v-gcs-title">手动开关灯组控</div>
                     <div className="v-gcs-config">
                         <LampSwitchingPanel />
-                        <LampSwitchingConsole />
+                        <LampSwitchingConsole {...viewActions} />
                     </div>
                 </div>
             </div>
@@ -40,10 +42,12 @@ class GroupControlSetting extends Component {
 
 export default connect(state => {
     return {
-        deviceList: state.common.deviceList
+        deviceList: state.Common.deviceList,
+        viewData: state.GroupControlSetting.viewData
     };
 }, dispatch => {
     return {
-        deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch)
+        deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch),
+        viewActions: bindActionCreators(viewActions, dispatch)
     };
 })(GroupControlSetting);

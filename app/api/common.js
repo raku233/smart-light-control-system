@@ -1,17 +1,8 @@
 import fetch from 'isomorphic-fetch';
-import { parseParam } from '../utils/parser';
+import { dataFetcher } from '../utils/dataFetcher';
 
 const URL = {
     FETCH_DEVICE_LIST: '/device_list'
 };
 
-export async function fetchDeviceList(param) {
-    return await fetch(URL.FETCH_DEVICE_LIST, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: parseParam(param)
-    }).then(res => res.json());
-}
+export const fetchDeviceList = dataFetcher(URL.FETCH_DEVICE_LIST);

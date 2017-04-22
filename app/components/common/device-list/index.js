@@ -26,16 +26,16 @@ export default class DeviceList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { error, deviceList } = nextProps;
+        const { error, deviceGroup } = nextProps;
         const treeNodes = [];
 
         if (error) message.error('设备列表获取失败！');
 
         // 根据设备列表数据生成视图
-        if (deviceList && !error) {
-            for (const deviceGroup in deviceList) {
-                treeNodes.push(<TreeNode title={deviceGroup} key={deviceGroup} >
-                    {deviceList[deviceGroup].map(deviceInfo => (
+        if (deviceGroup && !error) {
+            for (const group in deviceGroup) {
+                treeNodes.push(<TreeNode title={group} key={group} >
+                    {deviceGroup[group].map(deviceInfo => (
                         <TreeNode title={deviceInfo.name} key={deviceInfo.name} deviceInfo={deviceInfo} ></TreeNode>
                     ))}
                 </TreeNode>);

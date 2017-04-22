@@ -27,7 +27,7 @@ class ManualLampSwitching extends Component {
 
 export default connect(state => {
     return {
-        deviceList: state.common.deviceList,
+        deviceList: state.Common.deviceList,
         viewData: state.ManualLampSwitching.viewData
     };
 }, dispatch => {

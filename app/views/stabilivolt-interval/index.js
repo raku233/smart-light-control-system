@@ -29,7 +29,7 @@ class StabilivoltInterval extends Component {
 
 export default connect(state => {
     return {
-        deviceList: state.common.deviceList
+        deviceList: state.Common.deviceList
     };
 }, dispatch => {
     return {
