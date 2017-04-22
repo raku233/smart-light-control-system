@@ -15,7 +15,7 @@ class SingleLampMap extends Component {
             <div style={{ height: '100%', width: '100%', display: 'flex' }}>
                 <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
                 <div style={{ flex: 1, height: '100%' }}>
-                    <LampMap deviceList={deviceList} {...viewData} />
+                    <LampMap {...deviceList} {...viewData} />
                 </div>
             </div>
         );
