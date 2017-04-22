@@ -141,45 +141,6 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
     return JSON.stringify(data);
 });
 
-//网页：单灯报警信息——终端信息 移动端：单灯报警——终端信息
-const fn_fetchSingleAlarmTerminalMessage = sharedRouteHandlerGenerator([SPECIFIC_API.GET_TERMINAL_MES], undefined, ([data]) =>{
-    const {DevNo , DevName , alarm_count} = data;
-    const terminalAlarmMes = [];
-    let i = 0;
-    for(const devNo of DevNo)
-    {
-         const devalarmSet =  {
-                devId: DevNo[i],
-                devName: DevName[i],
-                devAlarm: alarm_count[i]
-            };
-        terminalAlarmMes.push(devalarmSet);
-        i++
-    }
-    const returndata = {terminalAlarmMes: terminalAlarmMes};
-    console.log(returndata);
-    return JSON.stringify(returndata);
-}); 
-
-//网页：单灯报警信息——单灯信息 移动端：单灯报警——单灯信息
-const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SPECIFIC_API.GET_SINGLE_ALARM_MES], undefined, ([data]) => {
-    const {single_volt_detail} = data;
-    let i = 0;
-    const singleAlarmDetail = [];
-    for(const singleAlarmGroup of single_volt_detail)
-    {
-        const singleAlarmSet = {
-           
-                rodNum: singleAlarmGroup.rod_num,
-                alarmInfo: singleAlarmGroup.alarm_info,
-                updateTime: singleAlarmGroup.update_dtm
-            };
-        singleAlarmDetail.push(singleAlarmSet);
-    }
-    const returndata = {singleAlarmDetail: singleAlarmDetail};
-    console.log(returndata);
-    return JSON.stringify(returndata);
-});
 
 /*网页——当前警报,移动端——警报*/
 const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM], undefined, ([data]) => {
@@ -211,7 +172,5 @@ module.exports = {
     'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus,
     'POST /electrical_parameter/get_status': fn_fetchElectricalParameter,
     'POST /lamp_switching_time/get_status': fn_fetchTimeControlInfo,
-    'POST /single_alarm_terminal_message/get_status': fn_fetchSingleAlarmTerminalMessage,
-    'POST /single_lamp_warning_info/get_status': fn_fetchSingleAlarmSingleMessage,
     'POST /current_warning/get_status': fn_fetchAlarmNow
 };
