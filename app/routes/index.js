@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
 import Frame from '../layouts/frame';
+import Login from '../layouts/login';
 import Home from '../views/home';
 import ManualLampSwitching from '../views/manual-lamp-switching';
 import LampSwitchingTime from '../views/lamp-switching-time';
@@ -17,9 +18,9 @@ import SingleLampSwitchingTime from '../views/single_lamp_switching_time';
 import History from '../views/history';
 import SingLampWarningInfo from '../views/single-lamp-warning-info';
 
-const routes = history => (
+const routes = (history, checkAccess) => (
     <Router history={history}>
-        <Route path="/" component={Frame}>
+        <Route path="/" component={Frame} onEnter={checkAccess}>
             <IndexRoute component={Home} />
             <Route path="/integrated_terminal/manual_lamp_switching" component={ManualLampSwitching} />
             <Route path="/integrated_terminal/lamp_switching_time" component={LampSwitchingTime} />
@@ -35,6 +36,7 @@ const routes = history => (
             <Route path="/single_lamp/history" component={History} />
             <Route path="/single_lamp/single_lamp_warning_info" component={SingLampWarningInfo} />
         </Route>
+        <Route path="/login" component={Login}></Route>
     </Router>
 );
 
