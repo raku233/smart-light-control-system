@@ -141,6 +141,27 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
     return JSON.stringify(data);
 });
 
+// 设置时控信息
+const fn_setTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOFFTIME], param => {
+    const { devID, period, statusGroup, config } = param,
+        { workPeriod } = config;
+
+    const weekArray = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+    let week_str = '';
+    for (const weekDay of weekArray) {
+        if (workPeriod.includes(weekDay)) week_str += '1';
+        else week_str += '0';
+    }
+
+    const parameter = {};
+    for (let i = 0; i < 8; i++) {
+        parameter[`time${i + 1}_on`] = statusGroup[i].startTime || '0:00';
+        parameter[`time${i + 1}_off`] = statusGroup[i].endTime || '0:00';
+    }
+
+    return { ...parameter, Dev_id: devID, term_str: period, week_str };
+});
+
 
 /*网页——当前警报,移动端——警报*/
 const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM], undefined, ([data]) => {
@@ -203,6 +224,7 @@ module.exports = {
     'POST /manual_lamp_switching/set_status': fn_setSwitchingStatus,
     'POST /electrical_parameter/get_status': fn_fetchElectricalParameter,
     'POST /lamp_switching_time/get_status': fn_fetchTimeControlInfo,
+    'POST /lamp_switching_time/set_status': fn_setTimeControlInfo,
     'POST /current_warning/get_status': fn_fetchAlarmNow,
     'POST /centralized_fault_query/get_status': fn_fetchCentralizedFault,
 };
