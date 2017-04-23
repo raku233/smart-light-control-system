@@ -42,11 +42,45 @@ const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SINGLELAMP
         singleAlarmDetail.push(singleAlarmSet);
     }
     const returndata = {singleAlarmDetail: singleAlarmDetail};
-    console.log(returndata);
+    //console.log(returndata);
     return JSON.stringify(returndata);
+});
+
+//移动端：单灯故障查询
+const fn_fetchSingleFaultMessage = sharedRouteHandlerGenerator([SINGLELAMP_API. GET_SINGLE_FAULT_MES], undefined, ([data]) => {
+    const{single_volt_detail_alarm_his} = data;
+    let AlarmList = [];
+    let item = {};
+    for(let i = 0 ;i<single_volt_detail_alarm_his.length;i++){
+         item = {};
+        
+         for(let k in single_volt_detail_alarm_his[i]){
+             let{DevNo , update_dtm , rod_num , rod_real , rod_name , alarm_info}=single_volt_detail_alarm_his[i];
+            if(rod_name==undefined){
+                rod_name="";
+            }
+            //处理返回的时间
+            update_dtm =update_dtm.replace(/[^0-9]/g, '');
+            let date = new Date(parseInt(update_dtm));
+            date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate())+' '+date.getHours()+':'+date.getMinutes();
+            //devNo:终端号,date时间，rodNum杆号, rodReal末端编码，rodName杆名,alarmInfo警报
+             item = {
+                 devNo:DevNo.toString().trim(),
+                 date:date,
+                 rodNum: rod_num.toString().trim(),
+                 rodReal:rod_real.toString().trim(),
+                 rodName:rod_name.toString().trim(),
+                 alarmInfo:alarm_info.toString().trim()
+             }
+         }
+          AlarmList.push(item);
+    }
+    const returnData = {statusGroup: AlarmList};
+    return JSON.stringify(returnData);
 });
 
 module.exports = {
     'POST /single_alarm_terminal_message/get_status': fn_fetchSingleAlarmTerminalMessage,
     'POST /single_lamp_warning_info/get_status': fn_fetchSingleAlarmSingleMessage,
+    'POST /single_fault_query/get_status': fn_fetchSingleFaultMessage,
 };
