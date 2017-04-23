@@ -10,8 +10,8 @@ const parseParam = param => {
 };
 
 const rootURL = 'http://localhost:3000';
-const pathName = '/asset_ratio_chart/get_status';
-const param = {DevNo_str: '28',pen_type_str: '灯杆厂家占有比例图', Query_type_str: '终端号查询', table_type: '灯具型号瓦数'};
+const pathName = '/single_alarm_terminal_message/get_status';
+const param = {};
 const url = rootURL + pathName;
 
 fetch(url, {
