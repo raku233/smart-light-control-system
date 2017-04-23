@@ -1,3 +1,35 @@
 .c-slwi-wt-table .ant-spin-container {
     width: 100%;
 }
+
+.c-slwi-wt-table .ant-table-expanded-row > td:last-child {
+  padding: 0 48px 0 8px;
+}
+
+.c-slwi-wt-table .ant-table-expanded-row > td:last-child .ant-table-thead th {
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.c-slwi-wt-table .ant-table-expanded-row > td:last-child .ant-table-thead th:first-child {
+  padding-left: 0;
+}
+
+.c-slwi-wt-table .ant-table-expanded-row > td:last-child .ant-table-row td:first-child {
+  padding-left: 0;
+}
+
+.c-slwi-wt-table .ant-table-expanded-row .ant-table-row:last-child td {
+  border: none;
+}
+
+.c-slwi-wt-table .ant-table-expanded-row .ant-table-thead > tr > th {
+  background: #fbfbfb;
+}
+
+.c-slwi-wt-table .table-operation a:not(:last-child) {
+  margin-right: 24px;
+}
+
+.c-slwi-wt-table .ant-table-placeholder {
+    background: #fbfbfb;
+}
