@@ -1,56 +1,53 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
+import './index.css';
 
 const { Column } = Table;
 
 class WarningTable extends Component {
     render() {
         return (
-            <Table>
+            <Table
+              className="c-h-wt-table"
+              dataSource={this.props.singleFaultStatus}
+              pagination={false}
+              scroll={{ x: false, y: 300 }}
+              loading={this.props.loading}
+            >
                 <Column
+                  width={70}
                   title="终端号"
-                  key="terminalNum"
-                  dataIndex="terminalNum"
+                  key="devNo"
+                  dataIndex="devNo"
                 />
                 <Column
+                  width={120}
                   title="时间"
                   key="date"
                   dataIndex="date"
                 />
                 <Column
+                  width={50}
                   title="杆号"
                   key="rodNum"
                   dataIndex="rodNum"
                 />
                 <Column
-                  title="报警1灯"
-                  key="warningLamp1"
-                  dataIndex="warningLamp1"
+                  width={100}
+                  title="末端编码"
+                  key="rodReal"
+                  dataIndex="rodReal"
                 />
                 <Column
-                  title="报警2灯"
-                  key="warningLamp2"
-                  dataIndex="warningLamp2"
+                  width={100}
+                  title="杆名"
+                  key="rodName"
+                  dataIndex="rodName"
                 />
                 <Column
-                  title="报警3灯"
-                  key="warningLamp3"
-                  dataIndex="warningLamp3"
-                />
-                <Column
-                  title="报警4灯"
-                  key="warningLamp4"
-                  dataIndex="warningLamp4"
-                />
-                <Column
-                  title="灯杆警报"
-                  key="warningRod"
-                  dataIndex="warningRod"
-                />
-                <Column
-                  title="灯数"
-                  key="lampNum"
-                  dataIndex="lampNum"
+                  title="警报"
+                  key="alarmInfo"
+                  dataIndex="alarmInfo"
                 />
             </Table>
         );
