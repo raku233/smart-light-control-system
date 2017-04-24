@@ -10,8 +10,8 @@ const parseParam = param => {
 };
 
 const rootURL = 'http://localhost:3000';
-const pathName = '/single_alarm_terminal_message/get_status';
-const param = {};
+const pathName = '/electric_parameter_get';
+const param = { Dev_id: '399' };
 const url = rootURL + pathName;
 
 fetch(url, {

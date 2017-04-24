@@ -54,7 +54,8 @@ module.exports = {
         method: 'get',
         pathName: '/Onoff/GetAlarm_table',
         param: {},
-        // 终端号、报警起始时间，后两个为0（貌似没用）
-        requiredParamKeys: ['Dev_id', 'begin_date_str', 'end_date_str', 'pageSize', 'CurrentPageIndex']
-    }, //获取报警内容和时间
+        //终端号、报警起始时间，后两个为0（貌似没用）
+        requiredParamKeys: ['Dev_id','begin_date_str', 'end_date_str', 'pageSize','CurrentPageIndex']
+    },//获取报警内容和时间
+
 };

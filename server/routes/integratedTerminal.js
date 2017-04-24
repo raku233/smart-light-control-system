@@ -141,7 +141,6 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
     return JSON.stringify(data);
 });
 
-
 /*网页——当前警报,移动端——警报*/
 const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM], undefined, ([data]) => {
     const{node_name, alarm_info, alarm_time} = data;

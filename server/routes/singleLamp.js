@@ -1,8 +1,8 @@
 const routeHandlerGenerator = require('../utils/routeHandlerGenerator.js');
 const getTimeString = require('../utils/time.js');
 
-const COMMON_API = require('../api/common.js'),
-    SINGLELAMP_API = require('../api/singleLamp.js');
+const COMMON_API = require('../api/common.js');
+const SINGLELAMP_API = require('../api/singleLamp.js');
 
 const sharedRouteHandlerGenerator = routeHandlerGenerator(COMMON_API);
 
@@ -26,7 +26,7 @@ const fn_fetchSingleAlarmTerminalMessage = sharedRouteHandlerGenerator([SINGLELA
     return JSON.stringify(returndata);
 }); 
 
-//网页：单灯报警信息——单灯信息 移动端：单灯报警——单灯信息
+//移动端：单灯报警——单灯信息
 const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SINGLELAMP_API.GET_SINGLE_ALARM_MES], undefined, ([data]) => {
     const {single_volt_detail} = data;
     let i = 0;
@@ -45,6 +45,9 @@ const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SINGLELAMP
     //console.log(returndata);
     return JSON.stringify(returndata);
 });
+
+/*网页：单灯报警信息——单灯信息 
+const fn_fetchSingleAlarmAllSingleMessage = sharedSpecialRouteHandlerGenerator([SINGLELAMP_API.GET_ALL_SINGLE_ALARM_MES]);*/
 
 //移动端：单灯故障查询
 const fn_fetchSingleFaultMessage = sharedRouteHandlerGenerator([SINGLELAMP_API. GET_SINGLE_FAULT_MES], undefined, ([data]) => {
@@ -83,4 +86,5 @@ module.exports = {
     'POST /single_alarm_terminal_message/get_status': fn_fetchSingleAlarmTerminalMessage,
     'POST /single_lamp_warning_info/get_status': fn_fetchSingleAlarmSingleMessage,
     'POST /single_fault_query/get_status': fn_fetchSingleFaultMessage,
+    //'POST /web_single_lamp_warning_info/get_status' : fn_fetchSingleAlarmAllSingleMessage,
 };
