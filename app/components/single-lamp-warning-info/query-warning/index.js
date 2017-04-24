@@ -5,6 +5,16 @@ import './index.css';
 const { Option } = Select;
 
 class QueryWarning extends Component {
+    constructor(props) {
+        super(props);
+
+        this.loadData = this.loadData.bind(this);
+    }
+
+    loadData() {
+        this.props.loadTerminalMessage();
+    }
+
     render() {
         return (
             <div style={{ marginBottom: '16px' }}>
@@ -16,7 +26,7 @@ class QueryWarning extends Component {
                     <Option value="abnormal-state">状态异常</Option>
                     <Option value="over-current">过流</Option>
                 </Select>
-                <Button type="primary" className="c-slwi-qw-button">搜索</Button>
+                <Button type="primary" className="c-slwi-qw-button" onClick={this.loadData}>搜索</Button>
                 <Button type="danger" className="c-slwi-qw-button">删除所选</Button>
             </div>
         );

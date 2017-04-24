@@ -36,6 +36,12 @@ module.exports = {
         param: {},
         requiredParamKeys: ['Dev_id', 'term_str']
     }, // 获取时控数据
+    SET_ONOFFTIME: {
+        method: 'get',
+        pathName: '/wcf/set_onofftime',
+        param: {},
+        requiredParamKeys: ['Dev_id', 'term_str', 'time1_on', 'time1_off', 'time2_on', 'time2_off', 'time3_on', 'time3_off', 'time4_on', 'time4_off', 'time5_on', 'time5_off', 'time6_on', 'time6_off', 'time7_on', 'time7_off', 'time8_on', 'time8_off', 'week_str']
+    }, // 设置时控信息
 
     /* 当前警报 */
     GET_NOW_ALARM: {

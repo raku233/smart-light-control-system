@@ -3,6 +3,8 @@ import { Common } from '../components/common/sagas';
 import { ManualLampSwitching } from '../views/manual-lamp-switching/sagas';
 import { ElectricalParameter } from '../views/electrical-parameter/sagas';
 import { LampSwitchingTime } from '../views/lamp-switching-time/sagas';
+import { SingleLampWarningInfo } from '../views/single-lamp-warning-info/sagas';
+import { History } from '../views/history/sagas';
 
 function combineSagas(...sagaArrays) {
     let sagaList = [];
@@ -14,7 +16,15 @@ function combineSagas(...sagaArrays) {
 }
 
 export default function* rootSaga() {
-    const saga = combineSagas(homeSagas, Common, ManualLampSwitching, ElectricalParameter, LampSwitchingTime);
+    const saga = combineSagas(
+        homeSagas,
+        Common,
+        ManualLampSwitching,
+        ElectricalParameter,
+        LampSwitchingTime,
+        SingleLampWarningInfo,
+        History
+    );
 
     yield saga;
 }

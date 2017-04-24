@@ -1,5 +1,4 @@
 const routeHandlerGenerator = require('../utils/routeHandlerGenerator.js');
-const getTimeString = require('../utils/time.js');
 
 const COMMON_API = require('../api/common.js');
 const SINGLELAMP_API = require('../api/singleLamp.js');
@@ -14,6 +13,7 @@ const fn_fetchSingleAlarmTerminalMessage = sharedRouteHandlerGenerator([SINGLELA
     for(const devNo of DevNo)
     {
          const devalarmSet =  {
+                key: i,
                 devId: DevNo[i],
                 devName: DevName[i],
                 devAlarm: alarm_count[i]
@@ -24,7 +24,7 @@ const fn_fetchSingleAlarmTerminalMessage = sharedRouteHandlerGenerator([SINGLELA
     const returndata = {terminalAlarmMes: terminalAlarmMes};
     console.log(returndata);
     return JSON.stringify(returndata);
-}); 
+});
 
 //移动端：单灯报警——单灯信息
 const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SINGLELAMP_API.GET_SINGLE_ALARM_MES], undefined, ([data]) => {

@@ -1,15 +1,15 @@
 module.exports = {
     /* 单灯报警 */
-    GET_TERMINAL_MES:{
+    GET_TERMINAL_MES: {
         method: 'get',
         pathName: '/Single/GetAlarm_single_dev_count',
         param: {},
         requiredParamKeys: []
-    },//获取终端号、名字、报警内容
-    GET_SINGLE_ALARM_MES:{
+    }, // 获取终端号、名字、报警内容
+    GET_SINGLE_ALARM_MES: {
         method: 'get',
         pathName: '/Single/Getsingle_volt_detail',
-        param:{},
+        param: {},
         requiredParamKeys: ['Dev_id']
     },//获取相应终端下杆号、报警内容、时间——手机端
     GET_ALL_SINGLE_ALARM_MES:{
@@ -18,6 +18,7 @@ module.exports = {
         param:{},
         requiredParamKeys: ['devIdSet']
     },//获取所有终端下杆号、报警内容、时间——网页端
+
 
     /*单灯故障查询*/
     GET_SINGLE_FAULT_MES:{

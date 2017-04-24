@@ -1,7 +1,7 @@
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchTimeControlInfo, uploadTimeControlInfo } from '../../api/integratedTerminal';
-import { LOAD_TIMECONTROLINFO, loadViewDataSuccess, loadViewDataError } from './redux';
+import { LOAD_TIMECONTROLINFO, UPLOAD_TIMECONTROLINFO, loadViewDataSuccess, loadViewDataError } from './redux';
 
 // 获取store中LampSwitchingTime视图数据
 const getStatus = state => state.LampSwitchingTime.viewData;
@@ -37,6 +37,7 @@ function* uploadData(action) {
 
 export function* watchFetchData() {
     yield takeEvery(LOAD_TIMECONTROLINFO, fetchData);
+    yield takeEvery(UPLOAD_TIMECONTROLINFO, uploadData);
 }
 
 export const LampSwitchingTime = [
