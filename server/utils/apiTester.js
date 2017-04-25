@@ -10,9 +10,9 @@ const parseParam = param => {
 };
 
 const rootURL = 'http://localhost:3000';
-const pathName = '/Centralized_check_msg/get_status';
-const param = {  DevNo_int : '399' , Area_name : 'guangzhou'}; 
-const url = rootURL + pathName ;
+const pathName = '/single_lamp_detail_initialization/get_status';
+const param = {Dev_id: '1'};
+const url = rootURL + pathName;
 
 fetch(url, {
     method: 'POST',

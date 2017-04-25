@@ -7,7 +7,8 @@ module.exports = {
             DevName_str: '',
             light_type_str: ''
         },
-        requiredParamKeys: ['DevNo_str','date_type_str','dtpBeginDate_str','dtpEndDate_str','chart_type','para_index']
+        requiredParamKeys: ['DevNo_str','date_type_str','dtpBeginDate_str','dtpEndDate_str','chart_type','para_index'],
+        shouldFiltered: true
     },
 
     /*三相电参图*/
@@ -15,7 +16,8 @@ module.exports = {
         method: 'get',
         pathName: '/Home/Dev_elr',
         param: {},
-        requiredParamKeys: ['DevNo','begin_str','end_str','chk_U_time_term','OnTime_str','offTime_str','chart_type','para_index']
+        requiredParamKeys: ['DevNo','begin_str','end_str','chk_U_time_term','OnTime_str','offTime_str','chart_type','para_index'],
+        shouldFiltered: true
     },
 
     /*日用电量*/
@@ -26,7 +28,8 @@ module.exports = {
             DevName_str: '',
             light_type_str: ''
         },
-        requiredParamKeys: ['DevNo_str','date_type_str','dtpBeginDate_str','dtpEndDate_str','chart_type','para_index']
+        requiredParamKeys: ['DevNo_str','date_type_str','dtpBeginDate_str','dtpEndDate_str','chart_type','para_index'],
+        shouldFiltered: true
     },
      /*资产比例图*/
     GET_ASSET_RATIO:{
@@ -35,7 +38,8 @@ module.exports = {
         param: {
            
         },
-        requiredParamKeys: ['DevNo_str','Group_type_str', 'pen_type_str', 'Query_type_str','table_type']
+        requiredParamKeys: ['DevNo_str','Group_type_str', 'pen_type_str', 'Query_type_str','table_type'],
+        shouldFiltered: true
     },//获取返回的js代码
 
     /* 杆号核对 */
@@ -45,7 +49,8 @@ module.exports = {
         param: {
            
         },
-        requiredParamKeys: ['DevNo_int','Area_name']
+        requiredParamKeys: ['DevNo_int','Area_name'],
+        shouldFiltered: true
     },
     /* 集中核对 */
     GET_CENTRALIZED_CHECK:{
@@ -54,7 +59,8 @@ module.exports = {
         param: {
            
         },
-        requiredParamKeys: ['DevNo_int','Area_name']
+        requiredParamKeys: ['DevNo_int','Area_name'],
+        shouldFiltered: true
     },
 
 };

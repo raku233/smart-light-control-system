@@ -87,7 +87,7 @@ const routeHandlerGenerator = commonAPI => (specificAPI, paramHandler = defaultP
                 param
             );
 
-            console.log('assignedParam', assignedParam);
+            // console.log('assignedParam', assignedParam);
 
             promises.push(fetchData(url, method, assignedParam));
         }

@@ -9,21 +9,24 @@ module.exports = {
             log_pass: 'changhe123',
             sn_node_mode: '1'
         },
-        requiredParamKeys: ['DevGroup']
+        requiredParamKeys: ['DevGroup'],
+        shouldFiltered: true
     },
     //手机端——地图——获取集中器附近的单灯信息
     GETSINGLE_MAP_TABLE_VOLT_VIEW: {
         method: 'get',
         pathName: '/Single/Getsingle_map_table_volt_view',
         param: {},
-        requiredParamKeys: ['Dev_Id']
+        requiredParamKeys: ['Dev_Id'],
+        shouldFiltered: true
     },
     //手机端——登录
     CKLOGIN: {
         method: 'get',
         pathName: '/Login/ckLogin',
         param: {},
-        requiredParamKeys: ['username','pwd']
+        requiredParamKeys: ['username', 'pwd'],
+        shouldFiltered: true
     },
 
 };
