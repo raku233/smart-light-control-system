@@ -38,4 +38,23 @@ module.exports = {
         requiredParamKeys: ['DevNo_str','Group_type_str', 'pen_type_str', 'Query_type_str','table_type']
     },//获取返回的js代码
 
+    /* 杆号核对 */
+    GET_ROD_CHECK:{
+        method: 'get',
+        pathName: '/Tree/Getsingle_map_temp',
+        param: {
+           
+        },
+        requiredParamKeys: ['DevNo_int','Area_name']
+    },
+    /* 集中核对 */
+    GET_CENTRALIZED_CHECK:{
+        method: 'get',
+        pathName: '/Tree/GetDev_temp',
+        param: {
+           
+        },
+        requiredParamKeys: ['DevNo_int','Area_name']
+    },
+
 };
