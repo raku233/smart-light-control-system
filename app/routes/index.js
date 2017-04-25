@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
 import Frame from '../layouts/frame';
-import Login from '../layouts/login';
+import Login from '../views/login';
 import Home from '../views/home';
 import ManualLampSwitching from '../views/manual-lamp-switching';
 import LampSwitchingTime from '../views/lamp-switching-time';

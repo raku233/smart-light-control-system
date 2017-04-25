@@ -1,5 +1,6 @@
 import { homeSagas } from '../views/home/sagas';
 import { Common } from '../components/common/sagas';
+import { Login } from '../views/login/sagas';
 import { ManualLampSwitching } from '../views/manual-lamp-switching/sagas';
 import { ElectricalParameter } from '../views/electrical-parameter/sagas';
 import { LampSwitchingTime } from '../views/lamp-switching-time/sagas';
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     const saga = combineSagas(
         homeSagas,
         Common,
+        Login,
         ManualLampSwitching,
         ElectricalParameter,
         LampSwitchingTime,

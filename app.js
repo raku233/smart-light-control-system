@@ -11,10 +11,13 @@ const
 const
     convert = require('koa-convert'),
     bodyParser = require('koa-bodyparser'),
-    historyApiFallback = require('koa-connect-history-api-fallback');
+    historyApiFallback = require('koa-connect-history-api-fallback'),
+    session = require('koa-session-minimal');
 const
     staticFiles = require('./server/middlewares/staticFiles.js'),
     router = require('./server/middlewares/router.js');
+
+const { cookie, store, authenticateAccess } = require('./server/middlewares/authentication.js');
 
 switch (mode) {
 case 'development': {
@@ -30,6 +33,13 @@ case 'development': {
         webpackHot = require('koa-webpack-hot-middleware');
 
     // use middlewares
+    app.use(bodyParser());
+    app.use(session({
+        key: 'SESSION_ID',
+        store,
+        cookie
+    }));
+    app.use(authenticateAccess());
     app.use(historyApiFallback({
         verbose: false,
         rewrites: [{
@@ -48,7 +58,6 @@ case 'development': {
         }
     })));
     app.use(convert(webpackHot(compiler)));
-    app.use(bodyParser());
     app.use(router());
     app.use(staticFiles('/', './build'));
 

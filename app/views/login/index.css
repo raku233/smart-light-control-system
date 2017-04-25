@@ -1,0 +1,17 @@
+.v-l-container {
+    padding-top: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.v-l-info {
+    width: 300px;
+}
+
+.v-l-info .ant-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

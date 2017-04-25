@@ -1,0 +1,17 @@
+.c-l-lp-container {
+    width: 300px;
+}
+
+.c-l-lp-container .ant-card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.c-l-lp-input {
+    margin: 5px 0;
+}
+
+.c-l-lp-btn {
+    margin: 8px 0;
+    align-self: center;
+}

@@ -1,5 +1,6 @@
 import homeReducer from '../views/home/redux';
 import Common from '../components/common/redux';
+import Login from '../views/login/redux';
 import ManualLampSwitching from '../views/manual-lamp-switching/redux';
 import ElectricalParameter from '../views/electrical-parameter/redux';
 import LampSwitchingTime from '../views/lamp-switching-time/redux';
@@ -10,6 +11,7 @@ import SingleLampWarningInfo from '../views/single-lamp-warning-info/redux';
 export default {
     home: homeReducer,
     Common,
+    Login,
     ManualLampSwitching,
     ElectricalParameter,
     LampSwitchingTime,
