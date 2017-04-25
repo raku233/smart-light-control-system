@@ -10,8 +10,8 @@ const parseParam = param => {
 };
 
 const rootURL = 'http://localhost:3000';
-const pathName = '/rod_check_msg/get_status';
-const param = { DevNo_int:399,Area_name:'guangzhou'}; 
+const pathName = '/single_param_history_init/get_status';
+const param = {  Dev_id: '399', pageSize: 0, CurrentPageIndex: 0}; 
 const url = rootURL + pathName ;
 
 fetch(url, {

@@ -92,25 +92,23 @@ const fn_fetchSingleParamHistoryInitMessage = sharedRouteHandlerGenerator([SINGL
     for(let i = 0; i < single_volt_detail.length; i++) { 
         item = {}; 
         for ( let k in single_volt_detail[i] ) {
-            let {update_dtm , rod_num , rod_real , V_rod , V_rod2 , I1, I2, w1, w2} =  single_volt_detail[i] ;
-            //处理返回的时间
-            update_dtm =update_dtm.replace(/[^0-9]/g, '');
-            let date = new Date(parseInt(update_dtm));
-            date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate())+' '+date.getHours()+':'+date.getMinutes();
-             //devNo:终端号,date时间，rodNum杆号, rodReal末端编码，rodName杆名,alarmInfo警报
+            let {rod_num} =  single_volt_detail[i] ;
              item = {
-                 date: date,
                  rodNum: rod_num.toString().trim(),
-                 rodReal: rod_real.toString().trim(),
-                 VRod: V_rod.toString().trim(),
-                 VRod2: V_rod2.toString().trim(),
-                 I1: I1.toString().trim(),
-                 I2: I2.toString().trim(),
-                 w1: w1.toString().trim(),
-                 w2: w2.toString().trim()
              }
         }
-        ParamList.push(item);
+        let temp = true;
+        for(let i = 0 ;i < ParamList.length ; i++){
+            if(ParamList[i]. rodNum == item.rodNum){
+                temp = false;
+                break;
+            }
+        }
+        if(temp ==true ){
+            ParamList.push(item);
+        }
+
+        
     }
     const returnData = {statusGroup: ParamList};
     return JSON.stringify(returnData);
