@@ -76,10 +76,18 @@ const routeHandlerGenerator = commonAPI => (specificAPI, paramHandler = defaultP
             promises = [];
 
         for (const API of specificAPI) {
-            const { method, param, requiredParamKeys } = API,
+            const { method, param, requiredParamKeys, shouldFiltered } = API,
                 url = commonAPI.rootURL + API.pathName;
 
-            const assignedParam = Object.assign({}, filterParam(reqParam, requiredParamKeys), param);
+            const assignedParam = Object.assign(
+                {},
+                shouldFiltered
+                ? filterParam(reqParam, requiredParamKeys)
+                : reqParam,
+                param
+            );
+
+            console.log('assignedParam', assignedParam);
 
             promises.push(fetchData(url, method, assignedParam));
         }
