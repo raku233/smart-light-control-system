@@ -6,6 +6,7 @@ import { LampSwitchingTime } from '../views/lamp-switching-time/sagas';
 import { SingleLampWarningInfo } from '../views/single-lamp-warning-info/sagas';
 import { History } from '../views/history/sagas';
 import { CurrentAlarm } from '../views/current-warning/sagas';
+import { SingleLampMap } from '../views/single-lamp-map/sagas';
 
 function combineSagas(...sagaArrays) {
     let sagaList = [];
@@ -25,7 +26,8 @@ export default function* rootSaga() {
         LampSwitchingTime,
         SingleLampWarningInfo,
         History,
-        CurrentAlarm
+        CurrentAlarm,
+        SingleLampMap
     );
 
     yield saga;
