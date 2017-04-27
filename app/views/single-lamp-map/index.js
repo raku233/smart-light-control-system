@@ -6,6 +6,7 @@ import { actions as commonActions } from '../../components/common/redux';
 import { actions as viewActions } from './redux';
 import DeviceList from '../../components/common/device-list';
 import LampMap from '../../components/common/lamp-map';
+import ElectricParamModal from '../../components/single-lamp-map/electric-param-modal';
 
 class SingleLampMap extends Component {
     render() {
@@ -15,8 +16,9 @@ class SingleLampMap extends Component {
             <div style={{ height: '100%', width: '100%', display: 'flex' }}>
                 <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
                 <div style={{ flex: 1, height: '100%' }}>
-                    <LampMap {...deviceList} {...viewData} />
+                    <LampMap {...deviceList} {...viewData} {...viewActions} />
                 </div>
+                <ElectricParamModal {...viewData} {...viewActions} />
             </div>
         );
     }

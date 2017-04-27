@@ -1,11 +1,11 @@
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 
-import { fetchSingleNearTerminal } from '../../api/singleLamp';
-import { LOAD_RODMARKER, loadViewDataSuccess, loadViewDataError } from './redux';
+import { fetchSingleNearTerminal, fetchElectricParameter } from '../../api/singleLamp';
+import { LOAD_RODMARKER, loadViewDataSuccess, loadViewDataError, LOAD_ELECTRICPARAMETER, loadElectricParameterSuccess, loadElectricParameterError } from './redux';
 
 const getStatus = state => state.SingleLampMap.viewData;
 
-function* fetchData(action) {
+function* fetchMarkerData(action) {
     const { Dev_Id } = action.payload;
     let param = {
         Dev_Id
@@ -23,8 +23,22 @@ function* fetchData(action) {
     }
 }
 
+function* fetchElectricParameterData(action) {
+    const { Dev_id } = action.payload;
+    const param = {
+        Dev_id
+    };
+    try {
+        const data = yield call(fetchElectricParameter, param);
+        yield put(loadElectricParameterSuccess(data));
+    } catch (error) {
+        yield put(loadElectricParameterError(error));
+    }
+}
+
 export function* watchFetchData() {
-    yield takeEvery(LOAD_RODMARKER, fetchData);
+    yield takeEvery(LOAD_RODMARKER, fetchMarkerData);
+    yield takeEvery(LOAD_ELECTRICPARAMETER, fetchElectricParameterData);
 }
 
 export const SingleLampMap = [
