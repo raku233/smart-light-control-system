@@ -1,5 +1,19 @@
+.c-cw-wit-table .ant-spin-container {
+    width: 100%;
+}
+
+.c-cw-wit-config {
+    display: flex;
+    align-items: center;
+}
+
 .c-cw-wit-number-input {
     margin: 8px 0;
+}
+
+.c-cw-wit-table-info {
+    text-align: right;
+    flex: 1;
 }
 
 .c-cw-wit-label {

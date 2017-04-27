@@ -10,42 +10,49 @@ export default class WarningInfoTable extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            data: [
-            { number: 1, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' },
-            { number: 2, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' },
-            { number: 3, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' },
-            { number: 4, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' },
-            { number: 5, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' },
-            { number: 6, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' },
-            { number: 7, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' },
-            { number: 8, devID: 3, devName: 'G105陈村跨线桥生产队饭店对面', areaGroup: '陈村连接线', relatedPhoneCard: '13423434543', yellowWarningContent: '第一接触器异常', redWarningContent: '', warningTime: '2014/6/18 19:23:23' }
-            ],
-            showNumber: 8
-        };
-
-        this.handleNumberInputChanged = this.handleNumberInputChanged.bind(this);
+        this.handleNumberInputChange = this.handleNumberInputChange.bind(this);
+        this.handlePaginationChange = this.handlePaginationChange.bind(this);
     }
 
-    handleNumberInputChanged(value) {
-        this.setState({ showNumber: value });
+    componentDidMount() {
+        this.props.loadViewData();
+    }
+
+    handleNumberInputChange(value) {
+        this.props.updateViewData({ displayQuantity: value });
+    }
+
+    handlePaginationChange(page, pageSize) {
+        this.props.updateViewData({ currentPage: page });
     }
 
     render() {
-        const { data, showNumber } = this.state;
+        const { statusGroup, displayQuantity, currentPage, loading } = this.props;
+        const length = statusGroup.length;
+
+        const start = (currentPage - 1) * displayQuantity,
+            end = currentPage * displayQuantity < length
+                ? currentPage * displayQuantity
+                : length;
 
         return (
           <div className="c-cw-wit-container">
-            <div className="c-cw-wit-number-input">
-              <span className="c-cw-wit-label">当页显示历史记录条数: </span>
-              <InputNumber min={1} max={50} value={showNumber} onChange={this.handleNumberInputChanged} />
+            <div className="c-cw-wit-config">
+              <div className="c-cw-wit-number-input">
+                <span className="c-cw-wit-label">当页显示历史记录条数: </span>
+                <InputNumber min={1} max={50} value={displayQuantity} onChange={this.handleNumberInputChange} />
+              </div>
+              <div className="c-cw-wit-table-info">
+                <span className="c-rq-rit-label">当前显示 {start} - {end} 条记录  共 {length} 条记录</span>
+              </div>
             </div>
-            <Table dataSource={data} scroll={{ x: true, y: 300 }} pagination={{ pageSize: showNumber }} size="small">
+
+            <Table className="c-cw-wit-table" dataSource={statusGroup} loading={loading} scroll={{ x: true, y: 300 }} pagination={{ pageSize: displayQuantity, current: currentPage, onChange: this.handlePaginationChange }} size="small">
                 <Column
                   width={40}
                   title="编号"
-                  dataIndex="number"
-                  key="number"
+                  dataIndex="key"
+                  key="key"
                 />
                 <Column
                   width={60}
@@ -73,21 +80,15 @@ export default class WarningInfoTable extends Component {
                 />
                 <Column
                   width={180}
-                  title="黄色警报内容"
-                  dataIndex="yellowWarningContent"
-                  key="ywllowWarningContent"
-                />
-                <Column
-                  width={180}
-                  title="红色警报内容"
-                  dataIndex="redWarningContent"
-                  key="redWarningContent"
+                  title="警报内容"
+                  dataIndex="alarmInfo"
+                  key="alarmInfo"
                 />
                 <Column
                   width={150}
                   title="警报时间"
-                  dataIndex="warningTime"
-                  key="warningTime"
+                  dataIndex="alarmTime"
+                  key="alarmTime"
                 />
             </Table>
           </div>

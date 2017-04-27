@@ -163,29 +163,32 @@ const fn_setTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOF
 });
 
 
-/*网页——当前警报,移动端——警报*/
-const fn_fetchAlarmNow = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM], undefined, ([data]) => {
-    const{node_name, alarm_info, alarm_time} = data;
-    let i = 0;
-    const alarmNow = [];
-    for(const nodeNameI of node_name){
+/* 网页——当前警报,移动端——警报 */
+const fn_fetchCurrentAlarm = sharedRouteHandlerGenerator([SPECIFIC_API.GET_NOW_ALARM], undefined, ([dataX]) => {
+    const { node_name, alarm_info, alarm_time } = dataX;
+    let i = 0,
+        n = 0;
+    const currentAlarm = [];
+    for (const nodeNameI of node_name) {
         let j = 0;
-        for(const nodeNameJ of nodeNameI)
-        {
-            const alarmNowSet = {
-                nodeName: node_name[i][j],
+        for (const nodeNameJ of nodeNameI) {
+            const currentAlarmSet = {
+                key: n + 1,
+                devID: node_name[i][j].substring(0, node_name[i][j].indexOf('-')),
+                devName: node_name[i][j],
                 alarmInfo: alarm_info[i][j],
                 alarmTime: alarm_time[i][j]
             };
-            alarmNow.push(alarmNowSet);
-            j++
+            currentAlarm.push(currentAlarmSet);
+            j++;
+            n++;
         }
        i++;
     }
-    const returndata = {
-        alarmNow: alarmNow
+    const data = {
+        statusGroup: currentAlarm
     };
-    return JSON.stringify(returndata);
+    return JSON.stringify(data);
 });
 
 
@@ -225,6 +228,6 @@ module.exports = {
     'POST /electrical_parameter/get_status': fn_fetchElectricalParameter,
     'POST /lamp_switching_time/get_status': fn_fetchTimeControlInfo,
     'POST /lamp_switching_time/set_status': fn_setTimeControlInfo,
-    'POST /current_warning/get_status': fn_fetchAlarmNow,
+    'POST /current_warning/get_status': fn_fetchCurrentAlarm,
     'POST /centralized_fault_query/get_status': fn_fetchCentralizedFault,
 };
