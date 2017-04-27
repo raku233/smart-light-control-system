@@ -68,33 +68,56 @@ module.exports = {
         shouldFiltered: true
     },
 
-    /* 手机端——时控——初始化 
-    GSET_TIME_CLASS: {
+    /* 手机端——单灯调光*/
+    ADWEB_SINGLE_QUERY: {
         method: 'get',
-        pathName: '/Onoff/Gset_time_class',
+        pathName: '/wcf/Addweb_single_query',
+        param: {
+            log_name_str: 'admin'
+        },
+        requiredParamKeys: ['Dev_id', 'cmd_type'],
+        shouldFiltered: false
+    },//获取
+    SETWEB_SINGLE_ONOFF: {
+        method: 'get',
+        pathName: '/wcf/Setweb_single_onoff',
+        param: {
+            cmd_type: '设置亮度',
+            Lux_3: '255',
+            Lux_4: '255',
+            log_name_str: 'admin',
+            object_str: '',
+        },
+        requiredParamKeys: ['Dev_id', 'Lux_1', 'Lux_2'],
+        shouldFiltered: false
+    },//手动设置亮度
+    SETWEB_SINGLE_BO_ONOFF: {
+        method: 'get',
+        pathName: '/wcf/Setweb_single_BO_onoff',
+        param: {
+            log_name_str: 'admin',
+            object_str: '',
+        },
+        requiredParamKeys: ['Dev_id', 'cmd_type', 'chk_flag_str', 'object_str'],
+        shouldFiltered: false
+    },//单灯简易控制
+    GETSINGLE_VOLT_DETAIL_GROUP: {
+        method: 'get',
+        pathName: '/Single/Getsingle_volt_detail_group',
         param: {},
         requiredParamKeys: ['Dev_id'],
         shouldFiltered: true
-    },//初始化路灯个数
-    GDEV_ADDR_LIGHT: {
+    },//刷新“支路X-N”
+
+    /* 手机端——单灯时控 */
+    SETWEB_SINGLE_TIME_ONOFF: {
         method: 'get',
-        pathName: '/Onoff/Gdev_addr_light',
-        param: {},
-        requiredParamKeys: ['Dev_id'],
-        shouldFiltered: true
-    },//初始化路灯名字
-    GONOFF_R_MAX_VIEW: {
-        method: 'get',
-        pathName: '/Onoff/GOnoff_r_max_view',
-        param: {},
-        requiredParamKeys: ['Dev_id'],
-        shouldFiltered: true
-    },//初始化路灯时间信息
-    GONOFF_R_MAX_VIEW: {
-        method: 'get',
-        pathName: '/Onoff/GOnoff_r_max_view',
-        param: {},
-        requiredParamKeys: ['Dev_id', 'term_str'],
-        shouldFiltered: true
-    },//初始化路灯时间信息*/
+        pathName: '/wcf/Setweb_single_time_onoff',
+        param: {
+            log_name_str: 'username'
+        },
+        requiredParamKeys: ['Dev_id', 'cmd_type', 'L1_time1', 'L1_time2', 'L1_Lux12', 'L2_time1', 'L2_time2', 'L2_Lux12', 'L3_time1', 'L3_time2', 'L3_Lux12', 'L4_time1', 'L4_time2', 'L4_Lux12'],
+        shouldFiltered: false
+    },//强制开关灯——设置时段开关灯 & 单灯简易控制——单控设置
+    
 };
