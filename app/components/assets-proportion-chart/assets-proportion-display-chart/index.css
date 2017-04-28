@@ -1,0 +1,46 @@
+.c-apc-apdc-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-apc-apdc-config {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.c-apc-apdc-selector {
+    margin: 0 12px 0 8px;
+}
+
+.c-apc-apdc-selector.c-apc-apdc-statistics-type {
+    width: 140px;
+}
+
+.c-apc-apdc-selector.c-apc-apdc-query-type {
+    width: 110px;
+}
+
+.c-apc-apdc-selector.c-apc-apdc-chart-type {
+    width: 110px;
+}
+
+.c-apc-apdc-query-btn {
+    margin: 0 8px;
+}
+
+.c-apc-apdc-container .ant-spin-nested-loading {
+    margin: 8px;
+}
+
+.c-apc-apdc-container .ant-spin-nested-loading .ant-spin-container {
+    width: 100%;
+}
+
+.c-apc-apdc-container #container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #E9E9E9;
+    border-radius: 5px;
+}

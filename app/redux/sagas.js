@@ -8,6 +8,7 @@ import { History } from '../views/history/sagas';
 import { CurrentAlarm } from '../views/current-warning/sagas';
 import { EnergyConsumptionChart } from '../views/energy-consumption-query/sagas';
 import { SingleLampMap } from '../views/single-lamp-map/sagas';
+import { AssetsProportionChart } from '../views/assets-proportion-chart/sagas';
 
 function combineSagas(...sagaArrays) {
     let sagaList = [];
@@ -29,7 +30,8 @@ export default function* rootSaga() {
         History,
         CurrentAlarm,
         EnergyConsumptionChart,
-        SingleLampMap
+        SingleLampMap,
+        AssetsProportionChart
     );
 
     yield saga;

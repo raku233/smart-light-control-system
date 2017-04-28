@@ -36,7 +36,7 @@ module.exports = {
         method: 'get',
         pathName: '/Home/get_pen_light_info',
         param: {
-           
+           Group_type_str: ''
         },
         requiredParamKeys: ['DevNo_str','Group_type_str', 'pen_type_str', 'Query_type_str','table_type'],
         shouldFiltered: true

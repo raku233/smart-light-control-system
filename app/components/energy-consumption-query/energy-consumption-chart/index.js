@@ -26,7 +26,7 @@ export default class EnergyConsumptionChart extends Component {
 
     componentWillReceiveProps(nextProps) {
         const { code } = nextProps;
-        if (code) {
+        if (code && code !== this.props.code) {
             this.renderChart(code);
         }
     }

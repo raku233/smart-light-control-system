@@ -3,21 +3,22 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { actions as commonActions } from '../../components/common/redux';
-import { actions as viewActions } from '../../views/energy-consumption-query/redux';
+import { actions as viewActions } from '../../views/assets-proportion-chart/redux';
 
-import EnergyConsumptionChart from '../../components/energy-consumption-query/energy-consumption-chart';
-import DeviceList from '../../components/common/device-list';
+import AssetsProportionDisplayChart from '../../components/assets-proportion-chart/assets-proportion-display-chart';
 
+
+import DeviceList from '../../components/common/device-list/index';
 
 import './index.css';
 
-class EnergyConsumptionQuery extends Component {
+class AssetsProportionChart extends Component {
     render() {
         const { deviceList, deviceListActions, viewData, viewActions } = this.props;
         return (
-            <div className="v-ecq-container">
+            <div className="v-apc-container">
                 <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
-                <EnergyConsumptionChart {...viewData} {...viewActions} />
+                <AssetsProportionDisplayChart {...viewData} {...viewActions} />
             </div>
         );
     }
@@ -26,11 +27,11 @@ class EnergyConsumptionQuery extends Component {
 export default connect(state => {
     return {
         deviceList: state.Common.deviceList,
-        viewData: state.EnergyConsumptionQuery.viewData
+        viewData: state.AssetsProportionChart.viewData
     };
 }, dispatch => {
     return {
         deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch),
         viewActions: bindActionCreators(viewActions, dispatch)
     };
-})(EnergyConsumptionQuery);
+})(AssetsProportionChart);

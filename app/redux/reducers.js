@@ -10,6 +10,7 @@ import History from '../views/history/redux';
 import CurrentAlarm from '../views/current-warning/redux';
 import EnergyConsumptionQuery from '../views/energy-consumption-query/redux';
 import CompulsiveLampSwitching from '../views/compulsive-lamp-switching/redux';
+import AssetsProportionChart from '../views/assets-proportion-chart/redux';
 
 export default {
     home: homeReducer,
@@ -23,7 +24,8 @@ export default {
     History,
     CurrentAlarm,
     EnergyConsumptionQuery,
-    CompulsiveLampSwitching
+    CompulsiveLampSwitching,
+    AssetsProportionChart
 };
 
 // todo: 考虑使用高阶reducer

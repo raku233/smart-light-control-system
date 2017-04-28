@@ -19,30 +19,37 @@ const fn_fetchEnergySearch = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ERL
     };
 });
 
-//手机端——三项电参图
+// 手机端——三项电参图
 const fn_fetchThreePhaseElectricParameter = sharedRouteHandlerGenerator([OTHERPHONE_API.DEV_ERL]);
 
-//手机端——日用电量
+// 手机端——日用电量
 const fn_fetchDailyPower = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_DEV_KWH_PER]);
 
-/*移动端——资产比例图*/
-const fn_fetchAssetRatio = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ASSET_RATIO], undefined, ([data]) => {
-     const{highcharts} = data;
-     
-     
-     const returnData = {
-        code: highcharts
-    };
-    return JSON.stringify(returnData);
-});
+/* 移动端——资产比例图 */
+const fn_fetchAssetRatio = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ASSET_RATIO],
+    param => {
+        const { devID, chartType, statisticsType, queryType } = param;
 
-/*移动端——杆号核对*/
+        return {
+            DevNo_str: devID,
+            pen_type_str: statisticsType,
+            Query_type_str: queryType,
+            table_type: chartType
+        };
+    }, ([dataX]) => {
+        const { highcharts } = dataX;
+
+        const data = { highcharts };
+        return JSON.stringify(data);
+    });
+
+/* 移动端——杆号核对 */
 const fn_fetchRodCheck = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ROD_CHECK], undefined, ([data]) => {
     const { single_map_temp } = data;
     let ParamList = [];
     let item = {};
-     for(let i = 0; i < single_map_temp.length; i++) { 
-         item = {}; 
+     for(let i = 0; i < single_map_temp.length; i++) {
+         item = {};
          for ( let k in single_map_temp[i] ) {
               let{ DevNo , rod_num , rod_real , rod_name , Area_name , DevX,DevY , update_dtm } = single_map_temp[i];
               // 处理返回的时间
@@ -72,13 +79,13 @@ const fn_fetchRodCheck = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ROD_CHE
 });
 
 
-/*移动端——集中核对*/
+/* 移动端——集中核对 */
 const fn_fetchCentralizedCheck = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_CENTRALIZED_CHECK], undefined, ([data]) => {
     const {Dev_temp } = data;
     let ParamList = [];
     let item = {};
-     for(let i = 0; i <Dev_temp.length; i++) { 
-         item = {}; 
+     for(let i = 0; i <Dev_temp.length; i++) {
+         item = {};
          for ( let k in Dev_temp[i] ) {
               let{ DevNo , DevName , temp_char1 , Area_name , DevX , DevY , update_dtm } = Dev_temp[i];
               // 处理返回的时间

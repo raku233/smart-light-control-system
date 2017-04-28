@@ -8,7 +8,8 @@ const URL = {
     FETCH_TIMECONTROL_INFO: '/lamp_switching_time/get_status',
     UPLOAD_TIMECONTROL_INFO: '/lamp_switching_time/set_status',
     FETCH_CURRENT_ALARM: '/current_warning/get_status',
-    FETCH_ENERGY_CONSUMPTION_CHART: '/energy_search/get_status'
+    FETCH_ENERGY_CONSUMPTION_CHART: '/energy_search/get_status',
+    FETCH_ASSET_PROPORTION_CHART: '/asset_ratio_chart/get_status'
 };
 
 export const fetchSwitchingStatus = dataFetcher(URL.FETCH_SWITCHING_STATUS);
@@ -18,3 +19,4 @@ export const fetchTimeControlInfo = dataFetcher(URL.FETCH_TIMECONTROL_INFO);
 export const uploadTimeControlInfo = dataFetcher(URL.UPLOAD_TIMECONTROL_INFO);
 export const fetchCurrentAlarm = dataFetcher(URL.FETCH_CURRENT_ALARM);
 export const fetchEnergyConsumptionChart = dataFetcher(URL.FETCH_ENERGY_CONSUMPTION_CHART);
+export const fetchAssetProportionChart = dataFetcher(URL.FETCH_ASSET_PROPORTION_CHART);
