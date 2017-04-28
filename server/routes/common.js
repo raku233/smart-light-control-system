@@ -39,6 +39,7 @@ const fn_fetchSingleNearTerminal = sharedRouteHandlerGenerator([COMMON_API.GETSI
     const singleNearTerminal = [];
     for(const singleMapView of single_map_table_volt_view){
         const singleMapViewSet = {
+            key: i + 1,
             rodName: singleMapView.rod_num,
             devX: singleMapView.DevX,
             devY: singleMapView.DevY
@@ -55,10 +56,41 @@ const fn_fetchLogin = sharedRouteHandlerGenerator([COMMON_API.CKLOGIN], undefine
     return data;
 });
 
+//手机端——附近地图——请求坐标附近范围的集中器
+const fn_fetchNearMapDev = sharedRouteHandlerGenerator([COMMON_API.DEVINFO_MAP_CENTER], param => {
+    const { centerX, centerY, radKm, nearP } = param;
+    return{
+        centerX: centerX,
+        centerY: centerY,
+        rad_km: radKm,
+        near_p: nearP,
+    };
+}, ([data]) => {
+    const { DevNo, DevName, linkflag, DevXDevY } = data;
+    let i = 0;
+    const nearMapDev = [];
+    for(const devNoI of DevNo) {
+        const nearMapDevSet = {
+            key: i + 1,
+            devNo: DevNo[i].toString().trim(),
+            devName: DevName[i].toString().trim(),
+            linkFlag: linkflag[i].toString().trim(),
+            devXY: DevXDevY[i].toString().trim(),
+        };
+        nearMapDev.push(nearMapDevSet);
+        i++;
+    };
+    const returnData = {
+        nearMapDevMes: nearMapDev,
+    };
+    return returnData;
+});
+
 module.exports = {
     'POST /device_list': fn_fetchDeviceList,
     'POST /single_near_terminal/get_status': fn_fetchSingleNearTerminal,
     'POST /login': fn_fetchLogin,
+    'POST /near_map_dev': fn_fetchNearMapDev,
 };
 
 
