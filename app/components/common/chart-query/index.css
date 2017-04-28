@@ -1,0 +1,39 @@
+.c-cq-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-cq-config {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.c-cq-label {
+    margin-right: 8px;
+}
+
+.c-cq-selector {
+    width: 116px;
+    margin: 0 12px 0 8px;
+}
+
+.c-cq-query-btn {
+    margin: 0 8px;
+}
+
+.c-cq-container .ant-spin-nested-loading {
+    margin: 8px;
+}
+
+.c-cq-container .ant-spin-nested-loading .ant-spin-container {
+    width: 100%;
+}
+
+.c-cq-container #container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #E9E9E9;
+    border-radius: 5px;
+}

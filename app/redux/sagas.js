@@ -6,9 +6,9 @@ import { LampSwitchingTime } from '../views/lamp-switching-time/sagas';
 import { SingleLampWarningInfo } from '../views/single-lamp-warning-info/sagas';
 import { History } from '../views/history/sagas';
 import { CurrentAlarm } from '../views/current-warning/sagas';
-import { EnergyConsumptionChart } from '../views/energy-consumption-query/sagas';
 import { SingleLampMap } from '../views/single-lamp-map/sagas';
 import { AssetsProportionChart } from '../views/assets-proportion-chart/sagas';
+import { ChartQuery } from '../components/common/chart-query/sagas';
 
 function combineSagas(...sagaArrays) {
     let sagaList = [];
@@ -29,9 +29,9 @@ export default function* rootSaga() {
         SingleLampWarningInfo,
         History,
         CurrentAlarm,
-        EnergyConsumptionChart,
         SingleLampMap,
-        AssetsProportionChart
+        AssetsProportionChart,
+        ChartQuery
     );
 
     yield saga;

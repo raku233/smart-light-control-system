@@ -23,7 +23,18 @@ const fn_fetchEnergySearch = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ERL
 const fn_fetchThreePhaseElectricParameter = sharedRouteHandlerGenerator([OTHERPHONE_API.DEV_ERL]);
 
 // 手机端——日用电量
-const fn_fetchDailyPower = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_DEV_KWH_PER]);
+const fn_fetchDailyPower = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_DEV_KWH_PER], param => {
+    const { devID, startDate, endDate, chartType, statisticsType, statusType } = param;
+
+    return {
+        DevNo_str: devID,
+        date_type_str: statisticsType,
+        dtpBeginDate_str: startDate,
+        dtpEndDate_str: endDate,
+        chart_type: chartType,
+        para_index: statusType
+    };
+});
 
 /* 移动端——资产比例图 */
 const fn_fetchAssetRatio = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ASSET_RATIO],

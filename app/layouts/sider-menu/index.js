@@ -55,6 +55,7 @@ class SiderMenu extends React.Component {
                     <Menu.Item key="current_warning">当前警报</Menu.Item>
                     <Menu.Item key="energy_consumption_query">能耗查询</Menu.Item>
                     <Menu.Item key="assets_proportion_chart">资产比例图</Menu.Item>
+                    <Menu.Item key="daily_electricity_consumption_query">日用电量</Menu.Item>
                 </SubMenu>
                 <SubMenu key="single_lamp" title={<span><Icon type="bulb" /><span className="nav-text">单灯控制管理</span></span>}>
                     <Menu.Item key="single_lamp_map">单灯地图</Menu.Item>

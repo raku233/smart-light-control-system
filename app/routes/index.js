@@ -18,6 +18,8 @@ import History from '../views/history';
 import SingLampWarningInfo from '../views/single-lamp-warning-info';
 import EnergyConsumptionQuery from '../views/energy-consumption-query';
 import AssetsProportionCHart from '../views/assets-proportion-chart';
+import dailyElectricityConsumptionQuery from '../views/daily-electricity-consumption-query';
+
 
 const routes = history => (
     <Router history={history}>
@@ -31,6 +33,7 @@ const routes = history => (
             <Route path="/integrated_terminal/group_control_setting" component={GroupControlSetting} />
             <Route path="/integrated_terminal/stabilivolt_interval" component={StabilivoltInterval} />
             <Route path="/integrated_terminal/energy_consumption_query" component={EnergyConsumptionQuery} />
+            <Route path="/integrated_terminal/daily_electricity_consumption_query" component={dailyElectricityConsumptionQuery} />
             <Route path="/integrated_terminal/assets_proportion_chart" component={AssetsProportionCHart} />
             <Route path="/single_lamp/single_lamp_map" component={SingleLampMap} />
             <Route path="/single_lamp/single_lamp_control" component={SingLampControl} />

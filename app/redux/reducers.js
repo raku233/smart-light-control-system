@@ -8,9 +8,9 @@ import SingleLampMap from '../views/single-lamp-map/redux';
 import SingleLampWarningInfo from '../views/single-lamp-warning-info/redux';
 import History from '../views/history/redux';
 import CurrentAlarm from '../views/current-warning/redux';
-import EnergyConsumptionQuery from '../views/energy-consumption-query/redux';
 import CompulsiveLampSwitching from '../views/compulsive-lamp-switching/redux';
 import AssetsProportionChart from '../views/assets-proportion-chart/redux';
+import { EnergyConsumptionQuery, DailyElectricityConsumption } from '../components/common/chart-query/redux';
 
 export default {
     home: homeReducer,
@@ -25,7 +25,8 @@ export default {
     CurrentAlarm,
     EnergyConsumptionQuery,
     CompulsiveLampSwitching,
-    AssetsProportionChart
+    AssetsProportionChart,
+    DailyElectricityConsumption
 };
 
 // todo: 考虑使用高阶reducer
