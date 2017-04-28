@@ -34,11 +34,12 @@ const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SINGLELAMP
     for(const singleAlarmGroup of single_volt_detail)
     {
         const singleAlarmSet = {
-           
-                rodNum: singleAlarmGroup.rod_num,
-                alarmInfo: singleAlarmGroup.alarm_info,
-                updateTime: singleAlarmGroup.update_dtm
+                key: i + 1,
+                rodNum: singleAlarmGroup.rod_num.trim(),
+                alarmInfo: singleAlarmGroup.alarm_info.trim(),
+                updateTime: singleAlarmGroup.update_dtm.trim(),
             };
+            i++;
         singleAlarmDetail.push(singleAlarmSet);
     }
     const returndata = {singleAlarmDetail: singleAlarmDetail};
@@ -70,6 +71,7 @@ const fn_fetchSingleFaultMessage = sharedRouteHandlerGenerator([SINGLELAMP_API. 
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate())+' '+date.getHours()+':'+date.getMinutes();
             //devNo:终端号,date时间，rodNum杆号, rodReal末端编码，rodName杆名,alarmInfo警报
              item = {
+                 key: i + 1,
                  devNo:DevNo.toString().trim(),
                  date:date,
                  rodNum: rod_num.toString().trim(),
@@ -94,6 +96,7 @@ const fn_fetchSingleParamHistoryInitMessage = sharedRouteHandlerGenerator([SINGL
         for ( let k in single_volt_detail[i] ) {
             let {rod_num} =  single_volt_detail[i] ;
              item = {
+                 key: i + 1,
                  rodNum: rod_num.toString().trim(),
              }
         }
@@ -129,6 +132,7 @@ const fn_fetchSingleParamHistoryQueryMessage = sharedRouteHandlerGenerator([SING
             date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate())+' '+date.getHours()+':'+date.getMinutes();
              //devNo:终端号,date时间，rodNum杆号, rodReal末端编码，rodName杆名,alarmInfo警报
              item = {
+                 key: i + 1,
                  date: date,
                  rodNum: rod_num.toString().trim(),
                  rodReal: rod_real.toString().trim(),

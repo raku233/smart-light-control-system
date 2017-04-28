@@ -29,4 +29,17 @@ module.exports = {
         shouldFiltered: true
     },
 
+    //手机端——附近地图——请求坐标附近范围的集中器
+    DEVINFO_MAP_CENTER: {
+        method: 'get',
+        pathName: '/Tree/DevInfo_map_center',
+        param: {
+            sn_pass: '',
+            log_name: 'admin',
+            log_pass: 'changhe123',
+            sn_node_mode: '0'
+        },
+        requiredParamKeys: ['centerX', 'centerY', 'rad_km', 'near_p'],
+        shouldFiltered: true
+    },
 };

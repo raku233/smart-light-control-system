@@ -62,5 +62,24 @@ module.exports = {
         requiredParamKeys: ['DevNo_int','Area_name'],
         shouldFiltered: true
     },
-
+    /* 单灯采集-上传 */
+    SETSINGLE_MAP_TEMP:{
+        method: 'get',
+        pathName: '/Tree/Setsingle_map_temp',
+        param: {
+           
+        },
+        requiredParamKeys: ['DevNo_int', 'Area_name', 'rod_num_str', 'rod_real_bool', 'rod_real_str', 'rod_name_bool', 'rod_name', 'XY_bool', 'DevX', 'DevY'],
+        shouldFiltered: true
+    },
+    /* 集中采集-上传 */
+    SETDEVTEMP:{
+        method: 'get',
+        pathName: '/Tree/SetDev_temp',
+        param: {
+           
+        },
+        requiredParamKeys: ['DevNo_int', 'Area_name', 'temp_char1', 'DevName_bool', 'DevName', 'XY_bool', 'DevX', 'DevY'],
+        shouldFiltered: true
+    },
 };

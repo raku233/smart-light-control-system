@@ -95,6 +95,37 @@ const fn_fetchCentralizedCheck = sharedRouteHandlerGenerator([OTHERPHONE_API.GET
      const returnData = {statusGroup: ParamList};
     return JSON.stringify(returnData);
 });
+/*移动端——单灯采集上传*/
+const fn_fetchSingleLampCollectUpload = sharedRouteHandlerGenerator([OTHERPHONE_API.SETSINGLE_MAP_TEMP], param => {
+    const { devId, areaName, rodNumStr, rodRealBool, rodRealStr, rodNameBool, rodName, xyBool, devX, devY } = param;
+    return {
+        DevNo_int: devId, 
+        Area_name: areaName, 
+        rod_num_str: rodNumStr, 
+        rod_real_bool: rodRealBool, 
+        rod_real_str: rodRealStr, 
+        rod_name_bool: rodNameBool, 
+        rod_name: rodName, 
+        XY_bool: xyBool, 
+        DevX: devX, 
+        DevY: devY
+    };
+});
+/*移动端——集中采集上传*/
+const fn_fetchDevCollectUpload = sharedRouteHandlerGenerator([OTHERPHONE_API.SETDEVTEMP], param => {
+    const { devId, areaName, tempChar1, devnameBool, devName, xyBool, devX, devY } = param;
+    return {
+        DevNo_int: devId, 
+        Area_name: areaName, 
+        temp_char1: tempChar1, 
+        DevName_bool: devnameBool, 
+        DevName: devName,
+        XY_bool: xyBool, 
+        DevX: devX, 
+        DevY: devY
+    };
+});
+/*移动端——集中采集上传*/
 module.exports = {
    'POST /energy_search/get_status': fn_fetchEnergySearch,
    'POST /three_phase_electric_parameter/get_status': fn_fetchThreePhaseElectricParameter,
@@ -102,4 +133,6 @@ module.exports = {
    'POST /asset_ratio_chart/get_status': fn_fetchAssetRatio,
    'POST /rod_check_msg/get_status': fn_fetchRodCheck,
    'POST /Centralized_check_msg/get_status': fn_fetchCentralizedCheck,
+   'POST /single_lamp_collect_upload/set_status': fn_fetchSingleLampCollectUpload,
+   'POST /dev_collect_upload/set_status': fn_fetchDevCollectUpload,
 };
