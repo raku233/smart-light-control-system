@@ -16,6 +16,7 @@ import CompulsiveLampSwitching from '../views/compulsive-lamp-switching';
 import SingleLampSwitchingTime from '../views/single_lamp_switching_time';
 import History from '../views/history';
 import SingLampWarningInfo from '../views/single-lamp-warning-info';
+import EnergyConsumptionQuery from '../views/energy-consumption-query';
 
 const routes = history => (
     <Router history={history}>
@@ -28,6 +29,7 @@ const routes = history => (
             <Route path="/integrated_terminal/current_warning" component={CurrentWarning} />
             <Route path="/integrated_terminal/group_control_setting" component={GroupControlSetting} />
             <Route path="/integrated_terminal/stabilivolt_interval" component={StabilivoltInterval} />
+            <Route path="/integrated_terminal/energy_consumption_query" component={EnergyConsumptionQuery} />
             <Route path="/single_lamp/single_lamp_map" component={SingleLampMap} />
             <Route path="/single_lamp/single_lamp_control" component={SingLampControl} />
             <Route path="/single_lamp/compulsive_lamp_switching" component={CompulsiveLampSwitching} />

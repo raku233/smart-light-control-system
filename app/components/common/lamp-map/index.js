@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { message } from 'antd';
-import { Map, Markers, InfoWindow } from 'react-amap';
+import { Map, Markers } from 'react-amap';
 import './index.css';
 
 export default class LampMap extends Component {
@@ -12,18 +12,17 @@ export default class LampMap extends Component {
             markers: [],
             center: null,
             windowVisible: false,
-            windowContent: ''
+            windowContent: '',
         };
 
         this.markersEvents = {
             click: (mapOption, marker) => {
+                this.props.loadElectricParameter(this.props.devID);
                 this.setState({
                     center: {
                         latitude: mapOption.lnglat.lat,
                         longitude: mapOption.lnglat.lng
-                    },
-                    windowVisible: true,
-                    windowContent: marker.si.extData.label
+                    }
                 });
             }
         };
@@ -41,7 +40,6 @@ export default class LampMap extends Component {
     }
 
     locateToMarker(nextProps) {
-        console.log(this.state.markers);
         const { devLocation, rodLocations, devID } = nextProps;
         if (devLocation.length !== 0) {
             const center = {
@@ -53,13 +51,19 @@ export default class LampMap extends Component {
                     longitude: rodLocations[idx].devX,
                     latitude: rodLocations[idx].devY
                 },
-                label: `杆号：${rodLocations[idx].rodName}`,
-                index: idx,
+                label: {
+                    content: rodLocations[idx].rodName,
+                    offset: [0, -20]
+                },
+                index: idx, 
                 type: 'rod'
             }));
             markers.push({
                 position: center,
-                label: `终端：${devID}`,
+                label: {
+                    content: devID,
+                    offset: [0, -20]
+                },
                 index: markers.length,
                 type: 'device'
             });
@@ -100,15 +104,7 @@ export default class LampMap extends Component {
                   markers={this.state.markers}
                   events={this.markersEvents}
                   render={this.renderMarkerLatout}
-                />
-                <InfoWindow
-                  position={this.state.center}
-                  visible={this.state.windowVisible}
-                  content={this.state.windowContent}
-                  size={{ width: 100, height: 70 }}
-                  offset={[0, -20]}
-                  events={this.windowEvents}
-                  closeWhenClickMap
+                  useCluster={{ zoomOnClick: true }}
                 />
             </Map>
         );

@@ -65,7 +65,7 @@ export default class TimeSettingPanel extends Component {
                   dataIndex="timeRange"
                   render={(text, record) => {
                       return (
-                          <TimeRange />
+                          <TimeRange size="small" />
                       );
                   }}
                 />

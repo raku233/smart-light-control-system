@@ -7,7 +7,7 @@ module.exports = {
             DevName_str: '',
             light_type_str: ''
         },
-        requiredParamKeys: ['DevNo_str','date_type_str','dtpBeginDate_str','dtpEndDate_str','chart_type','para_index'],
+        requiredParamKeys: ['DevNo_str', 'date_type_str', 'dtpBeginDate_str', 'dtpEndDate_str', 'chart_type', 'para_index'],
         shouldFiltered: true
     },
 

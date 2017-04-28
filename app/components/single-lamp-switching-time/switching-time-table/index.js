@@ -88,7 +88,7 @@ export default class SwitchingTimeTable extends Component {
                       dataIndex="timeRange"
                       render={(text, record) => {
                           return (
-                              <TimeRange />
+                              <TimeRange size="small" />
                           );
                       }}
                     />
