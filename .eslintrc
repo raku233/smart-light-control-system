@@ -43,7 +43,9 @@
     "camelcase": "off",
     "one-var": "off",
     "no-var": "off",
-    "import/no-dynamic-require": "off"
+    "import/no-dynamic-require": "off",
+    "no-plusplus": "off",
+    "no-trailing-spaces": "off"
   },
   "parserOptions": {
     "ecmaFeatures": {

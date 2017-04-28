@@ -167,6 +167,16 @@ const fn_fetchSingleLampTimeSetGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION
 const fn_fetchSingleLampTimeSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_SINGLE_TIME_GROUP]);
 //手机端——上传日志
 const fn_fetchUploadSavelog = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SAVELOG]);
+// 手机端——单灯调光——获取 
+const fn_fetchSingleLampDimmingGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.ADWEB_SINGLE_QUERY]);
+// 手机端——单灯调光——手动设置亮度 
+const fn_fetchSingleLampDimmingSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_ONOFF]);
+// 手机端——单灯调光——单灯简易控制 
+const fn_fetchSingleLampDimmingEasySet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_BO_ONOFF]);
+// 手机端——单灯调光——"支路X-N"的获取、刷新 
+const fn_fetchSingleLampDimmingGetXN = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.GETSINGLE_VOLT_DETAIL_GROUP]);
+// 手机端——单灯时控——强制开关灯——设置时段开关灯 & 单灯简易控制——单控设置
+const fn_fetchSingleLampTimeControlForcedSwitch = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_TIME_ONOFF]);
 
 module.exports = {
     'POST /electric_parameter_refresh/get_status': fn_fetchElectricParamRefresh,
@@ -176,4 +186,8 @@ module.exports = {
     'POST /single_lamp_time_set_get': fn_fetchSingleLampTimeSetGet,
     'POST /single_lamp_time_set/set_status': fn_fetchSingleLampTimeSet,
     'POST /upload_savelog': fn_fetchUploadSavelog,
+    'POST /single_lamp_dimming_get': fn_fetchSingleLampDimmingGet,
+    'POST /single_lamp_dimming_easy_set/set_status': fn_fetchSingleLampDimmingEasySet,
+    'POST /single_lamp_dimming_get_xn/get_status': fn_fetchSingleLampDimmingGetXN,
+    'POST /single_lamp_dimming_time_control_forced_switch/set_status': fn_fetchSingleLampTimeControlForcedSwitch,
 };

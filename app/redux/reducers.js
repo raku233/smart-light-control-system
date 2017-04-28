@@ -9,6 +9,7 @@ import SingleLampWarningInfo from '../views/single-lamp-warning-info/redux';
 import History from '../views/history/redux';
 import CurrentAlarm from '../views/current-warning/redux';
 import EnergyConsumptionQuery from '../views/energy-consumption-query/redux';
+import CompulsiveLampSwitching from '../views/compulsive-lamp-switching/redux';
 
 export default {
     home: homeReducer,
@@ -21,7 +22,8 @@ export default {
     SingleLampWarningInfo,
     History,
     CurrentAlarm,
-    EnergyConsumptionQuery
+    EnergyConsumptionQuery,
+    CompulsiveLampSwitching
 };
 
 // todo: 考虑使用高阶reducer
