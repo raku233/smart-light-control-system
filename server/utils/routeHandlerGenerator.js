@@ -47,7 +47,7 @@ const fetchData = (url, method, param) => {
     case 'get': {
         if (parsedParam) url += `?${parsedParam}`;
 
-        // console.log('url', url);
+         console.log('url', url);
 
         return fetch(url).then(dataParser);
     }

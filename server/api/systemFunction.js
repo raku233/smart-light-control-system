@@ -119,5 +119,37 @@ module.exports = {
         requiredParamKeys: ['Dev_id', 'cmd_type', 'L1_time1', 'L1_time2', 'L1_Lux12', 'L2_time1', 'L2_time2', 'L2_Lux12', 'L3_time1', 'L3_time2', 'L3_Lux12', 'L4_time1', 'L4_time2', 'L4_Lux12'],
         shouldFiltered: false
     },//强制开关灯——设置时段开关灯 & 单灯简易控制——单控设置
-    
+
+    /* 手机端——时控 */
+    SET_GROUP_ONOFFTIME: {
+        method: 'get',
+        pathName: '/wcf/set_group_onofftime',
+        param: {
+            log_name: 'admin',
+            log_pass: 'changhe123',
+            sn_node_mode: '1',
+        },
+        requiredParamKeys: ['group_name', 'group_typ', 'term_str', 'time1_on', 'time1_off', 'team_set1_int', 'time2_on', 'time2_off', 'team_set2_int', 'time3_on', 'time3_off', 'team_set3_int', 'time4_on', 'time4_off', 'team_set4_int'],
+        shouldFiltered: true
+    },//组设时间
+    SET_GROUP_WEEK: {
+        method: 'get',
+        pathName: '/wcf/set_group_week',
+        param: {
+            log_name: 'admin',
+            log_pass: 'changhe123',
+            sn_node_mode: '1',
+        },
+        requiredParamKeys: ['group_name', 'group_typ', 'week1_int', 'week2_int', 'week3_int', 'week4_int', 'week5_int', 'week6_int', 'week7_int', 'week8_int'],
+        shouldFiltered: true
+    },//组设星期
+
+    /* 手机端——集中开关 */
+    SET_ONOFF: {
+        method: 'get',
+        pathName: '/wcf/set_onoff',
+        param: {},
+        requiredParamKeys: ['Dev_id', 'N8_str', 'mode_str'],
+        shouldFiltered: true
+    },//组设
 };

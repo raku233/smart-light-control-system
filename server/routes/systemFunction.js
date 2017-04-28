@@ -65,32 +65,50 @@ const fn_fetchElectricParamGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API
 const fn_fetchSingleLampInitialization = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.GET_SINGLE_VOLT_DETAIL], undefined, ([data]) => {
     const { single_volt_detail } = data;
     const singleLampTimeRefreshSet = [];
+    let i = 0;
     for(const singleLampTimeRefreshGroup of single_volt_detail) {
+        //解析时间
+        const AddTime = singleLampTimeRefreshGroup.update_dtm.trim().replace(/[^0-9]/g, '');
+        let date = new Date(parseInt(AddTime));
+        date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' +(date.getDate()) + ' '+ date.getHours() + ':' + date.getMinutes();
+        //解析开关灯状态
+        const singleStatus = singleLampTimeRefreshGroup.single_state3.trim();
+        let lampOnOffStatus = "0000";
+        if(singleStatus.split('#').length >= 2 && singleStatus.split('#')[1].length >= 4){
+            lampOnOffStatus = singleStatus.split('#')[1];
+        }
+        const lamp1Status = lampOnOffStatus.substring(0,1);
+        const lamp2Status = lampOnOffStatus.substring(0,1);
+
         const singleLampTimeRefreshMes = {
-            末端编号: singleLampTimeRefreshGroup.rod_real,
-            灯杆号: singleLampTimeRefreshGroup.rod_num,
-            开关灯状态: singleLampTimeRefreshGroup.single_state3,
-            时间: singleLampTimeRefreshGroup.update_dtm,
-            结果: singleLampTimeRefreshGroup.single_state2,
-            灯1电流: singleLampTimeRefreshGroup.I1,
-            灯1电压: singleLampTimeRefreshGroup.V_rod,
-            灯1亮度: singleLampTimeRefreshGroup.Lux_1,
-            灯2电流: singleLampTimeRefreshGroup.I2,
-            灯2电压: singleLampTimeRefreshGroup.V_rod2,
-            灯2亮度: singleLampTimeRefreshGroup.Lux_2,
-            灯杆警报: singleLampTimeRefreshGroup.rod_alarm,
-            总警报内容: singleLampTimeRefreshGroup.alarm_info,
-            灯1警报: singleLampTimeRefreshGroup.alarm_1,
-            灯2警报: singleLampTimeRefreshGroup.alarm_2,
-            灯1扩警报: singleLampTimeRefreshGroup.alarm3,
-            灯2扩警报: singleLampTimeRefreshGroup.alarm_4,
-            电压上限: singleLampTimeRefreshGroup.rod_V_up,
-            电压下限: singleLampTimeRefreshGroup.rod_V_down,
-            电流1上限: singleLampTimeRefreshGroup.I1_up,
-            电流2上限: singleLampTimeRefreshGroup.I2_up,
-            灯1阈值: singleLampTimeRefreshGroup.I3_up,
-            灯2阈值: singleLampTimeRefreshGroup.I4_up,
+            key: i + 1,
+            rodReal: singleLampTimeRefreshGroup.rod_real.trim(), //末端编号
+            rodNum: singleLampTimeRefreshGroup.rod_num.trim(), //灯杆号
+            lamp1Status: lamp1Status,
+            lamp2Status: lamp2Status,
+            // 开关灯状态: singleLampTimeRefreshGroup.single_state3.trim(), //开关灯状态
+            date: date, //时间
+            result: singleLampTimeRefreshGroup.single_state2.trim(), //结果
+            I1: singleLampTimeRefreshGroup.I1, //灯1电流
+            V1: singleLampTimeRefreshGroup.V_rod, //灯1电压
+            lux1: singleLampTimeRefreshGroup.Lux_1, //灯1亮度
+            I2: singleLampTimeRefreshGroup.I2, //灯2电流
+            V2: singleLampTimeRefreshGroup.V_rod2, //灯2电压
+            lux2: singleLampTimeRefreshGroup.Lux_2, //灯2亮度
+            rodAlarm: singleLampTimeRefreshGroup.rod_alarm.trim(), //灯杆警报
+            alarmInfo: singleLampTimeRefreshGroup.alarm_info.trim(), //总警报内容
+            alarm1: singleLampTimeRefreshGroup.alarm_1.trim(), //灯1警报
+            alarm2: singleLampTimeRefreshGroup.alarm_2.trim(), //灯2警报
+            lamp1Alarm: singleLampTimeRefreshGroup.alarm_3.trim(), //灯1扩警报
+            lamp2Alarm: singleLampTimeRefreshGroup.alarm_4.trim(), //灯2扩警报
+            rodVUp: singleLampTimeRefreshGroup.rod_V_up, //电压上限
+            rodVDown: singleLampTimeRefreshGroup.rod_V_down, //电压下限
+            I1Up: singleLampTimeRefreshGroup.I1_up, //电流1上限
+            I2Up: singleLampTimeRefreshGroup.I2_up, //电流2上限
+            lamp1Up: singleLampTimeRefreshGroup.I3_up, //灯1阈值
+            lamp2Up: singleLampTimeRefreshGroup.I4_up, //灯2阈值
     };
+    i++;
     singleLampTimeRefreshSet.push(singleLampTimeRefreshMes);
     }
     const returnData = {
@@ -177,6 +195,54 @@ const fn_fetchSingleLampDimmingEasySet = sharedRouteHandlerGenerator([SYSTEMFUNC
 const fn_fetchSingleLampDimmingGetXN = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.GETSINGLE_VOLT_DETAIL_GROUP]);
 // 手机端——单灯时控——强制开关灯——设置时段开关灯 & 单灯简易控制——单控设置
 const fn_fetchSingleLampTimeControlForcedSwitch = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_TIME_ONOFF]);
+// 手机端——时控——组设时间
+const fn_fetchTimeControlSetGroupTime = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_GROUP_ONOFFTIME], param => {
+    const { groupName, groupTyp, termStr, time1On, time1Off, teamSet1Int, time2On, time2Off, teamSet2Int, time3On, time3Off, teamSet3Int, time4On, time4Off, teamSet4Int } = param;
+    return{
+        group_name: groupName, 
+        group_typ: groupTyp, 
+        term_str: termStr, 
+        time1_on: time1On, 
+        time1_off: time1Off, 
+        team_set1_int: teamSet1Int, 
+        time2_on: time2On, 
+        time2_off: time2Off, 
+        team_set2_int: teamSet2Int, 
+        time3_on: time3On, 
+        time3_off: time3Off, 
+        team_set3_int: teamSet3Int, 
+        time4_on: time4On, 
+        time4_off: time4Off, 
+        team_set4_int: teamSet4Int,
+    };
+});
+
+// 手机端——时控——组设星期
+const fn_fetchTimeControlSetGroupWeek = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_GROUP_WEEK], param => {
+    const { groupName, groupTyp, week1Int, week2Int, week3Int, week4Int, week5Int, week6Int, week7Int, week8Int } = param;
+    return {
+        group_name: groupName, 
+        group_typ: groupTyp, 
+        week1_int: week1Int, 
+        week2_int: week2Int, 
+        week3_int: week3Int, 
+        week4_int: week4Int, 
+        week5_int: week5Int, 
+        week6_int: week6Int, 
+        week7_int: week7Int, 
+        week8_int: week8Int,
+    };
+});
+
+// 手机端——集中开关——组设
+const fn_fetchCentralizedSwitchGroupSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_ONOFF], param => {
+    const { DevId, N8Str, modeStr } = param;
+    return {
+        Dev_id: DevId,
+        N8_str: N8Str,
+        mode_str: modeStr,
+    };
+});
 
 module.exports = {
     'POST /electric_parameter_refresh/get_status': fn_fetchElectricParamRefresh,
@@ -190,4 +256,7 @@ module.exports = {
     'POST /single_lamp_dimming_easy_set/set_status': fn_fetchSingleLampDimmingEasySet,
     'POST /single_lamp_dimming_get_xn/get_status': fn_fetchSingleLampDimmingGetXN,
     'POST /single_lamp_dimming_time_control_forced_switch/set_status': fn_fetchSingleLampTimeControlForcedSwitch,
+    'POST /time_control_set_group_time/set_status': fn_fetchTimeControlSetGroupTime,
+    'POST /time_control_set_group_week/set_status': fn_fetchTimeControlSetGroupWeek,
+    'POST /centralized_switch_group_set/set_status': fn_fetchCentralizedSwitchGroupSet,
 };

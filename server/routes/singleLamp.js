@@ -33,11 +33,15 @@ const fn_fetchSingleAlarmSingleMessage = sharedRouteHandlerGenerator([SINGLELAMP
     const singleAlarmDetail = [];
     for(const singleAlarmGroup of single_volt_detail)
     {
+        const AddTime = singleAlarmGroup.update_dtm.trim().replace(/[^0-9]/g, '');
+        let date = new Date(parseInt(AddTime));
+        date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' +(date.getDate()) + ' '+ date.getHours() + ':' + date.getMinutes();
+            
         const singleAlarmSet = {
                 key: i + 1,
                 rodNum: singleAlarmGroup.rod_num.trim(),
                 alarmInfo: singleAlarmGroup.alarm_info.trim(),
-                updateTime: singleAlarmGroup.update_dtm.trim(),
+                updateTime: date,
             };
             i++;
         singleAlarmDetail.push(singleAlarmSet);
