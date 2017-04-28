@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "unittest" : "jest",
+    "unittest": "jest",
     "start": "pm2 start ecosystem.config.js --only web-server && pm2 logs web-server",
     "restart": "pm2 restart web-server && pm2 logs web-server",
     "stop": "pm2 kill",
@@ -20,7 +20,9 @@
   "dependencies": {
     "antd": "^2.8.1",
     "classnames": "^2.2.5",
+    "highcharts": "^5.0.10",
     "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.2.1",
     "koa": "2.0.0",
     "koa-bodyparser": "3.2.0",
     "koa-connect-history-api-fallback": "^0.3.1",

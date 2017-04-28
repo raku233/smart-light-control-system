@@ -1,13 +1,23 @@
 const routeHandlerGenerator = require('../utils/routeHandlerGenerator.js');
-const getTimeString = require('../utils/time.js');
 
 const COMMON_API = require('../api/common.js'),
     OTHERPHONE_API = require('../api/otherFunctions.js');
 
 const sharedRouteHandlerGenerator = routeHandlerGenerator(COMMON_API);
 
-//手机端——能耗查询
-const fn_fetchEnergySearch = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ERL]);
+// 手机端——能耗查询
+const fn_fetchEnergySearch = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ERL], param => {
+    const { devID, startDate, endDate, chartType, statisticsType, statusType } = param;
+
+    return {
+        DevNo_str: devID,
+        date_type_str: statisticsType,
+        dtpBeginDate_str: startDate,
+        dtpEndDate_str: endDate,
+        chart_type: chartType,
+        para_index: statusType
+    };
+});
 
 //手机端——三项电参图
 const fn_fetchThreePhaseElectricParameter = sharedRouteHandlerGenerator([OTHERPHONE_API.DEV_ERL]);

@@ -86,7 +86,7 @@ export default class StabilivoltSettingConsole extends Component {
                   dataIndex="timeRange"
                   render={(text, record) => {
                       return (
-                          <TimeRange />
+                          <TimeRange size="small" />
                       );
                   }}
                 />

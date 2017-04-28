@@ -64,6 +64,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Smart Light Control System'
         }),
+        new webpack.ProvidePlugin({ 'window.jQuery': 'jquery' }),
         isDev
             ? new webpack.HotModuleReplacementPlugin()
             : null,

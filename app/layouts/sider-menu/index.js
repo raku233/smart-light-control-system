@@ -53,6 +53,7 @@ class SiderMenu extends React.Component {
                     <Menu.Item key="baidu_map">百度地图</Menu.Item>
                     <Menu.Item key="record_query">记录查询</Menu.Item>
                     <Menu.Item key="current_warning">当前警报</Menu.Item>
+                    <Menu.Item key="energy_consumption_query">能耗查询</Menu.Item>
                 </SubMenu>
                 <SubMenu key="single_lamp" title={<span><Icon type="bulb" /><span className="nav-text">单灯控制管理</span></span>}>
                     <Menu.Item key="single_lamp_map">单灯地图</Menu.Item>
