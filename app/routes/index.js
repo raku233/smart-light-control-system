@@ -17,8 +17,9 @@ import SingleLampSwitchingTime from '../views/single_lamp_switching_time';
 import History from '../views/history';
 import SingLampWarningInfo from '../views/single-lamp-warning-info';
 import EnergyConsumptionQuery from '../views/energy-consumption-query';
-import AssetsProportionCHart from '../views/assets-proportion-chart';
+import AssetsProportionChart from '../views/assets-proportion-chart';
 import dailyElectricityConsumptionQuery from '../views/daily-electricity-consumption-query';
+import TriphaseElectricityParameterQuery from '../views/triphase-electricity-parameter-query';
 
 
 const routes = history => (
@@ -34,7 +35,8 @@ const routes = history => (
             <Route path="/integrated_terminal/stabilivolt_interval" component={StabilivoltInterval} />
             <Route path="/integrated_terminal/energy_consumption_query" component={EnergyConsumptionQuery} />
             <Route path="/integrated_terminal/daily_electricity_consumption_query" component={dailyElectricityConsumptionQuery} />
-            <Route path="/integrated_terminal/assets_proportion_chart" component={AssetsProportionCHart} />
+            <Route path="/integrated_terminal/assets_proportion_chart" component={AssetsProportionChart} />
+            <Route path="/integrated_terminal/triphase_electricity_parameter_query" component={TriphaseElectricityParameterQuery} />
             <Route path="/single_lamp/single_lamp_map" component={SingleLampMap} />
             <Route path="/single_lamp/single_lamp_control" component={SingLampControl} />
             <Route path="/single_lamp/compulsive_lamp_switching" component={CompulsiveLampSwitching} />

@@ -7,8 +7,11 @@ import { SingleLampWarningInfo } from '../views/single-lamp-warning-info/sagas';
 import { History } from '../views/history/sagas';
 import { CurrentAlarm } from '../views/current-warning/sagas';
 import { SingleLampMap } from '../views/single-lamp-map/sagas';
+import { EnergyConsumptionChart } from '../views/energy-consumption-query/sagas';
+import { DailyElectricityConsumptionQuery } from '../views/daily-electricity-consumption-query/sagas';
 import { AssetsProportionChart } from '../views/assets-proportion-chart/sagas';
-import { ChartQuery } from '../components/common/chart-query/sagas';
+import { TriphaseElectricityParameterQuery } from '../views/triphase-electricity-parameter-query/sagas';
+
 
 function combineSagas(...sagaArrays) {
     let sagaList = [];
@@ -31,7 +34,9 @@ export default function* rootSaga() {
         CurrentAlarm,
         SingleLampMap,
         AssetsProportionChart,
-        ChartQuery
+        EnergyConsumptionChart,
+        DailyElectricityConsumptionQuery,
+        TriphaseElectricityParameterQuery
     );
 
     yield saga;

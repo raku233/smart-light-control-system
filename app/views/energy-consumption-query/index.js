@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { actions as commonActions } from '../../components/common/redux';
-import { EnergyConsumptionQueryViewActions as viewActions } from '../../components/common/chart-query/redux';
+import { actions as viewActions } from './redux';
 
-import ChartQuery from '../../components/common/chart-query';
+import EnergyConsumptionChart from '../../components/energy-consumption-query/energy-consumption-chart';
 import DeviceList from '../../components/common/device-list';
 
 
@@ -17,7 +17,7 @@ class EnergyConsumptionQuery extends Component {
         return (
             <div className="v-ecq-container">
                 <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
-                <ChartQuery {...viewData} {...viewActions} />
+                <EnergyConsumptionChart {...viewData} {...viewActions} />
             </div>
         );
     }

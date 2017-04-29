@@ -10,7 +10,8 @@ const URL = {
     FETCH_CURRENT_ALARM: '/current_warning/get_status',
     FETCH_ENERGY_CONSUMPTION_CHART: '/energy_search/get_status',
     FETCH_ASSET_PROPORTION_CHART: '/asset_ratio_chart/get_status',
-    FETCH_DAILY_CONSUMPTION_CHART: '/daily_power/get_status'
+    FETCH_DAILY_CONSUMPTION_CHART: '/daily_power/get_status',
+    FETCH_TRIPHASE_ELECTRICITY_PARAMETER_CHART: '/three_phase_electric_parameter/get_status'
 };
 
 export const fetchSwitchingStatus = dataFetcher(URL.FETCH_SWITCHING_STATUS);
@@ -22,3 +23,4 @@ export const fetchCurrentAlarm = dataFetcher(URL.FETCH_CURRENT_ALARM);
 export const fetchEnergyConsumptionChart = dataFetcher(URL.FETCH_ENERGY_CONSUMPTION_CHART);
 export const fetchAssetProportionChart = dataFetcher(URL.FETCH_ASSET_PROPORTION_CHART);
 export const fetchDailyConsumptionChart = dataFetcher(URL.FETCH_DAILY_CONSUMPTION_CHART);
+export const fetchTriphaseElectricityParameterChart = dataFetcher(URL.FETCH_TRIPHASE_ELECTRICITY_PARAMETER_CHART);

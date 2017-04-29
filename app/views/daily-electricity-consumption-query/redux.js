@@ -8,22 +8,22 @@ const initialState = {
     startDate: getDateString(new Date()),
     endDate: getDateString(new Date()),
     chartType: 'line',
-    statisticsType: '按年能耗统计',
+    statisticsType: '按月统计',
     statusType: '0',
     code: ''
 };
 
-export const LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID = 'LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID';
-export const UPDATE_ENERGYCONSUMPTIONCHART = 'UPDATE_ENERGYCONSUMPTIONCHART';
-export const LOAD_ENERGYCONSUMPTIONCHART = 'LOAD_ENERGYCONSUMPTIONCHART';
-export const LOAD_ENERGYCONSUMPTIONCHART_SUCCESS = 'LOAD_ENERGYCONSUMPTIONCHART_SUCCESS';
-export const LOAD_ENERGYCONSUMPTIONCHART_ERROR = 'LOAD_ENERGYCONSUMPTIONCHART_ERROR';
+export const LOAD_DAILYELECTRICITYCONSUMPTIONQUERY_DEVICEID = 'LOAD_DAILYELECTRICITYCONSUMPTIONQUERY_DEVICEID';
+export const UPDATE_DAILYELECTRICITYCONSUMPTIONCHART = 'UPDATE_DAILYELECTRICITYCONSUMPTIONCHART';
+export const LOAD_DAILYELECTRICITYCONSUMPTIONCHART = 'LOAD_DAILYELECTRICITYCONSUMPTIONCHART';
+export const LOAD_DAILYELECTRICITYCONSUMPTIONCHART_SUCCESS = 'LOAD_DAILYELECTRICITYCONSUMPTIONCHART_SUCCESS';
+export const LOAD_DAILYELECTRICITYCONSUMPTIONCHART_ERROR = 'LOAD_DAILYELECTRICITYCONSUMPTIONCHART_ERROR';
 
 export function loadViewData(deviceInfo) {
     const { devID } = deviceInfo;
 
     return {
-        type: LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID,
+        type: LOAD_DAILYELECTRICITYCONSUMPTIONQUERY_DEVICEID,
         payload: {
             devID
         }
@@ -32,7 +32,7 @@ export function loadViewData(deviceInfo) {
 
 export function updateViewData(status) {
     return {
-        type: UPDATE_ENERGYCONSUMPTIONCHART,
+        type: UPDATE_DAILYELECTRICITYCONSUMPTIONCHART,
         payload: {
             status
         }
@@ -41,14 +41,14 @@ export function updateViewData(status) {
 
 export function loadChart() {
     return {
-        type: LOAD_ENERGYCONSUMPTIONCHART,
+        type: LOAD_DAILYELECTRICITYCONSUMPTIONCHART,
         payload: {}
     };
 }
 
 export function loadChartSuccess(status) {
     return {
-        type: LOAD_ENERGYCONSUMPTIONCHART_SUCCESS,
+        type: LOAD_DAILYELECTRICITYCONSUMPTIONCHART_SUCCESS,
         payload: {
             code: status.highcharts
         }
@@ -57,7 +57,7 @@ export function loadChartSuccess(status) {
 
 export function loadChartError(error) {
     return {
-        type: LOAD_ENERGYCONSUMPTIONCHART_ERROR,
+        type: LOAD_DAILYELECTRICITYCONSUMPTIONCHART_ERROR,
         payload: {
             error
         }
@@ -66,21 +66,21 @@ export function loadChartError(error) {
 
 function viewData(state = initialState, action) {
     switch(action.type) {
-    case LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID: {
+    case LOAD_DAILYELECTRICITYCONSUMPTIONQUERY_DEVICEID: {
         return {
             ...state,
             devID: action.payload.devID
         };
     }
 
-    case UPDATE_ENERGYCONSUMPTIONCHART: {
+    case UPDATE_DAILYELECTRICITYCONSUMPTIONCHART: {
         return {
             ...state,
             ...action.payload.status
         };
     }
 
-    case LOAD_ENERGYCONSUMPTIONCHART: {
+    case LOAD_DAILYELECTRICITYCONSUMPTIONCHART: {
         return {
             ...state,
             loading: true,
@@ -88,7 +88,7 @@ function viewData(state = initialState, action) {
         };
     }
 
-    case LOAD_ENERGYCONSUMPTIONCHART_SUCCESS: {
+    case LOAD_DAILYELECTRICITYCONSUMPTIONCHART_SUCCESS: {
         return {
             ...state,
             loading: false,
@@ -97,7 +97,7 @@ function viewData(state = initialState, action) {
         };
     }
 
-    case LOAD_ENERGYCONSUMPTIONCHART_ERROR: {
+    case LOAD_DAILYELECTRICITYCONSUMPTIONCHART_ERROR: {
         return {
             ...state,
             loading: false,

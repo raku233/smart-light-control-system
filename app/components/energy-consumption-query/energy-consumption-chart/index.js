@@ -70,13 +70,14 @@ export default class EnergyConsumptionChart extends Component {
                             <Option value="按年能耗统计">按年能耗统计</Option>
                             <Option value="按月能耗统计">按月能耗统计</Option>
                             <Option value="按日能耗统计">按日能耗统计</Option>
+                            <Option value="时间段查询">时间段查询</Option>
                         </Select>
                         <span className="c-ecp-ecc-label">图表类型:</span>
-                        <Select className="c-ecp-ecc-selector" value={chartType}dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'chartType')}>
+                        <Select className="c-ecp-ecc-selector" value={chartType} dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'chartType')}>
                             <Option value="line">曲线图</Option>
                             <Option value="column">柱状图</Option>
                         </Select>
-                        <span className="c-ecp-ecc-label">数据类型:</span>
+                        <span className="c-ecp-ecc-label">参数类型:</span>
                         <Select className="c-ecp-ecc-selector" value={statusType} dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'statusType')}>
                             <Option value="0">总有功耗电量</Option>
                             <Option value="1">抄表电度</Option>

@@ -10,7 +10,9 @@ import History from '../views/history/redux';
 import CurrentAlarm from '../views/current-warning/redux';
 import CompulsiveLampSwitching from '../views/compulsive-lamp-switching/redux';
 import AssetsProportionChart from '../views/assets-proportion-chart/redux';
-import { EnergyConsumptionQuery, DailyElectricityConsumption } from '../components/common/chart-query/redux';
+import EnergyConsumptionQuery from '../views/energy-consumption-query/redux';
+import DailyElectricityConsumptionQuery from '../views/daily-electricity-consumption-query/redux';
+import TriphaseElectricityParameterQuery from '../views/triphase-electricity-parameter-query/redux';
 
 export default {
     home: homeReducer,
@@ -26,7 +28,8 @@ export default {
     EnergyConsumptionQuery,
     CompulsiveLampSwitching,
     AssetsProportionChart,
-    DailyElectricityConsumption
+    DailyElectricityConsumptionQuery,
+    TriphaseElectricityParameterQuery
 };
 
 // todo: 考虑使用高阶reducer

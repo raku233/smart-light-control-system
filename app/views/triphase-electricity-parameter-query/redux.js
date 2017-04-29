@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import { getDateString } from '../../utils/time';
 
 const initialState = {
@@ -7,23 +8,25 @@ const initialState = {
     devID: '',
     startDate: getDateString(new Date()),
     endDate: getDateString(new Date()),
+    couldPeriodConfig: false,
+    startTime: '0:00',
+    endTime: '0:00',
     chartType: 'line',
-    statisticsType: '按年能耗统计',
     statusType: '0',
     code: ''
 };
 
-export const LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID = 'LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID';
-export const UPDATE_ENERGYCONSUMPTIONCHART = 'UPDATE_ENERGYCONSUMPTIONCHART';
-export const LOAD_ENERGYCONSUMPTIONCHART = 'LOAD_ENERGYCONSUMPTIONCHART';
-export const LOAD_ENERGYCONSUMPTIONCHART_SUCCESS = 'LOAD_ENERGYCONSUMPTIONCHART_SUCCESS';
-export const LOAD_ENERGYCONSUMPTIONCHART_ERROR = 'LOAD_ENERGYCONSUMPTIONCHART_ERROR';
+export const LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_DEVICEID = 'LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_DEVICEID';
+export const UPDATE_TRIPHASEELECTRICITYPARAMETERQUERY = 'UPDATE_TRIPHASEELECTRICITYPARAMETERQUERY';
+export const LOAD_TRIPHASEELECTRICITYPARAMETERQUERY = 'LOAD_TRIPHASEELECTRICITYPARAMETERCHART';
+export const LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_SUCCESS = 'LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_SUCCESS';
+export const LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_ERROR = 'LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_ERROR';
 
 export function loadViewData(deviceInfo) {
     const { devID } = deviceInfo;
 
     return {
-        type: LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID,
+        type: LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_DEVICEID,
         payload: {
             devID
         }
@@ -32,7 +35,7 @@ export function loadViewData(deviceInfo) {
 
 export function updateViewData(status) {
     return {
-        type: UPDATE_ENERGYCONSUMPTIONCHART,
+        type: UPDATE_TRIPHASEELECTRICITYPARAMETERQUERY,
         payload: {
             status
         }
@@ -41,14 +44,14 @@ export function updateViewData(status) {
 
 export function loadChart() {
     return {
-        type: LOAD_ENERGYCONSUMPTIONCHART,
+        type: LOAD_TRIPHASEELECTRICITYPARAMETERQUERY,
         payload: {}
     };
 }
 
 export function loadChartSuccess(status) {
     return {
-        type: LOAD_ENERGYCONSUMPTIONCHART_SUCCESS,
+        type: LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_SUCCESS,
         payload: {
             code: status.highcharts
         }
@@ -57,7 +60,7 @@ export function loadChartSuccess(status) {
 
 export function loadChartError(error) {
     return {
-        type: LOAD_ENERGYCONSUMPTIONCHART_ERROR,
+        type: LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_ERROR,
         payload: {
             error
         }
@@ -66,21 +69,21 @@ export function loadChartError(error) {
 
 function viewData(state = initialState, action) {
     switch(action.type) {
-    case LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID: {
+    case LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_DEVICEID: {
         return {
             ...state,
             devID: action.payload.devID
         };
     }
 
-    case UPDATE_ENERGYCONSUMPTIONCHART: {
+    case UPDATE_TRIPHASEELECTRICITYPARAMETERQUERY: {
         return {
             ...state,
             ...action.payload.status
         };
     }
 
-    case LOAD_ENERGYCONSUMPTIONCHART: {
+    case LOAD_TRIPHASEELECTRICITYPARAMETERQUERY: {
         return {
             ...state,
             loading: true,
@@ -88,7 +91,7 @@ function viewData(state = initialState, action) {
         };
     }
 
-    case LOAD_ENERGYCONSUMPTIONCHART_SUCCESS: {
+    case LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_SUCCESS: {
         return {
             ...state,
             loading: false,
@@ -97,7 +100,7 @@ function viewData(state = initialState, action) {
         };
     }
 
-    case LOAD_ENERGYCONSUMPTIONCHART_ERROR: {
+    case LOAD_TRIPHASEELECTRICITYPARAMETERQUERY_ERROR: {
         return {
             ...state,
             loading: false,
@@ -120,4 +123,5 @@ export const actions = {
     updateViewData,
     loadChart
 };
+
 

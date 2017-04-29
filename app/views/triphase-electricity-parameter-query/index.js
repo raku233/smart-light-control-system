@@ -3,20 +3,22 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { actions as commonActions } from '../../components/common/redux';
-import { actions as viewActions } from './redux';
+import { actions as viewActions } from '../../views/triphase-electricity-parameter-query/redux';
 
-import DailyElectricityConsumptionChart from '../../components/daily-electricity-consumption-query/daily-electricity-consumption-chart';
+import TriphaseElectricityParameterChart from '../../components/triphase-electricity-parameter-query/triphase-electricity-parameter-chart';
 import DeviceList from '../../components/common/device-list';
+
 
 import './index.css';
 
-class DailyElectricityConsumptionQuery extends Component {
+
+class TriphaseElectricityParameterQuery extends Component {
     render() {
         const { deviceList, deviceListActions, viewData, viewActions } = this.props;
         return (
-            <div className="v-dec-container">
+            <div className="v-tepq-container">
                 <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
-                <DailyElectricityConsumptionChart {...viewData} {...viewActions} />
+                <TriphaseElectricityParameterChart {...viewData} {...viewActions} />
             </div>
         );
     }
@@ -25,11 +27,11 @@ class DailyElectricityConsumptionQuery extends Component {
 export default connect(state => {
     return {
         deviceList: state.Common.deviceList,
-        viewData: state.DailyElectricityConsumptionQuery.viewData
+        viewData: state.TriphaseElectricityParameterQuery.viewData
     };
 }, dispatch => {
     return {
         deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch),
         viewActions: bindActionCreators(viewActions, dispatch)
     };
-})(DailyElectricityConsumptionQuery);
+})(TriphaseElectricityParameterQuery);
