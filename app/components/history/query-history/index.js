@@ -44,7 +44,6 @@ class QueryHistory extends Component {
             <div className="c-h-qh-container">
                 <span>起止时间：</span>
                 <RangePicker format={dateFormat} onChange={this.onDateChange} />
-                <Button className="c-h-qh-button" type="primary">电参历史查询</Button>
                 <Button className="c-h-qh-button" type="primary" onClick={this.onFaultQueryClick}>报警历史查询</Button>
             </div>
         );

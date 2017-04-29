@@ -71,7 +71,7 @@ export default class LampMap extends Component {
                 center,
                 markers
             });
-        } else {
+        } else if (devID !== '') {
             message.error('所选设备不存在地理位置');
         }
     }

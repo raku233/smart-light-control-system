@@ -16,12 +16,6 @@ class RodList extends Component {
         };
         this.handleCancel = this.handleCancel.bind(this);
         this.handleOk = this.handleOk.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        // this.onSelectChange = this.onSelectChange.bind(this);
-    }
-
-    componentDidMount() {
-        console.log('mount');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -48,10 +42,6 @@ class RodList extends Component {
         this.props.uploadModalVisible(false);
     }
 
-    handleClick(e) {
-        this.props.loadRodList(this.state.devID);
-    }
-
     render() {
         const { selectedRowKeys } = this.state;
         const rowSelection = {
@@ -74,6 +64,7 @@ class RodList extends Component {
                   rowSelection={rowSelection} 
                   dataSource={this.props.rodList} 
                   scroll={{ x: false, y: 200 }}
+                  loading={this.props.loading}
                 >
                     <Column
                       width={80}
@@ -111,7 +102,6 @@ class RodList extends Component {
                       dataIndex="结果"
                     />
                 </Table>
-                <Button onClick={this.handleClick} >刷新</Button>
             </Modal>
         );
     }

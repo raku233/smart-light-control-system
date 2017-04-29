@@ -16,7 +16,9 @@ function* fetchTerminalData(action) {
 
 // 获取store中SingleLampWarningInfo中的警报信息
 function* fetchWarningData(action) {
-    const param = action.payload.Dev_id;
+    const param = {
+        Dev_id: action.payload.Dev_id
+    };
     try {
         const data = yield call(fetchWarningInfo, param);
         yield put(loadWarningInfoSuccess(data));
