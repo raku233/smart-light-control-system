@@ -2,19 +2,23 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .c-apc-apdc-anim-wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .c-apc-apdc-placeholder {
     font-size: 25px;
     color: lightgray;
-    align-self: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
 }
 
 .c-apc-apdc-config {

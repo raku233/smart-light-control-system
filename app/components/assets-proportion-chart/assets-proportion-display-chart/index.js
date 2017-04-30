@@ -44,7 +44,7 @@ export default class AssetsProportionDisplayChart extends Component {
 
         return (
             <div className="c-apc-apdc-container">
-                <QueueAnim className="c-apc-apdc-anim-wrapper" delay={200}>
+                <QueueAnim className="c-apc-apdc-anim-wrapper" delay={100} interval={200} type={['right', 'left']} ease={['easeOutQuart', 'easeInOutQuart']}>
                     { devID ? [
                         <div key="config" className="c-apc-apdc-config">
                             <span className="c-apc-apdc-label">统计参数类型:</span>
