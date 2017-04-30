@@ -51,13 +51,10 @@ export default class DeviceList extends Component {
 
     handleDeviceSelect(selectedKey, e) {
         const [deviceNode] = e.selectedNodes;
-        const { deviceInfo } = deviceNode.props;
+        const { deviceInfo, connection } = deviceNode.props;
         this.props.loadViewData(deviceInfo);
-    }
 
-    handleDeviceGroupSelect(selectedKey, e) {
-        console.log('selectedKey', selectedKey);
-        console.log('e', e);
+        if (!connection) message.error('该设备未连接到终端！');
     }
 
     render() {
