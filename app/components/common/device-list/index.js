@@ -54,7 +54,7 @@ export default class DeviceList extends Component {
         const { deviceInfo, connection } = deviceNode.props;
         this.props.loadViewData(deviceInfo);
 
-        if (!connection) message.error('该设备未连接到终端！');
+        if (!connection) message.error('该设备未连接到平台！');
     }
 
     render() {
