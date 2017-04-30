@@ -197,7 +197,7 @@ const fn_fetchSingleLampDimmingGetXN = sharedRouteHandlerGenerator([SYSTEMFUNCTI
 const fn_fetchSingleLampTimeControlForcedSwitch = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_TIME_ONOFF]);
 // 手机端——时控——组设时间
 const fn_fetchTimeControlSetGroupTime = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_GROUP_ONOFFTIME], param => {
-    const { groupName, groupType, termStr, statusGroup } = param;
+    const { groupName, groupType, period, statusGroup } = param;
 
     const parameter = {};
 
@@ -210,7 +210,7 @@ const fn_fetchTimeControlSetGroupTime = sharedRouteHandlerGenerator([SYSTEMFUNCT
         ...parameter,
         group_name: groupName,
         group_typ: groupType,
-        term_str: termStr,
+        term_str: period,
     };
 });
 
@@ -233,11 +233,26 @@ const fn_fetchTimeControlSetGroupWeek = sharedRouteHandlerGenerator([SYSTEMFUNCT
 
 // 手机端——集中开关——组设
 const fn_fetchCentralizedSwitchGroupSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_ONOFF], param => {
-    const { devID, n8Str, modeStr } = param;
+    const { devID, statusGroup, config } = param;
+
+    let N8_str = '',
+      mode_str = '';
+    // 开关灯状态
+    for (const status of statusGroup) {
+        if (status) N8_str += '1';
+        else N8_str += '0';
+    }
+    N8_str = N8_str.split('').reverse().join('');
+    // 开关灯模式
+    mode_str += config.mode === 'normal' ? '110' : '101';
+    mode_str += config.isManualControl ? '1' : '0';
+    mode_str += config.isTimeControl ? '1' : '0';
+    mode_str += '110';
+
     return {
         Dev_id: devID,
-        N8_str: n8Str,
-        mode_str: modeStr,
+        N8_str,
+        mode_str,
     };
 });
 
