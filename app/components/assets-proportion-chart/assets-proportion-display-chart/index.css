@@ -19,6 +19,8 @@
     top: 0;
     bottom: 0;
     margin: auto;
+    padding: 4px 2px;
+    border: 2px dashed lightgray;
 }
 
 .c-apc-apdc-config {

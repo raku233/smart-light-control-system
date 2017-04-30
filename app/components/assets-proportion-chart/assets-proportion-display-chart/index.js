@@ -4,7 +4,6 @@ import Highcharts from 'highcharts/highstock';
 
 import { Select, Button, Spin } from 'antd';
 import QueueAnim from 'rc-queue-anim';
-import {delay} from 'redux-saga';
 
 import './index.css';
 
