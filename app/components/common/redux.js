@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import deviceList, { loadDeviceList } from './device-list/redux';
-import rodList, { loadRodList, loadViewData, uploadModalVisible } from './rod-list/redux';
+import rodList, { loadRodList, loadViewData, uploadModalVisible, uploadSelectedRods } from './rod-list/redux';
 
 export default combineReducers({
     deviceList,
@@ -15,6 +15,7 @@ export const actions = {
     rodListActions: {
         loadRodList,
         loadViewData,
-        uploadModalVisible
+        uploadModalVisible,
+        uploadSelectedRods
     }
 };
