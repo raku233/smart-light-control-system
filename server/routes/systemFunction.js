@@ -197,23 +197,20 @@ const fn_fetchSingleLampDimmingGetXN = sharedRouteHandlerGenerator([SYSTEMFUNCTI
 const fn_fetchSingleLampTimeControlForcedSwitch = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_TIME_ONOFF]);
 // 手机端——时控——组设时间
 const fn_fetchTimeControlSetGroupTime = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_GROUP_ONOFFTIME], param => {
-    const { groupName, groupType, termStr, time1On, time1Off, teamSet1, time2On, time2Off, teamSet2, time3On, time3Off, teamSet3, time4On, time4Off, teamSet4 } = param;
+    const { groupName, groupType, termStr, statusGroup } = param;
+
+    const parameter = {};
+
+    for (let i = 0; i < statusGroup.length; i++) {
+        parameter[`time${i + 1}_on`] = statusGroup[i].startTime || '0:00';
+        parameter[`time${i + 1}_off`] = statusGroup[i].endTime || '0:00';
+        parameter[`team_set${i + 1}_int`] = statusGroup[i].lampType || '0';
+    }
     return {
+        ...parameter,
         group_name: groupName,
         group_typ: groupType,
         term_str: termStr,
-        time1_on: time1On,
-        time1_off: time1Off,
-        team_set1_int: teamSet1,
-        time2_on: time2On,
-        time2_off: time2Off,
-        team_set2_int: teamSet2,
-        time3_on: time3On,
-        time3_off: time3Off,
-        team_set3_int: teamSet3,
-        time4_on: time4On,
-        time4_off: time4Off,
-        team_set4_int: teamSet4,
     };
 });
 
