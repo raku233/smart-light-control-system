@@ -1,28 +1,12 @@
 import React, { Component } from 'react';
 
-import { Table, Switch, Badge, Icon } from 'antd';
+import { Table, Switch, Badge } from 'antd';
 
 import './index.css';
 
 const { Column } = Table;
 
 export default class SwitchingConsole extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            data: [
-                { key: '1', outputGroups: '第1路输出', state: 0, updateTime: '2016-09-21', checked: false },
-                { key: '2', outputGroups: '第2路输出', state: 1, updateTime: '2016-09-21', checked: true },
-                { key: '3', outputGroups: '第2路输出', state: 1, updateTime: '2016-09-21', checked: true },
-                { key: '4', outputGroups: '第2路输出', state: 1, updateTime: '2016-09-21', checked: true },
-                { key: '5', outputGroups: '第2路输出', state: 1, updateTime: '2016-09-21', checked: true },
-                { key: '6', outputGroups: '第2路输出', state: 1, updateTime: '2016-09-21', checked: true },
-                { key: '7', outputGroups: '第2路输出', state: 1, updateTime: '2016-09-21', checked: true },
-                { key: '8', outputGroups: '第2路输出', state: 1, updateTime: '2016-09-21', checked: true },
-            ]
-        };
-    }
 
     handleChanged(key, checked) {
         const { statusGroup } = this.props;

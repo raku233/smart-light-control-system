@@ -34,7 +34,7 @@ export default class TimeSettingPanel extends Component {
                   key="timeRange"
                   render={(text, record, index) => {
                       return (
-                          <TimeRange startTime={record.startTime} endTime={record.endTime} updateTimeRange={this.updateTimeRange.bind(this, index)} />
+                          <TimeRange startTime={record.startTime} endTime={record.endTime} updateTimeRange={this.updateTimeRange.bind(this, index)} size="small" />
                       );
                   }}
                 />
