@@ -50,7 +50,6 @@ class SiderMenu extends React.Component {
                     <Menu.Item key="electrical_parameter">详细电参数</Menu.Item>
                     <Menu.Item key="stabilivolt_interval">时段稳压</Menu.Item>
                     <Menu.Item key="group_control_setting">组控设置</Menu.Item>
-                    <Menu.Item key="baidu_map">百度地图</Menu.Item>
                     <Menu.Item key="record_query">记录查询</Menu.Item>
                     <Menu.Item key="current_warning">当前警报</Menu.Item>
                     <Menu.Item key="energy_consumption_query">能耗查询</Menu.Item>
