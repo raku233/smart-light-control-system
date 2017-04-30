@@ -4,6 +4,19 @@
     flex-direction: column;
 }
 
+.c-apc-apdc-anim-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.c-apc-apdc-placeholder {
+    font-size: 25px;
+    color: lightgray;
+    align-self: center;
+}
+
 .c-apc-apdc-config {
     display: flex;
     align-items: center;
@@ -36,6 +49,7 @@
 
 .c-apc-apdc-container .ant-spin-nested-loading .ant-spin-container {
     width: 100%;
+    flex: 1;
 }
 
 .c-apc-apdc-container #container {
