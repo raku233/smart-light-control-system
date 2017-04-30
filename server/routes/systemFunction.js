@@ -81,7 +81,7 @@ const fn_fetchSingleLampInitialization = sharedRouteHandlerGenerator([SYSTEMFUNC
         const lamp2Status = lampOnOffStatus.substring(0,1);
 
         const singleLampTimeRefreshMes = {
-            key: i + 1,
+            key: singleLampTimeRefreshGroup.rod_num.trim(),
             rodReal: singleLampTimeRefreshGroup.rod_real.trim(), //末端编号
             rodNum: singleLampTimeRefreshGroup.rod_num.trim(), //灯杆号
             lamp1Status: lamp1Status,

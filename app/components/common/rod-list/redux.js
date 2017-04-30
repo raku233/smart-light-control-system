@@ -3,7 +3,8 @@ const initialState = {
     error: false,
     rodList: [],
     modalVisible: false,
-    devID: ''
+    devID: '',
+    selectedRods: []
 };
 
 export const LOAD_RODLIST = 'LOAD_RODLIST';
@@ -11,6 +12,16 @@ export const LOAD_RODLIST_SUCCESS = 'LOAD_RODLIST_SUCCESS';
 export const LOAD_RODLIST_ERROR = 'LOAD_RODLIST_ERROR';
 export const LOAD_DEVICESTATUS = 'LOAD_DEVICESTATUS';
 export const UPLOAD_MODAL_VISIBLE = 'UPLOAD_MODAL_VISIBLE';
+export const UPLOAD_SELECTED_RODS = 'UPLOAD_SELECTED_RODS';
+
+export function uploadSelectedRods(selectedRods) {
+    return {
+        type: UPLOAD_SELECTED_RODS,
+        payload: {
+            selectedRods
+        }
+    };
+}
 
 export function uploadModalVisible(modalVisible) {
     return {
@@ -51,6 +62,18 @@ export function loadViewDataError(error) {
 
 export default function rodList(state = initialState, action) {
     switch (action.type) {
+    case UPLOAD_MODAL_VISIBLE: {
+        return {
+            ...state,
+            modalVisible: action.payload.modalVisible
+        };
+    }
+    case UPLOAD_SELECTED_RODS: {
+        return {
+            ...state,
+            selectedRods: action.payload.selectedRods
+        };
+    }
     case LOAD_RODLIST: {
         return {
             ...state,
@@ -58,12 +81,6 @@ export default function rodList(state = initialState, action) {
             error: false,
             devID: action.payload.Dev_id || state.devID,
             modalVisible: true
-        };
-    }
-    case UPLOAD_MODAL_VISIBLE: {
-        return {
-            ...state,
-            modalVisible: action.payload.modalVisible
         };
     }
     case LOAD_RODLIST_SUCCESS: {

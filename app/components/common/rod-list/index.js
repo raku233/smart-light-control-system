@@ -12,10 +12,8 @@ class RodList extends Component {
         this.state = {
             visible: false,
             devID: '',
-            selectedRowKeys: []
         };
         this.handleCancel = this.handleCancel.bind(this);
-        this.handleOk = this.handleOk.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -29,24 +27,20 @@ class RodList extends Component {
 
     onSelectChange = (selectedRowKeys) => {
         console.log('selectedRowKeys changed: ', selectedRowKeys);
-        this.setState({
-            selectedRowKeys
-        });
-    }
-
-    handleOk(e) {
-        this.props.uploadModalVisible(false);
+        this.props.uploadSelectedRods(selectedRowKeys);
     }
 
     handleCancel(e) {
         this.props.uploadModalVisible(false);
     }
 
+    renderLampStatus(text, record, idx) {
+        const lampStatus = text <= 3 && text > 0 ? 'light_on' : 'light_off';
+        return <img alt="灯2" src={require(`../../../assets/${lampStatus}.png`)} width={25} />;
+    }
+
     render() {
-        const { selectedRowKeys } = this.state;
         const rowSelection = {
-            selectedRowKeys,
-            type: 'radio',
             onChange: this.onSelectChange
         };
         return (
@@ -56,50 +50,165 @@ class RodList extends Component {
               visible={this.state.visible}
               onOk={this.handleOk}
               onCancel={this.handleCancel}
-              width={600}
+              width={700}
+              footer={null}
             >
                 <Table 
                   className="c-c-rl-table" 
                   size="small" 
                   rowSelection={rowSelection} 
                   dataSource={this.props.rodList} 
-                  scroll={{ x: false, y: 200 }}
+                  scroll={{ x: 2200, y: 200 }}
                   loading={this.props.loading}
+                  pagination={false}
                 >
                     <Column
-                      width={80}
+                      width={70}
                       title="末端编号"
                       key="rodReal"
-                      dataIndex="末端编号"
+                      dataIndex="rodReal"
                     />
                     <Column
-                      width={80}
+                      width={70}
                       title="灯杆号"
                       key="rodNum"
-                      dataIndex="灯杆号"
+                      dataIndex="rodNum"
                     />
                     <ColumnGroup title="开关灯状态" key="singleState">
                         <Column
                           width={40}
                           title="灯1"
-                          key="lamp1"
+                          key="lamp1Status"
+                          dataIndex="lamp1Status"
+                          render={this.renderLampStatus}
                         />
                         <Column
                           width={40}
                           title="灯2"
-                          key="lamp2"
+                          key="lamp2Status"
+                          dataIndex="lamp2Status"
+                          render={this.renderLampStatus}
                         />
                     </ColumnGroup>
                     <Column
-                      width={100}
+                      width={120}
                       title="时间"
                       key="date"
-                      dataIndex="时间"
+                      dataIndex="date"
                     />
                     <Column
+                      width={200}
                       title="结果"
                       key="result"
-                      dataIndex="结果"
+                      dataIndex="result"
+                    />
+                    <Column
+                      width={50}
+                      title="灯1电流"
+                      key="I1"
+                      dataIndex="I1"
+                    />
+                    <Column
+                      width={50}
+                      title="灯1电压"
+                      key="V1"
+                      dataIndex="V1"
+                    />
+                    <Column
+                      width={50}
+                      title="灯1亮度"
+                      key="lux1"
+                      dataIndex="lux1"
+                    />
+                    <Column
+                      width={50}
+                      title="灯2电流"
+                      key="I2"
+                      dataIndex="I2"
+                    />
+                    <Column
+                      width={50}
+                      title="灯2电压"
+                      key="V2"
+                      dataIndex="V2"
+                    />
+                    <Column
+                      width={50}
+                      title="灯2亮度"
+                      key="lux2"
+                      dataIndex="lux2"
+                    />
+                    <Column
+                      width={50}
+                      title="灯杆警报"
+                      key="rodAlarm"
+                      dataIndex="rodAlarm"
+                    />
+                    <Column
+                      width={70}
+                      title="总警报内容"
+                      key="alarmInfo"
+                      dataIndex="alarmInfo"
+                    />
+                    <Column
+                      width={50}
+                      title="灯1警报"
+                      key="alarm1"
+                      dataIndex="alarm1"
+                    />
+                    <Column
+                      width={70}
+                      title="灯2警报"
+                      key="alarm2"
+                      dataIndex="alarm2"
+                    />
+                    <Column
+                      width={70}
+                      title="灯1扩警报"
+                      key="lamp1Alarm"
+                      dataIndex="lamp1Alarm"
+                    />
+                    <Column
+                      width={70}
+                      title="灯2扩警报"
+                      key="lamp2Alarm"
+                      dataIndex="lamp2Alarm"
+                    />
+                    <Column
+                      width={50}
+                      title="电压上限"
+                      key="rodVUp"
+                      dataIndex="rodVUp"
+                    />
+                    <Column
+                      width={50}
+                      title="电压下限"
+                      key="rodVDown"
+                      dataIndex="rodVDown"
+                    />
+                    <Column
+                      width={70}
+                      title="电流1上限"
+                      key="I1Up"
+                      dataIndex="I1Up"
+                    />
+                    <Column
+                      width={70}
+                      title="电流2上限"
+                      key="I2Up"
+                      dataIndex="I2Up"
+                    />
+                    <Column
+                      width={50}
+                      title="灯1阈值"
+                      key="lamp1Up"
+                      dataIndex="lamp1Up"
+                    />
+                    <Column
+                      width={50}
+                      title="灯2阈值"
+                      key="lamp2Up"
+                      dataIndex="lamp2Up"
                     />
                 </Table>
             </Modal>
