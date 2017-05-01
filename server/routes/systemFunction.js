@@ -271,13 +271,16 @@ const fn_fetchTimeControlSetGroupTime = sharedRouteHandlerGenerator([SYSTEMFUNCT
 
 // 手机端——时控——组设星期
 const fn_fetchTimeControlSetGroupWeek = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_GROUP_WEEK], param => {
-    const { groupName, groupType, workPeriod } = param;
+    const { groupName, groupType, workPeriod, weekAvailable } = param;
 
     const weekArray = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
     const period = {};
     for (let i = 0; i < weekArray.length; i++) {
-        period[`week${i + 1}_int`] = workPeriod.indexOf(weekArray[i]) ? '1' : '0';
+        period[`week${i + 1}_int`] = workPeriod.indexOf(weekArray[i]) > -1 ? '1' : '0';
     }
+    period.week8_int = weekAvailable ? '1' : '0';
+
+    console.log('period', period);
 
     return {
         ...period,
