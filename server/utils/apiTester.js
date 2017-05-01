@@ -10,8 +10,8 @@ const parseParam = param => {
 };
 
 const rootURL = 'http://localhost:3000';
-const pathName = '/single_lamp_detail_initialization/get_status';
-const param = { Dev_id: '1' };
+const pathName = '/single_lamp_dimming_set/set_status';
+const param = { devID: '1', rodNum: ['1-1'], lux1: '100', lux2: '100' };
 const url = rootURL + pathName;
 
 fetch(url, {

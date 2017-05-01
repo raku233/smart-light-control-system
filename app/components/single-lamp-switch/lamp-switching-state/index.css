@@ -1,0 +1,32 @@
+.c-cls-container .ant-row > div {
+    padding: 0 8px;
+}
+
+.c-cls-container .ant-spin-container {
+    width: 100%;
+}
+
+.c-cls-row {
+    margin-bottom: 8px;
+}
+
+.c-cls-button {
+    width: 100%;
+    margin: 7px 0
+}
+
+.c-cls-button2 {
+    flex: 1;
+    margin: 8px 4px 0 4px;
+}
+.c-cls-select {
+    flex: 1;
+    width: 150px;
+    margin: 0 4px;
+}
+
+.c-cls-span {
+    display: block;
+    line-height: 2.5em;
+    margin-right: 16px;
+}

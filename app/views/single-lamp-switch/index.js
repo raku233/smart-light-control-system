@@ -4,20 +4,20 @@ import { connect } from 'react-redux';
 import { actions as commonActions } from '../../components/common/redux';
 import { actions as viewActions } from './redux';
 import DeviceList from '../../components/common/device-list';
-import LampSwitchingState from '../../components/compulsive-lamp-switching/lamp-switching-state';
+import LampSwitchingState from '../../components/single-lamp-switch/lamp-switching-state';
 import SingleLampParameterTable from '../../components/common/single-lamp-parameter-table';
 import RodList from '../../components/common/rod-list';
 import './index.css';
 
 
-class CompulsiveLampSwitching extends Component {
+class SingleLampSwitch extends Component {
     render() {
         const { deviceList, rodList, rodListActions, deviceListActions, viewData, viewActions } = this.props;
         return (
             <div style={{ height: '100%', width: '100%', display: 'flex' }}>
                 <DeviceList {...deviceList} {...deviceListActions} {...rodListActions}></DeviceList>
                 <div style={{ flex: 1, height: '100%' }}>
-                    <LampSwitchingState />
+                    <LampSwitchingState {...viewActions} {...viewData} />
                     <SingleLampParameterTable />
                 </div>
                 <RodList {...rodList} {...rodListActions} {...viewData} {...viewActions} />
@@ -30,7 +30,7 @@ export default connect(state => {
     return {
         deviceList: state.Common.deviceList,
         rodList: state.Common.rodList,
-        viewData: state.CompulsiveLampSwitching.viewData
+        viewData: state.SingleLampSwitch.viewData
     };
 }, dispatch => {
     return {
@@ -38,4 +38,4 @@ export default connect(state => {
         rodListActions: bindActionCreators(commonActions.rodListActions, dispatch),
         viewActions: bindActionCreators(viewActions, dispatch)
     };
-})(CompulsiveLampSwitching);
+})(SingleLampSwitch);

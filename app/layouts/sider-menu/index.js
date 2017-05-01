@@ -59,7 +59,7 @@ class SiderMenu extends React.Component {
                 </SubMenu>
                 <SubMenu key="single_lamp" title={<span><Icon type="bulb" /><span className="nav-text">单灯控制管理</span></span>}>
                     <Menu.Item key="single_lamp_map">单灯地图</Menu.Item>
-                    <Menu.Item key="compulsive_lamp_switching">强制开关灯</Menu.Item>
+                    <Menu.Item key="single_lamp_switch">单灯调光</Menu.Item>
                     <Menu.Item key="single_lamp_control">单灯简易控制</Menu.Item>
                     <Menu.Item key="single_lamp_switching_time">单灯开关灯时间</Menu.Item>
                     <Menu.Item key="history">历史记录</Menu.Item>

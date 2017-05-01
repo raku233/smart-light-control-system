@@ -12,7 +12,7 @@ import GroupControlSetting from '../views/group-control-setting';
 import StabilivoltInterval from '../views/stabilivolt-interval';
 import SingleLampMap from '../views/single-lamp-map';
 import SingLampControl from '../views/single-lamp-control';
-import CompulsiveLampSwitching from '../views/compulsive-lamp-switching';
+import SingleLampSwitch from '../views/single-lamp-switch';
 import SingleLampSwitchingTime from '../views/single_lamp_switching_time';
 import History from '../views/history';
 import SingLampWarningInfo from '../views/single-lamp-warning-info';
@@ -39,7 +39,7 @@ const routes = history => (
             <Route path="/integrated_terminal/triphase_electricity_parameter_query" component={TriphaseElectricityParameterQuery} />
             <Route path="/single_lamp/single_lamp_map" component={SingleLampMap} />
             <Route path="/single_lamp/single_lamp_control" component={SingLampControl} />
-            <Route path="/single_lamp/compulsive_lamp_switching" component={CompulsiveLampSwitching} />
+            <Route path="/single_lamp/single_lamp_switch" component={SingleLampSwitch} />
             <Route path="/single_lamp/single_lamp_switching_time" component={SingleLampSwitchingTime} />
             <Route path="/single_lamp/history" component={History} />
             <Route path="/single_lamp/single_lamp_warning_info" component={SingLampWarningInfo} />

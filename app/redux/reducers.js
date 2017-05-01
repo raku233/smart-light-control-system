@@ -8,7 +8,7 @@ import SingleLampMap from '../views/single-lamp-map/redux';
 import SingleLampWarningInfo from '../views/single-lamp-warning-info/redux';
 import History from '../views/history/redux';
 import CurrentAlarm from '../views/current-warning/redux';
-import CompulsiveLampSwitching from '../views/compulsive-lamp-switching/redux';
+import SingleLampSwitch from '../views/single-lamp-switch/redux';
 import AssetsProportionChart from '../views/assets-proportion-chart/redux';
 import EnergyConsumptionQuery from '../views/energy-consumption-query/redux';
 import DailyElectricityConsumptionQuery from '../views/daily-electricity-consumption-query/redux';
@@ -26,7 +26,7 @@ export default {
     History,
     CurrentAlarm,
     EnergyConsumptionQuery,
-    CompulsiveLampSwitching,
+    SingleLampSwitch,
     AssetsProportionChart,
     DailyElectricityConsumptionQuery,
     TriphaseElectricityParameterQuery
