@@ -50,16 +50,16 @@ class SiderMenu extends React.Component {
                     <Menu.Item key="electrical_parameter">详细电参数</Menu.Item>
                     <Menu.Item key="stabilivolt_interval">时段稳压</Menu.Item>
                     <Menu.Item key="group_control_setting">组控设置</Menu.Item>
-                    <Menu.Item key="baidu_map">百度地图</Menu.Item>
                     <Menu.Item key="record_query">记录查询</Menu.Item>
                     <Menu.Item key="current_warning">当前警报</Menu.Item>
                     <Menu.Item key="energy_consumption_query">能耗查询</Menu.Item>
                     <Menu.Item key="assets_proportion_chart">资产比例图</Menu.Item>
                     <Menu.Item key="daily_electricity_consumption_query">日用电量</Menu.Item>
+                    <Menu.Item key="triphase_electricity_parameter_query">三相电参图</Menu.Item>
                 </SubMenu>
                 <SubMenu key="single_lamp" title={<span><Icon type="bulb" /><span className="nav-text">单灯控制管理</span></span>}>
                     <Menu.Item key="single_lamp_map">单灯地图</Menu.Item>
-                    <Menu.Item key="compulsive_lamp_switching">强制开关灯</Menu.Item>
+                    <Menu.Item key="single_lamp_switch">单灯调光</Menu.Item>
                     <Menu.Item key="single_lamp_control">单灯简易控制</Menu.Item>
                     <Menu.Item key="single_lamp_switching_time">单灯开关灯时间</Menu.Item>
                     <Menu.Item key="history">历史记录</Menu.Item>

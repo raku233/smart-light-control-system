@@ -106,7 +106,7 @@ function viewData(state = initialState, action) {
             ...state,
             loading: false,
             error: false,
-            warningInfo: action.payload.warningInfo
+            warningInfo: action.payload.warningInfo.singleAlarmDetail
         };
     }
     case LOAD_WARNINGINFO_ERROR: {

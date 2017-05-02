@@ -5,7 +5,11 @@ const initialState = {
     error: false,
     devID: '',
     statusGroup: [],
-    config: {},
+    config: {
+        mode: 'normal',
+        isManualControl: false,
+        isTimeControl: false
+    },
     uid: ''
 };
 
@@ -13,6 +17,7 @@ export const LOAD_MANUALSWITCHINGSTATUS = 'LOAD_MANUALSWITCHINGSTATUS';
 export const LOAD_MANUALSWITCHINGSTATUS_SUCCESS = 'LOAD_MANUALSWITCHINGSTATUS_SUCCESS';
 export const LOAD_MANUALSWITCHINGSTATUS_ERROR = 'LOAD_MANUALSWITCHINGSTATUS_ERROR';
 export const UPDATE_MANUALSWITCHINGSTATUS = 'UPDATE_MANUALSWITCHINGSTATUS';
+export const UPDATE_MANUALSWITCHINGALLSWITCH = 'UPDATE_GROUPCONTROLALLSWITCH';
 export const UPLOAD_MANUALSWITCHINGSTATUS = 'UPLOAD_MANUALSWITCHINGSTATUS';
 
 export function loadViewData(deviceInfo) {
@@ -54,6 +59,15 @@ export function updateViewData(status) {
             status
         }
     };
+}
+
+export function updateManualSwitchingAllSwitch(statusGroup) {
+    return {
+        type: UPDATE_MANUALSWITCHINGALLSWITCH,
+        payload: {
+            statusGroup
+        }
+    }
 }
 
 export function uploadViewData() {
@@ -100,6 +114,13 @@ function viewData(state = initialState, action) {
         };
     }
 
+    case UPDATE_MANUALSWITCHINGALLSWITCH: {
+        return {
+            ...state,
+            ...action.payload
+        };
+    }
+
     default: {
         return state;
     }
@@ -113,5 +134,6 @@ export default combineReducers({
 export const actions = {
     loadViewData,
     updateViewData,
+    updateManualSwitchingAllSwitch,
     uploadViewData
 };

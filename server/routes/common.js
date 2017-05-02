@@ -32,6 +32,15 @@ const fn_fetchDeviceList = sharedRouteHandlerGenerator([COMMON_API.GET_DEVICE_LI
     return JSON.stringify(deviceGroup);
 });
 
+// 获取设备分组
+const fn_fetchDeviceGroup = sharedRouteHandlerGenerator([COMMON_API.GET_DEVICE_LIST], undefined, ([data]) => {
+    const { bigtree } = data;
+
+    return {
+        deviceGroup: bigtree
+    };
+});
+
 //手机端——地图——获取集中器附近的单灯信息
 const fn_fetchSingleNearTerminal = sharedRouteHandlerGenerator([COMMON_API.GETSINGLE_MAP_TABLE_VOLT_VIEW], undefined,([data]) => {
     const {single_map_table_volt_view} = data;
@@ -88,6 +97,7 @@ const fn_fetchNearMapDev = sharedRouteHandlerGenerator([COMMON_API.DEVINFO_MAP_C
 
 module.exports = {
     'POST /device_list': fn_fetchDeviceList,
+    'POST /device_group': fn_fetchDeviceGroup,
     'POST /single_near_terminal/get_status': fn_fetchSingleNearTerminal,
     'POST /login': fn_fetchLogin,
     'POST /near_map_dev': fn_fetchNearMapDev,

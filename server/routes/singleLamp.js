@@ -100,7 +100,7 @@ const fn_fetchSingleParamHistoryInitMessage = sharedRouteHandlerGenerator([SINGL
         for ( let k in single_volt_detail[i] ) {
             let {rod_num} =  single_volt_detail[i] ;
              item = {
-                 key: i + 1,
+                 key: rod_num.toString().trim(),
                  rodNum: rod_num.toString().trim(),
              }
         }

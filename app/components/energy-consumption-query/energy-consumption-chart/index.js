@@ -5,6 +5,7 @@ import Highcharts from 'highcharts/highstock';
 import moment from 'moment';
 
 import { Select, Button, Spin, DatePicker } from 'antd';
+import QueueAnim from 'rc-queue-anim';
 
 import './index.css';
 
@@ -52,47 +53,51 @@ export default class EnergyConsumptionChart extends Component {
     }
 
     render() {
-        const { chartType, statisticsType, statusType, loading } = this.props;
+        const { devID, chartType, statisticsType, statusType, loading } = this.props;
         let { startDate, endDate } = this.props;
         startDate = moment(startDate, 'YYYY-MM-DD');
         endDate = moment(endDate, 'YYYY-MM-DD');
 
         return (
             <div className="c-ecp-ecc-container">
-                <div className="c-ecp-ecc-config-group">
-                    <div className="c-ecp-ecc-config">
-                        <span className="c-ecp-ecc-label">起止时间:</span>
-                        <RangePicker value={[startDate, endDate]} onChange={this.handleDateRangeChange} />
-                    </div>
-                    <div className="c-ecp-ecc-config">
-                        <span className="c-ecp-ecc-label">统计类型</span>
-                        <Select className="c-ecp-ecc-selector" value={statisticsType} dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'statisticsType')}>
-                            <Option value="按年能耗统计">按年能耗统计</Option>
-                            <Option value="按月能耗统计">按月能耗统计</Option>
-                            <Option value="按日能耗统计">按日能耗统计</Option>
-                        </Select>
-                        <span className="c-ecp-ecc-label">图表类型:</span>
-                        <Select className="c-ecp-ecc-selector" value={chartType}dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'chartType')}>
-                            <Option value="line">曲线图</Option>
-                            <Option value="column">柱状图</Option>
-                        </Select>
-                        <span className="c-ecp-ecc-label">数据类型:</span>
-                        <Select className="c-ecp-ecc-selector" value={statusType} dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'statusType')}>
-                            <Option value="0">总有功耗电量</Option>
-                            <Option value="1">抄表电度</Option>
-                            <Option value="2">终端数</Option>
-                            <Option value="3">灯数</Option>
-                            <Option value="4">照明密度</Option>
-                            <Option value="5">照明密度标准</Option>
-                            <Option value="6">全部显示</Option>
-                        </Select>
-                        <Button className="c-ecp-ecc-query-btn" onClick={this.chartQuery}>查询</Button>
-                    </div>
-                </div>
-
-                <Spin className="c-ecp-ecc-spin" spinning={loading}>
-                    <div id="container"></div>
-                </Spin>
+                <QueueAnim className="c-ecp-ecc-anim-wrapper" delay={100} interval={200} type={['right', 'left']} ease={['easeOutQuart', 'easeInOutQuart']}>
+                    { devID ? [
+                        <div key="config" className="c-ecp-ecc-config-group">
+                            <div className="c-ecp-ecc-config">
+                                <span className="c-ecp-ecc-label">起止时间:</span>
+                                <RangePicker value={[startDate, endDate]} onChange={this.handleDateRangeChange} />
+                            </div>
+                            <div className="c-ecp-ecc-config">
+                                <span className="c-ecp-ecc-label">统计类型</span>
+                                <Select className="c-ecp-ecc-selector" value={statisticsType} dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'statisticsType')}>
+                                    <Option value="按年能耗统计">按年能耗统计</Option>
+                                    <Option value="按月能耗统计">按月能耗统计</Option>
+                                    <Option value="按日能耗统计">按日能耗统计</Option>
+                                    <Option value="时间段查询">时间段查询</Option>
+                                </Select>
+                                <span className="c-ecp-ecc-label">图表类型:</span>
+                                <Select className="c-ecp-ecc-selector" value={chartType} dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'chartType')}>
+                                    <Option value="line">曲线图</Option>
+                                    <Option value="column">柱状图</Option>
+                                </Select>
+                                <span className="c-ecp-ecc-label">参数类型:</span>
+                                <Select className="c-ecp-ecc-selector" value={statusType} dropdownMatchSelectWidth onSelect={this.handleSelectChange.bind(this, 'statusType')}>
+                                    <Option value="0">总有功耗电量</Option>
+                                    <Option value="1">抄表电度</Option>
+                                    <Option value="2">终端数</Option>
+                                    <Option value="3">灯数</Option>
+                                    <Option value="4">照明密度</Option>
+                                    <Option value="5">照明密度标准</Option>
+                                    <Option value="6">全部显示</Option>
+                                </Select>
+                                <Button className="c-ecp-ecc-query-btn" onClick={this.chartQuery}>查询</Button>
+                            </div>
+                        </div>,
+                        <Spin key="chart" className="c-ecp-ecc-spin" spinning={loading}>
+                            <div id="container"></div>
+                        </Spin>
+                    ] : <span className="c-ecp-ecc-placeholder">从左侧列表中选择设备后展开设置</span>}
+                </QueueAnim>
             </div>
         );
     }

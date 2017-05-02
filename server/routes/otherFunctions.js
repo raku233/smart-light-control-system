@@ -20,7 +20,20 @@ const fn_fetchEnergySearch = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_ERL
 });
 
 // 手机端——三项电参图
-const fn_fetchThreePhaseElectricParameter = sharedRouteHandlerGenerator([OTHERPHONE_API.DEV_ERL]);
+const fn_fetchThreePhaseElectricParameter = sharedRouteHandlerGenerator([OTHERPHONE_API.DEV_ERL], param => {
+    const { devID, startDate, endDate, couldPeriodConfig, startTime, endTime, chartType, statusType } = param;
+
+    return {
+        DevNo: devID,
+        begin_str: startDate,
+        end_str: endDate,
+        chk_U_time_term: couldPeriodConfig,
+        OnTime_str: startTime,
+        offTime_str: endTime,
+        chart_type: chartType,
+        para_index: statusType
+    };
+});
 
 // 手机端——日用电量
 const fn_fetchDailyPower = sharedRouteHandlerGenerator([OTHERPHONE_API.GET_DEV_KWH_PER], param => {

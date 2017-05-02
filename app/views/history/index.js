@@ -10,6 +10,7 @@ import DeviceList from '../../components/common/device-list';
 import QueryHistory from '../../components/history/query-history';
 import ElectricalParameterTable from '../../components/history/electrical-parameter-table';
 import WarningTable from '../../components/history/warning-table';
+import QueryElectric from '../../components/history/query-electric';
 
 import './index.css';
 
@@ -26,7 +27,8 @@ class History extends Component {
                     <QueryHistory {...viewActions} {...viewData} />
                     <Tabs defaultActiveKey="1" className="v-h-tabs">
                         <TabPane tab="电参数历史记录" key="1">
-                            <ElectricalParameterTable />
+                            <QueryElectric {...viewData} {...viewActions} />
+                            <ElectricalParameterTable {...viewData} />
                         </TabPane>
                         <TabPane tab="警报历史记录" key="2">
                             <WarningTable {...viewData} />

@@ -26,6 +26,10 @@
   background: #fbfbfb;
 }
 
+.c-slwi-wt-table .ant-table-tbody > tr {
+  background: #fbfbfb;
+}
+
 .c-slwi-wt-table .table-operation a:not(:last-child) {
   margin-right: 24px;
 }

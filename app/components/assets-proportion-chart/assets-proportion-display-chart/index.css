@@ -2,6 +2,25 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+}
+
+.c-apc-apdc-anim-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-apc-apdc-placeholder {
+    font-size: 25px;
+    color: lightgray;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 4px 2px;
+    border: 2px dashed lightgray;
 }
 
 .c-apc-apdc-config {
@@ -36,6 +55,7 @@
 
 .c-apc-apdc-container .ant-spin-nested-loading .ant-spin-container {
     width: 100%;
+    flex: 1;
 }
 
 .c-apc-apdc-container #container {

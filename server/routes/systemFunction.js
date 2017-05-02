@@ -81,7 +81,7 @@ const fn_fetchSingleLampInitialization = sharedRouteHandlerGenerator([SYSTEMFUNC
         const lamp2Status = lampOnOffStatus.substring(0,1);
 
         const singleLampTimeRefreshMes = {
-            key: i + 1,
+            key: singleLampTimeRefreshGroup.rod_num.trim(),
             rodReal: singleLampTimeRefreshGroup.rod_real.trim(), //末端编号
             rodNum: singleLampTimeRefreshGroup.rod_num.trim(), //灯杆号
             lamp1Status: lamp1Status,
@@ -186,51 +186,108 @@ const fn_fetchSingleLampTimeSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_AP
 //手机端——上传日志
 const fn_fetchUploadSavelog = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SAVELOG]);
 // 手机端——单灯调光——获取 
-const fn_fetchSingleLampDimmingGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.ADWEB_SINGLE_QUERY]);
+const fn_fetchSingleLampDimmingGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.ADWEB_SINGLE_QUERY], param => {
+    const { devID, rodNum, cmdType } = param;
+    const returnParam = {
+        Dev_id: devID,
+        cmd_type: cmdType
+    };
+    for(let i = 0; i < rodNum.length; i++) {
+        returnParam[`rod_num[${i}]`] = rodNum[i];
+    }
+    return returnParam;
+});
 // 手机端——单灯调光——手动设置亮度 
-const fn_fetchSingleLampDimmingSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_ONOFF]);
+const fn_fetchSingleLampDimmingSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_ONOFF], param => {
+    const { devID, rodNum, lux1, lux2 } = param;
+    const returnParam = {
+        Dev_id: devID,
+        Lux_1: lux1,
+        Lux_2: lux2
+    };
+    for(let i = 0; i < rodNum.length; i++) {
+        returnParam[`rod_num[${i}]`] = rodNum[i];
+    }
+    console.log(returnParam);
+    return returnParam;
+});
 // 手机端——单灯调光——单灯简易控制 
-const fn_fetchSingleLampDimmingEasySet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_BO_ONOFF]);
+const fn_fetchSingleLampDimmingEasySet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_BO_ONOFF], param => {
+    const { devID, rodNum, cmdType, chkFlagStr, objectStr } = param;
+    const returnParam = {
+        Dev_id: devID,
+        cmd_type: cmdType,
+        chk_flag_str: chkFlagStr,
+        object_str: objectStr
+    };
+    for(let i = 0; i < rodNum.length; i++) {
+        returnParam[`rod_num[${i}]`] = rodNum[i];
+    }
+    return returnParam;
+});
 // 手机端——单灯调光——"支路X-N"的获取、刷新 
-const fn_fetchSingleLampDimmingGetXN = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.GETSINGLE_VOLT_DETAIL_GROUP]);
+const fn_fetchSingleLampDimmingGetXN = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.GETSINGLE_VOLT_DETAIL_GROUP], param => {
+    const { devID } = param;
+    const returnParam = {
+        Dev_id: devID
+    };
+    return returnParam;
+});
 // 手机端——单灯时控——强制开关灯——设置时段开关灯 & 单灯简易控制——单控设置
-const fn_fetchSingleLampTimeControlForcedSwitch = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_TIME_ONOFF]);
+const fn_fetchSingleLampTimeControlForcedSwitch = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SETWEB_SINGLE_TIME_ONOFF], param => {
+    const { devID, rodNum, cmdType, timeSetting } = param;
+    const returnParam = {
+        Dev_id: devID,
+        cmd_type: cmdType
+    };
+    for(let i = 0; i < rodNum.length; i++) {
+        returnParam[`rod_num[${i}]`] = rodNum[i];
+    }
+    for(let i = 1; i < timeSetting.length + 1; i++) {
+        returnParam[`L${i}_time1`] = timeSetting[i - 1].startTime;
+        returnParam[`L${i}_time2`] = timeSetting[i - 1].endTime;
+        returnParam[`L${i}_Lux12`] = timeSetting[i - 1].lux;
+    }
+
+    console.log(returnParam);
+    return returnParam;
+});
 // 手机端——时控——组设时间
 const fn_fetchTimeControlSetGroupTime = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_GROUP_ONOFFTIME], param => {
-    const { groupName, groupTyp, termStr, time1On, time1Off, teamSet1Int, time2On, time2Off, teamSet2Int, time3On, time3Off, teamSet3Int, time4On, time4Off, teamSet4Int } = param;
-    return{
-        group_name: groupName, 
-        group_typ: groupTyp, 
-        term_str: termStr, 
-        time1_on: time1On, 
-        time1_off: time1Off, 
-        team_set1_int: teamSet1Int, 
-        time2_on: time2On, 
-        time2_off: time2Off, 
-        team_set2_int: teamSet2Int, 
-        time3_on: time3On, 
-        time3_off: time3Off, 
-        team_set3_int: teamSet3Int, 
-        time4_on: time4On, 
-        time4_off: time4Off, 
-        team_set4_int: teamSet4Int,
+    const { groupName, groupType, period, statusGroup } = param;
+
+    const parameter = {};
+
+    for (let i = 0; i < statusGroup.length; i++) {
+        parameter[`time${i + 1}_on`] = statusGroup[i].startTime || '0:00';
+        parameter[`time${i + 1}_off`] = statusGroup[i].endTime || '0:00';
+        parameter[`team_set${i + 1}_int`] = statusGroup[i].lampType || '0';
+    }
+    return {
+        ...parameter,
+        group_name: groupName,
+        group_typ: groupType,
+        term_str: period,
     };
 });
 
 // 手机端——时控——组设星期
 const fn_fetchTimeControlSetGroupWeek = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_GROUP_WEEK], param => {
-    const { groupName, groupTyp, week1Int, week2Int, week3Int, week4Int, week5Int, week6Int, week7Int, week8Int } = param;
+    const { groupName, groupType, workPeriod, weekAvailable } = param;
+
+    const weekArray = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+    const period = {};
+    for (let i = 0; i < weekArray.length; i++) {
+        period[`week${i + 1}_int`] = workPeriod.indexOf(weekArray[i]) > -1 ? '1' : '0';
+    }
+    period.week8_int = weekAvailable ? '1' : '0';
+
+    console.log('period', period);
+
     return {
-        group_name: groupName, 
-        group_typ: groupTyp, 
-        week1_int: week1Int, 
-        week2_int: week2Int, 
-        week3_int: week3Int, 
-        week4_int: week4Int, 
-        week5_int: week5Int, 
-        week6_int: week6Int, 
-        week7_int: week7Int, 
-        week8_int: week8Int,
+        ...period,
+        group_name: groupName,
+        group_typ: groupType
     };
 });
 
@@ -245,11 +302,26 @@ const fn_fetchTimeControlGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.G
 
 // 手机端——集中开关——组设
 const fn_fetchCentralizedSwitchGroupSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_ONOFF], param => {
-    const { DevId, N8Str, modeStr } = param;
+    const { devID, statusGroup, config } = param;
+
+    let N8_str = '',
+      mode_str = '';
+    // 开关灯状态
+    for (const status of statusGroup) {
+        if (status) N8_str += '1';
+        else N8_str += '0';
+    }
+    N8_str = N8_str.split('').reverse().join('');
+    // 开关灯模式
+    mode_str += config.mode === 'normal' ? '110' : '101';
+    mode_str += config.isManualControl ? '1' : '0';
+    mode_str += config.isTimeControl ? '1' : '0';
+    mode_str += '110';
+
     return {
-        Dev_id: DevId,
-        N8_str: N8Str,
-        mode_str: modeStr,
+        Dev_id: devID,
+        N8_str,
+        mode_str,
     };
 });
 // 手机端——集中开关——获取
@@ -269,6 +341,7 @@ module.exports = {
     'POST /single_lamp_time_set/set_status': fn_fetchSingleLampTimeSet,
     'POST /upload_savelog': fn_fetchUploadSavelog,
     'POST /single_lamp_dimming_get': fn_fetchSingleLampDimmingGet,
+    'POST /single_lamp_dimming_set/set_status': fn_fetchSingleLampDimmingSet,
     'POST /single_lamp_dimming_easy_set/set_status': fn_fetchSingleLampDimmingEasySet,
     'POST /single_lamp_dimming_get_xn/get_status': fn_fetchSingleLampDimmingGetXN,
     'POST /single_lamp_dimming_time_control_forced_switch/set_status': fn_fetchSingleLampTimeControlForcedSwitch,

@@ -21,33 +21,40 @@ export default class TimeSettingPanel extends Component {
         this.handleSelectChange = this.handleSelectChange.bind(this);
     }
 
+    handleSelectChange(index, value) {
+        const { timeStatusGroup } = this.props;
+        timeStatusGroup[index].lampType = value;
+        this.props.updateViewData({ timeStatusGroup });
+    }
+
+    updateTimeRange(index, timeRange) {
+        const { timeStatusGroup } = this.props;
+        timeStatusGroup[index].startTime = timeRange.startTime;
+        timeStatusGroup[index].endTime = timeRange.endTime;
+        this.props.updateViewData(timeStatusGroup);
+    }
+
     renderSelectColumn(index, record) {
         return (
             <Select style={{ width: 100 }} value={record.lampType} onChange={value => this.handleSelectChange(index, value)}>
-                <Option value="全夜灯1">全夜灯1</Option>
-                <Option value="全夜灯2">全夜灯2</Option>
-                <Option value="半夜灯1">半夜灯1</Option>
-                <Option value="半夜灯2">半夜灯2</Option>
-                <Option value="景观灯1">景观灯1</Option>
-                <Option value="景观灯2">景观灯2</Option>
-                <Option value="自定义灯1">自定义灯1</Option>
-                <Option value="自定义灯2">自定义灯2</Option>
-                <Option value="不组控">不组控</Option>
+                <Option value="0">不组控</Option>
+                <Option value="1">全夜灯1</Option>
+                <Option value="2">全夜灯2</Option>
+                <Option value="3">半夜灯1</Option>
+                <Option value="4">半夜灯2</Option>
+                <Option value="5">景观灯1</Option>
+                <Option value="6">景观灯2</Option>
+                <Option value="7">自定义灯1</Option>
+                <Option value="8">自定义灯2</Option>
             </Select>
         );
     }
 
-    handleSelectChange(index, value) {
-        const { data } = this.state;
-        data[index].lampType = value;
-        this.setState({ data });
-    }
-
     render() {
-        const { data } = this.state;
+        const { timeStatusGroup } = this.props;
 
         return (
-            <Table size="small" pagination={false} dataSource={data}>
+            <Table size="small" pagination={false} dataSource={timeStatusGroup}>
                 <Column
                   title=""
                   key="group"
@@ -63,9 +70,9 @@ export default class TimeSettingPanel extends Component {
                   title="起止时间"
                   key="timeRange"
                   dataIndex="timeRange"
-                  render={(text, record) => {
+                  render={(text, record, index) => {
                       return (
-                          <TimeRange size="small" />
+                          <TimeRange size="small" startTime={record.startTime} endTime={record.endTime} updateTimeRange={this.updateTimeRange.bind(this, index)} />
                       );
                   }}
                 />

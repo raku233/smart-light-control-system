@@ -1,4 +1,21 @@
-h2 {
-    padding: 8px 0;
+.c-c-slpt-span {
+    display: inline-block;
+    margin: 8px 8px 8px 0;
+    font-weight: bold;
     font-size: 16px;
+}
+
+.c-c-slp-table .ant-spin-container {
+    width: 100%;
+}
+
+.c-c-slp-table {
+    width: 100%;
+    overflow: hidden;
+}
+
+.c-c-slpt-container {
+    width: 100%;
+    margin: 0 4px;
+    margin-bottom: 10px;
 }

@@ -10,7 +10,6 @@ class SingleLampWarningInfo extends Component {
         const { viewActions, viewData } = this.props;
         return (
             <div className="v-slwi-container">
-                <QueryWarning {...viewActions} />
                 <WarningTable {...viewData} {...viewActions} />
             </div>
         );

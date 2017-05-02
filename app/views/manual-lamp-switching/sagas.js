@@ -3,6 +3,8 @@ import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { fetchSwitchingStatus, uploadSwitchingStatus } from '../../api/integratedTerminal';
 import { LOAD_MANUALSWITCHINGSTATUS, UPLOAD_MANUALSWITCHINGSTATUS, loadViewDataSuccess, loadViewDataError } from './redux';
 
+import { showNotification } from '../../utils/notification';
+
 // 获取store中ManualLampSwitching视图数据
 const getStatus = state => state.ManualLampSwitching.viewData;
 
@@ -23,7 +25,8 @@ function* fetchData(action) {
 
 function* uploadData(action) {
     const param = yield select(getStatus);
-    yield call(uploadSwitchingStatus, param);
+    const { rslt } = yield call(uploadSwitchingStatus, param);
+    if (rslt) yield call(showNotification, rslt);
 }
 
 export function* watchFetchData() {

@@ -1,6 +1,6 @@
 .c-dl-container {
-    min-width: 220px;
-    width: 220px;
+    min-width: 240px;
+    width: 240px;
     height: 100%;
     padding-right: 24px;
     margin-right: 16px;
@@ -78,4 +78,23 @@
     display: flex;
     flex: 1;
     overflow: auto;
+}
+
+
+.c-dl-parent-node .ant-tree-iconEle {
+    display: none !important;
+}
+
+.c-dl-child-node .ant-tree-iconEle {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 8px !important;
+    margin: 0 10px 4px 0 !important;
+    display: inline-block !important;
+}
+.c-dl-child-node.c-dl-connect-node .ant-tree-iconEle{
+    background: #00a854;
+}
+.c-dl-child-node.c-dl-disconnect-node .ant-tree-iconEle{
+    background: #d9d9d9;
 }

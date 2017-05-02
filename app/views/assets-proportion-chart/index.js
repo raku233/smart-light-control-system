@@ -6,9 +6,7 @@ import { actions as commonActions } from '../../components/common/redux';
 import { actions as viewActions } from '../../views/assets-proportion-chart/redux';
 
 import AssetsProportionDisplayChart from '../../components/assets-proportion-chart/assets-proportion-display-chart';
-
-
-import DeviceList from '../../components/common/device-list/index';
+import DeviceList from '../../components/common/device-list';
 
 import './index.css';
 

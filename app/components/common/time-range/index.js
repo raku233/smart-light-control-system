@@ -52,9 +52,9 @@ export default class TimeRange extends Component {
     render() {
         const { isStartTimeRight, isEndTimeRight } = this.state;
         let { startTime, endTime } = this.props;
-        const { size } = this.props;
-        startTime = moment(startTime, 'HH:mm');
-        endTime = moment(endTime, 'HH:mm');
+        const { size, disabled } = this.props;
+        startTime = moment(startTime || '0:00', 'HH:mm');
+        endTime = moment(endTime || '0:00', 'HH:mm');
 
         const sTimePickerClass = classNames({
                 'c-tr-start-time': true,
@@ -68,11 +68,11 @@ export default class TimeRange extends Component {
         return (
             <div className="c-tr-container">
                 <Tooltip visible={!isStartTimeRight} title="起始时间晚于结束时间">
-                    <TimePicker className={sTimePickerClass} size={size} format="HH:mm" value={startTime} onChange={this.handleChange.bind(this, 'start')} />
+                    <TimePicker className={sTimePickerClass} size={size} format="HH:mm" value={startTime} onChange={this.handleChange.bind(this, 'start')} disabled={disabled} />
                 </Tooltip>
                 <span className="c-tr-divider">--</span>
                 <Tooltip visible={!isEndTimeRight} title="结束时间早于起始时间">
-                    <TimePicker className={eTimePickerClass} size={size} format="HH:mm" value={endTime} onChange={this.handleChange.bind(this, 'end')} />
+                    <TimePicker className={eTimePickerClass} size={size} format="HH:mm" value={endTime} onChange={this.handleChange.bind(this, 'end')} disabled={disabled} />
                 </Tooltip>
             </div>
         );

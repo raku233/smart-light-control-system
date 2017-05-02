@@ -13,7 +13,7 @@ const initialState = {
     code: ''
 };
 
-export const LOAD_DEVICEID = 'LOAD_DEVICEID';
+export const LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID = 'LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID';
 export const UPDATE_ENERGYCONSUMPTIONCHART = 'UPDATE_ENERGYCONSUMPTIONCHART';
 export const LOAD_ENERGYCONSUMPTIONCHART = 'LOAD_ENERGYCONSUMPTIONCHART';
 export const LOAD_ENERGYCONSUMPTIONCHART_SUCCESS = 'LOAD_ENERGYCONSUMPTIONCHART_SUCCESS';
@@ -23,7 +23,7 @@ export function loadViewData(deviceInfo) {
     const { devID } = deviceInfo;
 
     return {
-        type: LOAD_DEVICEID,
+        type: LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID,
         payload: {
             devID
         }
@@ -66,7 +66,7 @@ export function loadChartError(error) {
 
 function viewData(state = initialState, action) {
     switch(action.type) {
-    case LOAD_DEVICEID: {
+    case LOAD_ENERGUCONSUMPTIONQUERY_DEVICEID: {
         return {
             ...state,
             devID: action.payload.devID

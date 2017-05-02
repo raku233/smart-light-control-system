@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
 
 import deviceList, { loadDeviceList } from './device-list/redux';
-import rodList, { loadRodList, loadViewData, uploadModalVisible } from './rod-list/redux';
+import deviceGroup, { loadDeviceGroup } from './device-group/redux';
+import rodList, { loadRodList, loadViewData, uploadModalVisible, uploadSelectedRods } from './single-lamp-parameter-table/redux';
+
 
 export default combineReducers({
     deviceList,
+    deviceGroup,
     rodList
 });
 
@@ -12,9 +15,13 @@ export const actions = {
     deviceListActions: {
         loadDeviceList,
     },
+    deviceGroupActions: {
+        loadDeviceGroup
+    },
     rodListActions: {
         loadRodList,
         loadViewData,
-        uploadModalVisible
+        uploadModalVisible,
+        uploadSelectedRods
     }
 };

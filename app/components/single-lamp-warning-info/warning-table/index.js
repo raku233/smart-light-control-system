@@ -10,82 +10,87 @@ class WarningTable extends Component {
 
         this.state = {
             terminalMessage: [],
-            curExpandDevID: null
+            warningInfoList: [],
+            expandedRowKeys: []
         };
+    }
+
+    componentDidMount() {
+        this.props.loadTerminalMessage();
     }
 
     componentWillReceiveProps(nextProps) {
         const { terminalMessage } = nextProps;
-
         this.setState({
             terminalMessage
         });
     }
 
-    loadWarningInfo(terminalMessage) {
-        const WarningInfoList = Array(terminalMessage.length).fill(true);
-        for (const value of terminalMessage) {
-            WarningInfoList[value.key] = this.props.loadWarningInfo(value.devId);
+    onExpandedRowsChange(expanded, record) {
+        if (expanded) {
+            const nextOpenKey = [].concat(record.key);
+            this.props.loadWarningInfo(record.devId);
+            this.setState({
+                expandedRowKeys: nextOpenKey
+            });
+        } else {
+            this.setState({
+                expandedRowKeys: []
+            });
         }
     }
 
     expandedRowRender(record) {
-        this.state.curExpandDevID = record.devId;
         return (
-            <Table pagination={false}>
+            <Table pagination={false} dataSource={this.props.warningInfo}>
                 <Column
+                  width={100}
                   title="杆号"
                   key="rodNum"
                   dataIndex="rodNum"
                 />
                 <Column
-                  title="报警内容"
-                  key="warningContent"
-                  dataIndex="warningContent"
+                  width={200}
+                  title="时间"
+                  key="updateTime"
+                  dataIndex="updateTime"
                 />
                 <Column
-                  title="时间"
-                  key="date"
-                  dataIndex="date"
+                  title="报警内容"
+                  key="alarmInfo"
+                  dataIndex="alarmInfo"
                 />
             </Table>
         );
     }
 
-    render() {
-        const rowSelection = {
-            onChange: (selectedRowKeys, selectedRows) => {
-                console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-            },
-            onSelect: (record, selected, selectedRows) => {
-                console.log(record, selected, selectedRows);
-            },
-            onSelectAll: (selected, selectedRows, changeRows) => {
-                console.log(selected, selectedRows, changeRows);
-            },
-            getCheckboxProps: record => ({
-                disabled: record.name === 'Disabled User',
-            }),
-        };
-        
+    render() {       
         return (
             <Table
               className="c-slwi-wt-table"
               expandedRowRender={record => this.expandedRowRender(record)}
+              onExpand={(expanded, record) => this.onExpandedRowsChange(expanded, record)}
+              expandedRowKeys={this.state.expandedRowKeys}
               dataSource={this.state.terminalMessage}
-              rowSelection={rowSelection}
               scroll={{ x: false, y: 350 }}
               pagination={false}
             >
                 <Column
+                  width={100}
                   title="终端号"
                   key="devId"
                   dataIndex="devId"
                 />
                 <Column
+                  width={200}
                   title="终端名"
                   key="devName"
                   dataIndex="devName"
+                />
+                <Column
+                  title="警报"
+                  key="devAlarm"
+                  dataIndex="devAlarm"
                 />
             </Table>
         );

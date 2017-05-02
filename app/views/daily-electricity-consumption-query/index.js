@@ -3,11 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { actions as commonActions } from '../../components/common/redux';
-import { DailyElectricityConsumptionViewActions as viewActions } from '../../components/common/chart-query/redux';
+import { actions as viewActions } from './redux';
 
-import ChartQuery from '../../components/common/chart-query';
+import DailyElectricityConsumptionChart from '../../components/daily-electricity-consumption-query/daily-electricity-consumption-chart';
 import DeviceList from '../../components/common/device-list';
-
 
 import './index.css';
 
@@ -17,7 +16,7 @@ class DailyElectricityConsumptionQuery extends Component {
         return (
             <div className="v-dec-container">
                 <DeviceList {...deviceList} {...deviceListActions} {...viewActions} />
-                <ChartQuery {...viewData} {...viewActions} />
+                <DailyElectricityConsumptionChart {...viewData} {...viewActions} />
             </div>
         );
     }
@@ -26,7 +25,7 @@ class DailyElectricityConsumptionQuery extends Component {
 export default connect(state => {
     return {
         deviceList: state.Common.deviceList,
-        viewData: state.DailyElectricityConsumption.viewData
+        viewData: state.DailyElectricityConsumptionQuery.viewData
     };
 }, dispatch => {
     return {
