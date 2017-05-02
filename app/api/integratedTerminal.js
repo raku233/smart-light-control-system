@@ -7,6 +7,9 @@ const URL = {
     FETCH_ELECTRICAL_PARAMETER: '/electrical_parameter/get_status',
     FETCH_TIMECONTROL_INFO: '/lamp_switching_time/get_status',
     UPLOAD_TIMECONTROL_INFO: '/lamp_switching_time/set_status',
+    UPLOAD_GROUPTIMECONTROL_SETTING: '/time_control_set_group_time/set_status',
+    UPLOAD_GROUPWEEKCONTROL_SETTING: '/time_control_set_group_week/set_status',
+    UPLOAD_GROUPSWITCHINGCONTROL_SETTING: '/centralized_switch_group_set/set_status',
     FETCH_CURRENT_ALARM: '/current_warning/get_status',
     FETCH_ENERGY_CONSUMPTION_CHART: '/energy_search/get_status',
     FETCH_ASSET_PROPORTION_CHART: '/asset_ratio_chart/get_status',
@@ -19,6 +22,9 @@ export const uploadSwitchingStatus = dataFetcher(URL.UPLOAD_SWITCHING_STATUS);
 export const fetchElectricalParameter = dataFetcher(URL.FETCH_ELECTRICAL_PARAMETER);
 export const fetchTimeControlInfo = dataFetcher(URL.FETCH_TIMECONTROL_INFO);
 export const uploadTimeControlInfo = dataFetcher(URL.UPLOAD_TIMECONTROL_INFO);
+export const uploadGroupTimeControlSetting = dataFetcher(URL.UPLOAD_GROUPTIMECONTROL_SETTING);
+export const uploadGroupWeekControlSetting = dataFetcher(URL.UPLOAD_GROUPWEEKCONTROL_SETTING);
+export const uploadGroupSwitchingControlSetting = dataFetcher(URL.UPLOAD_GROUPSWITCHINGCONTROL_SETTING);
 export const fetchCurrentAlarm = dataFetcher(URL.FETCH_CURRENT_ALARM);
 export const fetchEnergyConsumptionChart = dataFetcher(URL.FETCH_ENERGY_CONSUMPTION_CHART);
 export const fetchAssetProportionChart = dataFetcher(URL.FETCH_ASSET_PROPORTION_CHART);

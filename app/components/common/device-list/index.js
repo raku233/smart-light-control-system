@@ -34,9 +34,9 @@ export default class DeviceList extends Component {
         // 根据设备列表数据生成视图
         if (deviceGroup && !error) {
             for (const group in deviceGroup) {
-                treeNodes.push(<TreeNode title={group} key={group} >
+                treeNodes.push(<TreeNode className="c-dl-parent-node" title={group} key={group} >
                     {deviceGroup[group].map(deviceInfo => (
-                        <TreeNode title={deviceInfo.name} key={deviceInfo.name} deviceInfo={deviceInfo} ></TreeNode>
+                        <TreeNode className={`c-dl-child-node c-dl-${deviceInfo.connection === 'disconnect' ? 'disconnect' : 'connect'}-node`} title={deviceInfo.name} key={deviceInfo.name} deviceInfo={deviceInfo} ></TreeNode>
                     ))}
                 </TreeNode>);
             }
@@ -50,6 +50,7 @@ export default class DeviceList extends Component {
     }
 
     handleDeviceSelect(selectedKey, e) {
+        console.log('key', selectedKey);
         const [deviceNode] = e.selectedNodes;
         const { deviceInfo, connection } = deviceNode.props;
         this.props.loadViewData(deviceInfo);
@@ -76,7 +77,7 @@ export default class DeviceList extends Component {
                         设备列表
                     </div>
                     <Spin spinning={loading} tip="加载中...">
-                        <Tree className="c-dl-list" onSelect={this.handleDeviceSelect}>
+                        <Tree className="c-dl-list" showIcon onSelect={this.handleDeviceSelect}>
                             { treeNodes }
                         </Tree>
                     </Spin>

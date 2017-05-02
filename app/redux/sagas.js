@@ -8,6 +8,7 @@ import { History } from '../views/history/sagas';
 import { CurrentAlarm } from '../views/current-warning/sagas';
 import { SingleLampMap } from '../views/single-lamp-map/sagas';
 import { EnergyConsumptionChart } from '../views/energy-consumption-query/sagas';
+import { GroupControlSetting } from '../views/group-control-setting/sagas';
 import { DailyElectricityConsumptionQuery } from '../views/daily-electricity-consumption-query/sagas';
 import { AssetsProportionChart } from '../views/assets-proportion-chart/sagas';
 import { TriphaseElectricityParameterQuery } from '../views/triphase-electricity-parameter-query/sagas';
@@ -30,6 +31,7 @@ export default function* rootSaga() {
         ManualLampSwitching,
         ElectricalParameter,
         LampSwitchingTime,
+        GroupControlSetting,
         SingleLampWarningInfo,
         History,
         CurrentAlarm,

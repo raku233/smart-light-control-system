@@ -1,6 +1,6 @@
-.c-dl-container {
-    min-width: 240px;
-    width: 240px;
+.c-dg-container {
+    min-width: 220px;
+    width: 220px;
     height: 100%;
     padding-right: 24px;
     margin-right: 16px;
@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
 }
-.c-dl-container::after {
+.c-dg-container::after {
     content: '';
     width: 1px;
     height: 95%;
@@ -21,22 +21,22 @@
     margin: auto 0;
 }
 
-.c-dl-group-selector {
+.c-dg-group-selector {
     width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.c-dl-label {
+.c-dg-label {
 
 }
 
-.c-dl-selector {
+.c-dg-selector {
     width: 100px;
 }
 
-.c-dl-wrapper {
+.c-dg-wrapper {
     width: 100%;
     border: 1px solid #E9E9E9;
     border-radius: 4px;
@@ -46,7 +46,7 @@
     flex-direction: column;
 }
 
-.c-dl-title {
+.c-dg-title {
     width: 100%;
     font-size: 16px;
     color: #404040;
@@ -60,7 +60,7 @@
     -webkit-user-select: none;
     user-select: none;
 }
-.c-dl-title::after {
+.c-dg-title::after {
     content: '';
     width: 80px;
     height: 1px;
@@ -78,23 +78,4 @@
     display: flex;
     flex: 1;
     overflow: auto;
-}
-
-
-.c-dl-parent-node .ant-tree-iconEle {
-    display: none !important;
-}
-
-.c-dl-child-node .ant-tree-iconEle {
-    width: 8px !important;
-    height: 8px !important;
-    border-radius: 8px !important;
-    margin: 0 10px 4px 0 !important;
-    display: inline-block !important;
-}
-.c-dl-child-node.c-dl-connect-node .ant-tree-iconEle{
-    background: #00a854;
-}
-.c-dl-child-node.c-dl-disconnect-node .ant-tree-iconEle{
-    background: #d9d9d9;
 }
