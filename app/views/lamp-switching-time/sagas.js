@@ -3,6 +3,8 @@ import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { fetchTimeControlInfo, uploadTimeControlInfo } from '../../api/integratedTerminal';
 import { LOAD_TIMECONTROLINFO, UPLOAD_TIMECONTROLINFO, loadViewDataSuccess, loadViewDataError } from './redux';
 
+import { showNotification } from '../../utils/notification';
+
 // 获取store中LampSwitchingTime视图数据
 const getStatus = state => state.LampSwitchingTime.viewData;
 
@@ -32,7 +34,8 @@ function* uploadData(action) {
         config: data.config
     };
 
-    yield call(uploadTimeControlInfo, param);
+    const { rslt } = yield call(uploadTimeControlInfo, param);
+    if (rslt) yield call(showNotification, rslt);
 }
 
 export function* watchFetchData() {

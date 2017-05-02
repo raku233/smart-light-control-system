@@ -45,8 +45,8 @@ export default class TimeSettingPanel extends Component {
                   key="lampType"
                   render={(text, record) => {
                       return (
-                          <Select size="small" style={{ width: 80 }}>
-                              <Option value="禁用">禁用</Option>
+                          <Select size="small" style={{ width: 80 }} value={record.lampType}>
+                              <Option value="0">未设置</Option>
                           </Select>
                       );
                   }}

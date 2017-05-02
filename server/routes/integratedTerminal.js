@@ -124,7 +124,8 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
                 key: i + 1,
                 outputGroups: `第${i + 1}路输出`,
                 startTime: timeControlInfo[`switch${i + 1}_timeOff`],
-                endTime: timeControlInfo[`switch${i + 1}_timeOn`]
+                endTime: timeControlInfo[`switch${i + 1}_timeOn`],
+                lampType: '0'
             };
             statusGroup.push(statusItem);
         }
