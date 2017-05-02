@@ -244,10 +244,12 @@ const fn_fetchSingleLampTimeControlForcedSwitch = sharedRouteHandlerGenerator([S
         returnParam[`rod_num[${i}]`] = rodNum[i];
     }
     for(let i = 1; i < timeSetting.length + 1; i++) {
-        returnParam[`L${i}_time1`] = timeSetting[i].startTime;
-        returnParam[`L${i}_time2`] = timeSetting[i].endTime;
-        returnParam[`L${i}_Lux12`] = timeSetting[i].lux;
+        returnParam[`L${i}_time1`] = timeSetting[i - 1].startTime;
+        returnParam[`L${i}_time2`] = timeSetting[i - 1].endTime;
+        returnParam[`L${i}_Lux12`] = timeSetting[i - 1].lux;
     }
+
+    console.log(returnParam);
     return returnParam;
 });
 // 手机端——时控——组设时间
