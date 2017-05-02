@@ -65,7 +65,6 @@ export default function rodList(state = initialState, action) {
     case UPLOAD_MODAL_VISIBLE: {
         return {
             ...state,
-            modalVisible: action.payload.modalVisible
         };
     }
     case UPLOAD_SELECTED_RODS: {
@@ -80,7 +79,6 @@ export default function rodList(state = initialState, action) {
             loading: true,
             error: false,
             devID: action.payload.Dev_id || state.devID,
-            modalVisible: true
         };
     }
     case LOAD_RODLIST_SUCCESS: {

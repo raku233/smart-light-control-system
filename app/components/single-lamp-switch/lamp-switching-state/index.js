@@ -4,6 +4,7 @@ import { Button, Slider, Card, Row, Col, Checkbox, Select, message } from 'antd'
 import './index.css';
 
 const { Option } = Select;
+const CheckboxGroup = Checkbox.Group;
 
 export default class LampSwitchingState extends Component {
     constructor(props) {
@@ -16,7 +17,10 @@ export default class LampSwitchingState extends Component {
             lux1Disabled: true,
             lux2Disabled: true,
             groupSelect: '全部',
-            onOffSelect: '开灯'
+            onOffSelect: '开灯',
+            lampCheckboxState: '0000',
+            broadcastLux : 0,
+            luxGroup: 255,
         };
     }
 
@@ -51,10 +55,44 @@ export default class LampSwitchingState extends Component {
         })
     }
 
+    onGroupSelect(value,option) {
+        this.setState({
+            groupSelect: value
+        })
+    }
+
+    onOnOffSelect(value,option) {
+        this.setState({
+            onOffSelect: value
+        })
+    }
+
     onBroadcastCheckboxChange(e) {
         this.setState({
             disabled: !e.target.checked
         });
+    }
+
+    onBroadcastLuxChange(value) {
+        this.setState({
+            broadcastLux: value
+        })
+    }
+
+    onLuxGroupSelectChange(value,option) {
+        this.setState({
+            luxGroup: value
+        })
+    }
+
+    
+
+    onLampCheckboxGroupChange(checkedValues) {
+        let tmpCheckboxState = [0,0,0,0];
+        for (const key of checkedValues) {
+            tmpCheckboxState[key] = 1;
+        }
+        this.state.lampCheckboxState = tmpCheckboxState.join('');
     }
 
     handleLuxSetting(e) {
@@ -62,6 +100,22 @@ export default class LampSwitchingState extends Component {
         luxState[0] = this.state.lux1Disabled ? 255 : this.state.lux1State;
         luxState[1] = this.state.lux2Disabled ? 255 : this.state.lux2State;
         this.props.uploadLux(luxState);
+    }
+
+    handleEasySetting(e) {
+        const { groupSelect, onOffSelect, lampCheckboxState, luxGroup, broadcastLux, disabled } = this.state;
+        const cmdType = groupSelect + onOffSelect;
+        const chkFlagStr =  disabled ? '0000' : `${lampCheckboxState},${broadcastLux},${broadcastLux},${luxGroup},${luxGroup}`;
+        console.log(chkFlagStr);
+        this.props.uploadEasySet(cmdType, chkFlagStr);
+    }
+
+    handleRestoreTimeControl(e) {
+        const { groupSelect, onOffSelect, lampCheckboxState, luxGroup, broadcastLux, disabled } = this.state;
+        const cmdType = "恢复时控"
+        const chkFlagStr =  disabled ? '0000' : `${lampCheckboxState},${broadcastLux},${broadcastLux},${luxGroup},${luxGroup}`;
+
+        this.props.uploadEasySet(cmdType, chkFlagStr);
     }
 
     render() {
@@ -81,6 +135,10 @@ export default class LampSwitchingState extends Component {
             100: '100'
         };
 
+        const lampOptions = [
+            { label: '灯1', value: '0' },
+            { label: '灯2', value: '1' }
+        ]
 
         return (
             <div className="c-cls-container">
@@ -97,34 +155,33 @@ export default class LampSwitchingState extends Component {
                     <Col span="12">
                         <Card title="快速响应广播和强制控制" bodyStyle={{ padding: 10 }}>
                             <div style={{ display: 'flex' }}>
-                                <Select className="c-cls-select" defaultValue={this.state.groupSelect}>
-                                    <Option key="all">全部</Option>
-                                    <Option key="odd">奇数杆</Option>
-                                    <Option key="even">偶数杆</Option>
-                                    <Option key="group">组号</Option>
+                                <Select className="c-cls-select" defaultValue={this.state.groupSelect} onSelect={this.onGroupSelect.bind(this)}>
+                                    <Option key="全部">全部</Option>
+                                    <Option key="奇数杆">奇数杆</Option>
+                                    <Option key="偶数杆">偶数杆</Option>
+                                    <Option key="组号">组号</Option>
                                 </Select>
-                                <Select className="c-cls-select" defaultValue={this.state.onOffSelect}>
-                                    <Option key="open">开灯</Option>
-                                    <Option key="close">关灯</Option>
+                                <Select className="c-cls-select" defaultValue={this.state.onOffSelect} onSelect={this.onOnOffSelect.bind(this)}>
+                                    <Option key="开灯">开灯</Option>
+                                    <Option key="关灯">关灯</Option>
                                 </Select>
                             </div>
                             <div>
                                 <Checkbox style={{ margin: '8px 4px' }} onChange={this.onBroadcastCheckboxChange.bind(this)}>拓展广播</Checkbox>
                                 <div style={{ display: 'flex' }}>
                                     <span className="c-cls-span">亮度</span>
-                                    <Slider marks={masks} style={{ flex: 1 }} disabled={this.state.disabled}></Slider>
+                                    <Slider marks={masks} style={{ flex: 1 }} disabled={this.state.disabled} onAfterChange={this.onBroadcastLuxChange.bind(this)}></Slider>
                                 </div>
                                 <div style={{ display: 'flex' }}>
                                     <span className="c-cls-span">分组号</span>
-                                    <Select className="c-cls-select" disabled={this.state.disabled}>
+                                    <Select className="c-cls-select" disabled={this.state.disabled} onSelect={this.onLuxGroupSelectChange.bind(this)}>
                                         {children}
                                     </Select>
-                                    <Checkbox className="c-cls-checkbox" disabled={this.state.disabled}>灯1</Checkbox>
-                                    <Checkbox className="c-cls-checkbox" disabled={this.state.disabled}>灯2</Checkbox>
+                                    <CheckboxGroup options={lampOptions} onChange={this.onLampCheckboxGroupChange.bind(this)} disabled={this.state.disabled}/>
                                 </div>
                                 <div style={{ display: 'flex', width: '100%' }}>
-                                    <Button type="danger" className="c-cls-button2">设置</Button>
-                                    <Button type="primary" className="c-cls-button2">恢复时控</Button>
+                                    <Button type="danger" className="c-cls-button2" onClick={this.handleEasySetting.bind(this)}>设置</Button>
+                                    <Button type="primary" className="c-cls-button2" onClick={this.handleRestoreTimeControl.bind(this)}>恢复时控</Button>
                                 </div>
                             </div>
                         </Card>

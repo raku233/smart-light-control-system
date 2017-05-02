@@ -10,8 +10,8 @@ const parseParam = param => {
 };
 
 const rootURL = 'http://localhost:3000';
-const pathName = '/single_lamp_dimming_set/set_status';
-const param = { devID: '1', rodNum: ['1-1'], lux1: '100', lux2: '100' };
+const pathName = '/single_lamp_dimming_time_control_forced_switch/set_status';
+const param = { devID: '1', rodNum: ['1-1'], cmdType: '设置时控灯1', timeSetting: [{ startTime: '13:00', endTime: '18:00', lux: '80' }, { startTime: '13:00', endTime: '18:00', lux: '80' }, { startTime: '13:00', endTime: '18:00', lux: '80' }, { startTime: '13:00', endTime: '18:00', lux: '80' }] };
 const url = rootURL + pathName;
 
 fetch(url, {

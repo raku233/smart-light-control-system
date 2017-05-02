@@ -6,7 +6,6 @@ import { actions as viewActions } from './redux';
 import DeviceList from '../../components/common/device-list';
 import LampSwitchingState from '../../components/single-lamp-switch/lamp-switching-state';
 import SingleLampParameterTable from '../../components/common/single-lamp-parameter-table';
-import RodList from '../../components/common/rod-list';
 import './index.css';
 
 
@@ -17,10 +16,9 @@ class SingleLampSwitch extends Component {
             <div style={{ height: '100%', width: '100%', display: 'flex' }}>
                 <DeviceList {...deviceList} {...deviceListActions} {...rodListActions}></DeviceList>
                 <div style={{ flex: 1, height: '100%' }}>
+                    <SingleLampParameterTable {...rodList} {...rodListActions} />
                     <LampSwitchingState {...viewActions} {...viewData} />
-                    <SingleLampParameterTable />
                 </div>
-                <RodList {...rodList} {...rodListActions} {...viewData} {...viewActions} />
             </div>
         );
     }
