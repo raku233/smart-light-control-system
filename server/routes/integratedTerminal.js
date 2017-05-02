@@ -48,10 +48,9 @@ const fn_setSwitchingStatus = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOF
     }
     N8_str = N8_str.split('').reverse().join('');
     // 开关灯模式
-    if (config.mode === 'normal') mode_str += '110';
-    else mode_str += '101';
-    if (config.method === 'manualControl') mode_str += '10';
-    else mode_str += '01';
+    mode_str += config.mode === 'normal' ? '110' : '101';
+    mode_str += config.isManualControl ? '1' : '0';
+    mode_str += config.isTimeControl ? '1' : '0';
     mode_str += '110';
 
     return {

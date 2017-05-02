@@ -27,7 +27,7 @@ const initialState = {
 
 export const LOAD_GROUPCONTROLSTATUS = 'LOAD_GROUPCONTROLSTATUS';
 export const UPDATE_GROUPCONTROLSETTING = 'UPDATE_GROUPCONTROLSETTING';
-export const UPDATE_ALLSWITCHSETTING = 'UPDATE_ALLSWITCHSETTING';
+export const UPDATE_GROUPCONTROLALLSWITCH = 'UPDATE_GROUPCONTROLALLSWITCH';
 export const UPLOAD_GROUPTIMECONTROLSETTING = 'UPLOAD_GROUPTIMECONTROLSETTING';
 export const UPLOAD_GROUPWEEKCONTROLSETTING = 'UPLOAD_GROUPWEEKCONTROLSETTING';
 export const UPLOAD_GROUPSWITCHINGCONTROLSETTING = 'UPLOAD_GROUPSWITCHINGCONTROLSETTING';
@@ -53,9 +53,9 @@ export function updateViewData(status) {
     };
 }
 
-export function updateAllSwitchingSetting() {
+export function updateGroupControlAllSwitch() {
     return {
-        type: UPDATE_ALLSWITCHSETTING,
+        type: UPDATE_GROUPCONTROLALLSWITCH,
         payload: {
             switchingOption: [true, true, true, true, true, true, true, true]
         }
@@ -119,7 +119,7 @@ function viewData(state = initialState, action) {
         };
     }
 
-    case UPDATE_ALLSWITCHSETTING: {
+    case UPDATE_GROUPCONTROLALLSWITCH: {
         return {
             ...state,
             switchingStatusGroup: action.payload.switchingOption
@@ -177,7 +177,7 @@ export default combineReducers({
 export const actions = {
     loadViewData,
     updateViewData,
-    updateAllSwitchingSetting,
+    updateGroupControlAllSwitch,
     uploadGroupTimeControlSetting,
     uploadGroupWeekControlSetting,
     uploadGroupSwitchingControlSetting

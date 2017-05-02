@@ -28,7 +28,7 @@ export default class LampSwitchingConsole extends Component {
     }
 
     openAllSwitching() {
-        this.props.updateAllSwitchingSetting();
+        this.props.updateGroupControlAllSwitch();
     }
 
     uploadSetting() {
