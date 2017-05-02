@@ -53,8 +53,8 @@ export default class TimeRange extends Component {
         const { isStartTimeRight, isEndTimeRight } = this.state;
         let { startTime, endTime } = this.props;
         const { size, disabled } = this.props;
-        startTime = moment(startTime, 'HH:mm');
-        endTime = moment(endTime, 'HH:mm');
+        startTime = moment(startTime || '0:00', 'HH:mm');
+        endTime = moment(endTime || '0:00', 'HH:mm');
 
         const sTimePickerClass = classNames({
                 'c-tr-start-time': true,
