@@ -234,6 +234,15 @@ const fn_fetchTimeControlSetGroupWeek = sharedRouteHandlerGenerator([SYSTEMFUNCT
     };
 });
 
+// 手机端——时控——获取
+const fn_fetchTimeControlGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.GET_ONOFFTIME], param => {
+    const { devId, termStr } = param;
+    return {
+        Dev_id: devId, 
+        term_str: termStr, 
+    };
+});
+
 // 手机端——集中开关——组设
 const fn_fetchCentralizedSwitchGroupSet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.SET_ONOFF], param => {
     const { DevId, N8Str, modeStr } = param;
@@ -241,6 +250,13 @@ const fn_fetchCentralizedSwitchGroupSet = sharedRouteHandlerGenerator([SYSTEMFUN
         Dev_id: DevId,
         N8_str: N8Str,
         mode_str: modeStr,
+    };
+});
+// 手机端——集中开关——获取
+const fn_fetchCentralizedSwitchGet = sharedRouteHandlerGenerator([SYSTEMFUNCTION_API.GET_ONOFF], param => {
+    const { devId } = param;
+    return {
+        Dev_id: devId,
     };
 });
 
@@ -259,4 +275,6 @@ module.exports = {
     'POST /time_control_set_group_time/set_status': fn_fetchTimeControlSetGroupTime,
     'POST /time_control_set_group_week/set_status': fn_fetchTimeControlSetGroupWeek,
     'POST /centralized_switch_group_set/set_status': fn_fetchCentralizedSwitchGroupSet,
+    'POST /centralized_switch_get/get_status': fn_fetchCentralizedSwitchGet,
+    'POST /time_control_get/get_status': fn_fetchTimeControlGet,
 };
