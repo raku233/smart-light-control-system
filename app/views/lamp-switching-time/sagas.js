@@ -1,7 +1,7 @@
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 
 import { fetchTimeControlInfo, uploadTimeControlInfo } from '../../api/integratedTerminal';
-import { LOAD_TIMECONTROLINFO, UPLOAD_TIMECONTROLINFO, loadViewDataSuccess, loadViewDataError } from './redux';
+import { LOAD_TIMECONTROLINFO, UPLOAD_TIMECONTROLINFO, loadViewData, loadViewDataSuccess, loadViewDataError } from './redux';
 
 import { showNotification } from '../../utils/notification';
 
@@ -35,7 +35,15 @@ function* uploadData(action) {
     };
 
     const { rslt } = yield call(uploadTimeControlInfo, param);
-    if (rslt) yield call(showNotification, rslt);
+    if (rslt) {
+        yield call(showNotification, rslt);
+        yield new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, 3500);
+        });
+        yield put(loadViewData());
+    }
 }
 
 export function* watchFetchData() {
