@@ -25,3 +25,8 @@
     text-align: right;
     flex: 1;
 }
+
+/* 纠正组件的spin容器宽度问题（官方bug？） */
+.c-rq-rit-table .ant-spin-container {
+    width: 100%;
+}
