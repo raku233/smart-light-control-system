@@ -34,9 +34,9 @@ export default class DeviceList extends Component {
         // 根据设备列表数据生成视图
         if (deviceGroup && !error) {
             for (const group in deviceGroup) {
-                treeNodes.push(<TreeNode className="c-dl-parent-node" title={group} key={group} >
+                treeNodes.push(<TreeNode type="parent-node" className="c-dl-parent-node" title={group} key={group} >
                     {deviceGroup[group].map(deviceInfo => (
-                        <TreeNode className={`c-dl-child-node c-dl-${deviceInfo.connection === 'disconnect' ? 'disconnect' : 'connect'}-node`} title={deviceInfo.name} key={deviceInfo.name} deviceInfo={deviceInfo} ></TreeNode>
+                        <TreeNode type="child-node" className={`c-dl-child-node c-dl-${deviceInfo.connection === 'disconnect' ? 'disconnect' : 'connect'}-node`} title={deviceInfo.name} key={deviceInfo.name} deviceInfo={deviceInfo} ></TreeNode>
                     ))}
                 </TreeNode>);
             }
@@ -50,9 +50,11 @@ export default class DeviceList extends Component {
     }
 
     handleDeviceSelect(selectedKey, e) {
-        console.log('key', selectedKey);
         const [deviceNode] = e.selectedNodes;
-        const { deviceInfo, connection } = deviceNode.props;
+        const { deviceInfo, type } = deviceNode.props;
+        if (type === 'parent-node') return;
+
+        const connection = !(deviceInfo.connection === 'disconnect');
         this.props.loadViewData(deviceInfo);
 
         if (!connection) message.error('该设备未连接到平台！');
