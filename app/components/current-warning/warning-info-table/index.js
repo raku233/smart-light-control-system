@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Table, InputNumber } from 'antd';
+import { Table, InputNumber, Button } from 'antd';
 
 import './index.css';
 
@@ -12,6 +12,7 @@ export default class WarningInfoTable extends Component {
 
         this.handleNumberInputChange = this.handleNumberInputChange.bind(this);
         this.handlePaginationChange = this.handlePaginationChange.bind(this);
+        this.reloadData = this.reloadData.bind(this);
     }
 
     componentDidMount() {
@@ -24,6 +25,10 @@ export default class WarningInfoTable extends Component {
 
     handlePaginationChange(page, pageSize) {
         this.props.updateViewData({ currentPage: page });
+    }
+
+    reloadData() {
+       this.props.loadViewData();
     }
 
     render() {
@@ -41,6 +46,7 @@ export default class WarningInfoTable extends Component {
               <div className="c-cw-wit-number-input">
                 <span className="c-cw-wit-label">当页显示历史记录条数: </span>
                 <InputNumber min={1} max={50} value={displayQuantity} onChange={this.handleNumberInputChange} />
+                <Button className="c-cw-wit-reload-btn" shape="circle" icon="reload" onClick={this.reloadData}></Button>
               </div>
               <div className="c-cw-wit-table-info">
                 <span className="c-rq-rit-label">当前显示 {start} - {end} 条记录  共 {length} 条记录</span>
