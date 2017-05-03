@@ -143,6 +143,13 @@ module.exports = {
         requiredParamKeys: ['group_name', 'group_typ', 'week1_int', 'week2_int', 'week3_int', 'week4_int', 'week5_int', 'week6_int', 'week7_int', 'week8_int'],
         shouldFiltered: true
     },//组设星期
+    GET_ONOFFTIME: {
+        method: 'get',
+        pathName: '/wcf/get_onofftime',
+        param: {},
+        requiredParamKeys: ['Dev_id', 'term_str'],
+        shouldFiltered: true
+    },//获取
 
     /* 手机端——集中开关 */
     SET_ONOFF: {
@@ -152,4 +159,11 @@ module.exports = {
         requiredParamKeys: ['Dev_id', 'N8_str', 'mode_str'],
         shouldFiltered: true
     },//组设
+    GET_ONOFF: {
+        method: 'get',
+        pathName: '/wcf/get_onoff',
+        param: {},
+        requiredParamKeys: ['Dev_id'],
+        shouldFiltered: true
+    },//获取
 };
