@@ -28,7 +28,8 @@ const fn_fetchSwitchingStatus = sharedRouteHandlerGenerator(
         }
         const config = {
             mode: branchStatus[8] ? 'normal' : 'emergency',
-            method: branchStatus[9] ? 'manualControl' : 'timeControl'
+            isManualControl: branchStatus[9],
+            isTimeControl: branchStatus[10]
         };
 
         const data = { statusGroup, config, uid };
@@ -135,7 +136,8 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
     workPeriod = workPeriod.filter((value, index) => {
         return timeControlInfo.versionId[index] == true;
     });
-    const config = { workPeriod };
+    const weekAvailable = timeControlInfo.versionId[8] == true;
+    const config = { workPeriod, weekAvailable };
 
     const data = { statusGroup, config };
     return JSON.stringify(data);
@@ -143,8 +145,9 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
 
 // 设置时控信息
 const fn_setTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOFFTIME], param => {
+    console.log('param', param);
     const { devID, period, statusGroup, config } = param,
-        { workPeriod } = config;
+        { workPeriod, weekAvailable } = config;
 
     const weekArray = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
     let week_str = '';
@@ -152,9 +155,10 @@ const fn_setTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOF
         if (workPeriod.includes(weekDay)) week_str += '1';
         else week_str += '0';
     }
+    week_str += weekAvailable ? '1' : '0';
 
     const parameter = {};
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < statusGroup.length; i++) {
         parameter[`time${i + 1}_on`] = statusGroup[i].startTime || '0:00';
         parameter[`time${i + 1}_off`] = statusGroup[i].endTime || '0:00';
     }
