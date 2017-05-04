@@ -7,6 +7,7 @@ const COMMON_API = require('../api/common.js'),
 const sharedRouteHandlerGenerator = routeHandlerGenerator(COMMON_API);
 
 // 获取开关灯状态
+// TODO: 需修改传值和响应的模式
 const fn_fetchSwitchingStatus = sharedRouteHandlerGenerator(
     [SPECIFIC_API.GSET_TIME_CLASS, SPECIFIC_API.GSET_ONOFF_READ], undefined, ([dataX, dataY]) => {
         const availableBranches = dataX.enable_time_class,
@@ -136,7 +137,7 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
     workPeriod = workPeriod.filter((value, index) => {
         return timeControlInfo.versionId[index] == true;
     });
-    const weekAvailable = timeControlInfo.versionId[8] == true;
+    const weekAvailable = timeControlInfo.versionId[7] == true;
     const config = { workPeriod, weekAvailable };
 
     const data = { statusGroup, config };
@@ -145,7 +146,6 @@ const fn_fetchTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.GSET_T
 
 // 设置时控信息
 const fn_setTimeControlInfo = sharedRouteHandlerGenerator([SPECIFIC_API.SET_ONOFFTIME], param => {
-    console.log('param', param);
     const { devID, period, statusGroup, config } = param,
         { workPeriod, weekAvailable } = config;
 
