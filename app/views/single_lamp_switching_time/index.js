@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button, Slider, Card, Row, Col, Checkbox, Table } from 'antd';
+import { Row, Col } from 'antd';
+import QueueAnim from 'rc-queue-anim';
 import { actions as commonActions } from '../../components/common/redux';
 import DeviceList from '../../components/common/device-list';
 import SingleLampParameterTable from '../../components/common/single-lamp-parameter-table';
@@ -9,33 +10,29 @@ import SwitchingTimeTable from '../../components/single-lamp-switching-time/swit
 import PeriodSetting from '../../components/single-lamp-switching-time/period-setting';
 import './index.css';
 
-const { Column } = Table;
-
 class SIngleLampSwitchingTime extends Component {
     render() {
-        const { deviceList, deviceListActions } = this.props;
+        const { deviceList, deviceListActions, rodList, rodListActions } = this.props;
+        const { devID } = rodList;
 
         return (
             <div style={{ height: '100%', width: '100%', display: 'flex' }}>
-                <DeviceList {...deviceList} {...deviceListActions}></DeviceList>
-                <div style={{ flex: 1, height: '100%' }}>
-                    <h2>开关灯时间设置</h2>
-                    <Row>
-                        <Col span="18">
-                            <SwitchingTimeTable />
-                        </Col>
-                        <Col span="6">
-                            <PeriodSetting />
-                        </Col>
-                    </Row>
-                    <div className="v-slst-button-group">
-                        <Button type="primary" className="v-slst-button">查询详细信息</Button>
-                        <Button type="primary" className="v-slst-button">查询电流信息</Button>
-                        <Button type="primary" className="v-slst-button">查询开关状态</Button>
-                        <Button type="primary" className="v-slst-button">查询亮度信息</Button>
-                    </div>
-                    <SingleLampParameterTable />
-                </div>
+                <DeviceList {...deviceList} {...deviceListActions} {...rodListActions}></DeviceList>
+                <QueueAnim className="v-mls-anim-wrapper" delay={100} interval={200} type={['right', 'left']} ease={['easeOutQuart', 'easeInOutQuart']}>
+                    { devID ? [
+                        <div key="title" style={{ flex: 1, height: '100%' }}>
+                            <SingleLampParameterTable key="table" {...rodList} {...rodListActions} />
+                            <Row key="row" style={{ marginLeft: 4, marginTop: 16 }}>
+                                <Col span="18">
+                                    <SwitchingTimeTable />
+                                </Col>
+                                <Col span="6">
+                                    <PeriodSetting />
+                                </Col>
+                            </Row>
+                        </div>
+                    ] : <span className="v-mls-placeholder">从左侧列表中选择设备后展开设置</span> }
+                </QueueAnim>
             </div>
         );
     }
@@ -43,10 +40,12 @@ class SIngleLampSwitchingTime extends Component {
 
 export default connect(state => {
     return {
-        deviceList: state.Common.deviceList
+        deviceList: state.Common.deviceList,
+        rodList: state.Common.rodList
     };
 }, dispatch => {
     return {
-        deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch)
+        deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch),
+        rodListActions: bindActionCreators(commonActions.rodListActions, dispatch)
     };
 })(SIngleLampSwitchingTime);

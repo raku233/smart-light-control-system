@@ -25,10 +25,6 @@ export default class LampSwitchingState extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { result } = nextProps;
-        if(result) {
-            message.info(result);
-        }
     }
 
     onLamp1CheckboxChange(e) {

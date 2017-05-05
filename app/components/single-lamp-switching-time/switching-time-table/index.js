@@ -11,43 +11,50 @@ export default class SwitchingTimeTable extends Component {
         super(props);
 
         this.state = {
-            data: [
-                { key: '1', lampNum: '1', luminance: { editable: false, value: 100 } },
-                { key: '2', lampNum: '2', luminance: { editable: false, value: 100 } },
-                { key: '3', lampNum: '3', luminance: { editable: false, value: 100 } },
-                { key: '4', lampNum: '4', luminance: { editable: false, value: 100 } },
+            statusGroup: [
+                { key: '1', lampNum: '1', timeRange: { startTime: '00:00', endTime: '00:00' }, luminance: { editable: false, value: 100 } },
+                { key: '2', lampNum: '2', timeRange: { startTime: '00:00', endTime: '00:00' }, luminance: { editable: false, value: 100 } },
+                { key: '3', lampNum: '3', timeRange: { startTime: '00:00', endTime: '00:00' }, luminance: { editable: false, value: 100 } },
+                { key: '4', lampNum: '4', timeRange: { startTime: '00:00', endTime: '00:00' }, luminance: { editable: false, value: 100 } },
             ]
         };
     }
 
+    updateTimeRange(index, timeRange) {
+        const { statusGroup } = this.props;
+        statusGroup[index].startTime = timeRange.startTime;
+        statusGroup[index].endTime = timeRange.endTime;
+        this.props.updateViewData(statusGroup);
+    }
+
     handleValueChange(key, index, value) {
-        const { data } = this.state;
-        data[index][key].value = value;
-        this.setState({ data });
+        const { statusGroup } = this.state;
+        statusGroup[index][key].value = value;
+        this.setState({ statusGroup });
     }
 
     edit(index) {
-        const { data } = this.state;
-        Object.keys(data[index]).forEach(item => {
-            if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-                data[index][item].editable = true;
+        const { statusGroup } = this.state;
+        Object.keys(statusGroup[index]).forEach(item => {
+            if (statusGroup[index][item] && typeof statusGroup[index][item].editable !== 'undefined') {
+                statusGroup[index][item].editable = true;
             }
         });
-        this.setState({ data });
+        this.setState({ statusGroup });
     }
 
     editDone(index, type) {
-        const { data } = this.state;
-        Object.keys(data[index]).forEach(item => {
-            if (data[index][item] && typeof data[index][item].editable !== 'undefined') {
-                data[index][item].editable = false;
-                data[index][item].status = type;
+        const { statusGroup } = this.state;
+        Object.keys(statusGroup[index]).forEach(item => {
+            if (statusGroup[index][item] && typeof statusGroup[index][item].editable !== 'undefined') {
+                statusGroup[index][item].editable = false;
+                statusGroup[index][item].status = type;
             }
         });
-        this.setState({ data }, () => {
-            Object.keys(data[index]).forEach(item => {
-                if (data[index][item] && data[index][item].editable !== 'undefined') {
-                    delete data[index][item].status;
+        this.setState({ statusGroup }, () => {
+            Object.keys(statusGroup[index]).forEach(item => {
+                if (statusGroup[index][item] && statusGroup[index][item].editable !== 'undefined') {
+                    delete statusGroup[index][item].status;
                 }
             });
         });
@@ -71,11 +78,11 @@ export default class SwitchingTimeTable extends Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { statusGroup } = this.state;
 
         return (
             <div className="c-slst-stt-container">
-                <Table size="small" dataSource={data} pagination={false}>
+                <Table size="small" dataSource={statusGroup} pagination={false}>
                     <Column
                       title="灯号"
                       width="40"
@@ -83,12 +90,13 @@ export default class SwitchingTimeTable extends Component {
                       dataIndex="lampNum"
                     />
                     <Column
+                      width={280}
                       title="起止时间"
                       key="timeRange"
                       dataIndex="timeRange"
-                      render={(text, record) => {
+                      render={(text, record, index) => {
                           return (
-                              <TimeRange size="small" />
+                              <TimeRange startTime={record.startTime} endTime={record.endTime} updateTimeRange={this.updateTimeRange.bind(this, index)}/>
                           );
                       }}
                     />
@@ -97,14 +105,14 @@ export default class SwitchingTimeTable extends Component {
                       width="100"
                       key="luminance"
                       dataIndex="luminance"
-                      render={(object, record, index) => this.renderEditableColumn(data, index, 'luminance', '%', object)}
+                      render={(object, record, index) => this.renderEditableColumn(statusGroup, index, 'luminance', '%', object)}
                     />
                     <Column
                       width={100}
                       title="操作"
                       key="operation"
                       render={(text, record, index) => {
-                          const { editable } = this.state.data[index].luminance;
+                          const { editable } = this.state.statusGroup[index].luminance;
 
                           return (
                             <div>

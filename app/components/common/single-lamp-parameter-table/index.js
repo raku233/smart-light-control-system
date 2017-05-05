@@ -57,7 +57,7 @@ export default class SingleLampParameterTable extends Component {
                 <Table 
                   dataSource={this.props.rodList}
                   rowSelection={rowSelection}
-                  scroll={{ x: false, y: 150 }}
+                  scroll={{ x: false, y: 100 }}
                   pagination={false}
                   size="small"
                   loading={this.props.loading}
