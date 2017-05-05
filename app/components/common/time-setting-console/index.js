@@ -15,6 +15,7 @@ export default class TimeSettingConsole extends Component {
         this.refreshData = this.refreshData.bind(this);
         this.uploadData = this.uploadData.bind(this);
         this.updateCheckedList = this.updateCheckedList.bind(this);
+        this.updateWeekAvailable = this.updateWeekAvailable.bind(this);
         this.updatePeriod = this.updatePeriod.bind(this);
     }
 
@@ -32,12 +33,18 @@ export default class TimeSettingConsole extends Component {
         this.props.updateViewData({ config });
     }
 
+    updateWeekAvailable(value) {
+        const { config } = this.props;
+        config.weekAvailable = value;
+        this.props.updateViewData({ config });
+    }
+
     updatePeriod(period) {
         this.props.updateViewData({ period });
     }
 
     render() {
-        const { workPeriod } = this.props.config;
+        const { workPeriod, weekAvailable } = this.props.config;
         const { period } = this.props;
 
         return (
@@ -52,7 +59,7 @@ export default class TimeSettingConsole extends Component {
                     </div>
                     <div className="c-tsc-config">
                         <span className="c-tsc-label">是否采用星期来开灯</span>
-                        <Switch unCheckedChildren={<Icon type="cross" />} checkedChildren={<Icon type="check" />} />
+                        <Switch unCheckedChildren={<Icon type="cross" />} checkedChildren={<Icon type="check" />} checked={weekAvailable} onChange={this.updateWeekAvailable} />
                     </div>
                     <div className="c-tsc-config">
                         <div className="c-tsc-label">周期配置：</div>

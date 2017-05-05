@@ -6,7 +6,10 @@ const initialState = {
     devID: '',
     period: '时间段1',
     statusGroup: [],
-    config: {}
+    config: {
+        workPeriod: [],
+        weekAvailable: false
+    }
 };
 
 export const LOAD_TIMECONTROLINFO = 'LOAD_TIMECONTROLINFO';
