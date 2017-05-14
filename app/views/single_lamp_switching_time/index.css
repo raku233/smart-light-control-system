@@ -10,3 +10,22 @@
 .v-slst-button:first-child {
     margin-left: 0;
 }
+
+.v-mls-anim-wrapper {
+    height: 100%;
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.v-mls-placeholder {
+    font-size: 25px;
+    color: lightgray;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 4px 2px;
+    border: 2px dashed lightgray;
+}
