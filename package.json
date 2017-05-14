@@ -15,7 +15,7 @@
     "clean:build": "rimraf build/",
     "clean:logs": "rimraf logs/",
     "api": "pm2 start ecosystem.config.js --only api-server && pm2 logs api-server",
-    "produce": "npm run build && cross-env NODE_ENV=production node start.js"
+    "produce": "npm run build && pm2 start ecosystem.config.js --only online-server && pm2 logs online-server"
   },
   "dependencies": {
     "antd": "^2.8.1",

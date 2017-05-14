@@ -4,6 +4,12 @@ var webServerConfig = {
             NODE_ENV: 'development'
         }
     },
+    onlineServerConfig = {
+        name: 'online-server',
+        env: {
+            NODE_ENV: 'production'
+        }
+    },
     apiServerConfig = {
         name: 'api-server',
         env: {
@@ -22,6 +28,7 @@ var commonConfig = {
 module.exports = {
     apps: [
         Object.assign(webServerConfig, commonConfig),
-        Object.assign(apiServerConfig, commonConfig)
+        Object.assign(apiServerConfig, commonConfig),
+        Object.assign(onlineServerConfig, commonConfig)
     ]
 };
