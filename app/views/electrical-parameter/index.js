@@ -24,8 +24,8 @@ class ElectricalParameter extends Component {
                     <ElectricalParameterTable {...viewData} />
                     <div className="v-ep-title">接触器</div>
                     <ContractorInfoTable {...viewData} />
-                    <div className="v-ep-title">支路详细信息</div>
-                    <BranchInfoTable />
+                    {/* <div className="v-ep-title">支路详细信息</div>
+                    <BranchInfoTable /> */}
                 </div>
             </div>
         );
