@@ -95,7 +95,7 @@ export default class TriphaseElectricityParameterChart extends Component {
                         <Spin key="chart" className="c-tepq-tepc-spin" spinning={loading}>
                             <div id="container"></div>
                         </Spin>
-                    ] : <span className="c-ecp-ecc-placeholder">从左侧列表中选择设备后展开设置</span>}
+                    ] : <span className="c-tepq-tepc-placeholder">从左侧列表中选择设备后展开设置</span>}
                 </QueueAnim>
             </div>
         );

@@ -31,12 +31,15 @@ var options = {
 
 module.exports = {
     entry: isDev
-            ? { app: ['babel-polyfill', path.resolve(options.srcPath, 'app.dev.js'), options.script] }
+            ? {
+                app: ['babel-polyfill', path.resolve(options.srcPath, 'app.dev.js'), options.script]
+            }
             : ['babel-polyfill', path.resolve(options.srcPath, 'app.prod.js')],
     output: {
         filename: 'bundle.js',
         path: options.buildPath,
-        publicPath: options.publicPath
+        publicPath: options.publicPath,
+        chunkFilename: '[name].[chunkhash:5].chunk.js'
     },
     resolve: {
         extensions: ['', '.jsx', '.js', '.sass']
@@ -62,7 +65,7 @@ module.exports = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Smart Light Control System'
+            title: 'Smart Light Control System',
         }),
         new webpack.ProvidePlugin({ 'window.jQuery': 'jquery' }),
         isDev
@@ -80,8 +83,13 @@ module.exports = {
             : null,
         !isDev
             ? new webpack.optimize.UglifyJsPlugin({
-                compressor: {
-                    warnings: false
+                beautify: false,
+                comments: false,
+                compress: {
+                    warnings: false,
+                    drop_console: true,
+                    collapse_vars: true,
+                    reduce_vars: true,
                 }
             })
             : null
