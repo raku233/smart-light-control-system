@@ -13,6 +13,7 @@ import { DailyElectricityConsumptionQuery } from '../views/daily-electricity-con
 import { AssetsProportionChart } from '../views/assets-proportion-chart/sagas';
 import { TriphaseElectricityParameterQuery } from '../views/triphase-electricity-parameter-query/sagas';
 import { SingleLampSwitch } from '../views/single-lamp-switch/sagas.js';
+import { SingleLampSwitchingTime } from '../views/single_lamp_switching_time/sagas.js';
 
 
 function combineSagas(...sagaArrays) {
@@ -40,7 +41,8 @@ export default function* rootSaga() {
         EnergyConsumptionChart,
         DailyElectricityConsumptionQuery,
         TriphaseElectricityParameterQuery,
-        SingleLampSwitch
+        SingleLampSwitch,
+        SingleLampSwitchingTime
     );
 
     yield saga;

@@ -11,7 +11,8 @@ const URL = {
     FETCH_SINGLE_PARAM_HISTORY_INIT: '/single_param_history_init/get_status',
     FETCH_SINGLE_PARAM_HISTORY_QUERY: '/single_param_history_query/get_status',
     UPLOAD_SINGLE_LAMP_DIMMING: '/single_lamp_dimming_set/set_status',
-    UPLOAD_SINGLE_LAMP_DIMMING_EASY_SET: '/single_lamp_dimming_easy_set/set_status'
+    UPLOAD_SINGLE_LAMP_DIMMING_EASY_SET: '/single_lamp_dimming_easy_set/set_status',
+    UPLOAD_SINGLE_LAMP_DIMMING_TIME_CONTROL: '/single_lamp_dimming_time_control_forced_switch/set_status'
 };
 
 export const fetchTerminalMessage = dataFetcher(URL.FETCH_TERMINAL_MESSAGE);
@@ -24,3 +25,4 @@ export const fetchSingleParamHistoryInit = dataFetcher(URL.FETCH_SINGLE_PARAM_HI
 export const fetchSingleParamHistoryQuery = dataFetcher(URL.FETCH_SINGLE_PARAM_HISTORY_QUERY);
 export const uploadSingleLampDimming = dataFetcher(URL.UPLOAD_SINGLE_LAMP_DIMMING);
 export const uploadSingleLampDimmingEasySet = dataFetcher(URL.UPLOAD_SINGLE_LAMP_DIMMING_EASY_SET);
+export const uploadSingleLampDimmingTimeControl = dataFetcher(URL.UPLOAD_SINGLE_LAMP_DIMMING_TIME_CONTROL);

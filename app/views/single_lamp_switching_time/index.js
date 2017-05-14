@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Row, Col } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import { actions as commonActions } from '../../components/common/redux';
+import { actions as viewActions } from './redux';
 import DeviceList from '../../components/common/device-list';
 import SingleLampParameterTable from '../../components/common/single-lamp-parameter-table';
 import SwitchingTimeTable from '../../components/single-lamp-switching-time/switching-time-table';
@@ -12,7 +13,7 @@ import './index.css';
 
 class SIngleLampSwitchingTime extends Component {
     render() {
-        const { deviceList, deviceListActions, rodList, rodListActions } = this.props;
+        const { deviceList, deviceListActions, rodList, rodListActions, viewActions, viewData } = this.props;
         const { devID } = rodList;
 
         return (
@@ -24,10 +25,10 @@ class SIngleLampSwitchingTime extends Component {
                             <SingleLampParameterTable key="table" {...rodList} {...rodListActions} />
                             <Row key="row" style={{ marginLeft: 4, marginTop: 16 }}>
                                 <Col span="18">
-                                    <SwitchingTimeTable />
+                                    <SwitchingTimeTable {...viewData} {...viewActions} />
                                 </Col>
                                 <Col span="6">
-                                    <PeriodSetting />
+                                    <PeriodSetting {...viewActions} />
                                 </Col>
                             </Row>
                         </div>
@@ -41,11 +42,13 @@ class SIngleLampSwitchingTime extends Component {
 export default connect(state => {
     return {
         deviceList: state.Common.deviceList,
-        rodList: state.Common.rodList
+        rodList: state.Common.rodList,
+        viewData: state.SingleLampSwitchingTime.viewData
     };
 }, dispatch => {
     return {
         deviceListActions: bindActionCreators(commonActions.deviceListActions, dispatch),
-        rodListActions: bindActionCreators(commonActions.rodListActions, dispatch)
+        rodListActions: bindActionCreators(commonActions.rodListActions, dispatch),
+        viewActions: bindActionCreators(viewActions, dispatch)
     };
 })(SIngleLampSwitchingTime);

@@ -13,7 +13,6 @@ class ElectricDetail extends Component {
         };
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         const { currentDetail } = nextProps;
         const electricParameter = [
             { key: '灯1电流', value: currentDetail.I1 },
