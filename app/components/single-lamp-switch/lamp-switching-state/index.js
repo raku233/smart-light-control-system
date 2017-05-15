@@ -18,7 +18,7 @@ export default class LampSwitchingState extends Component {
             lux2Disabled: true,
             groupSelect: '全部',
             onOffSelect: '开灯',
-            lampCheckboxState: '0000',
+            lampCheckboxState: '1100',
             broadcastLux : 0,
             luxGroup: 255,
         };
@@ -101,7 +101,7 @@ export default class LampSwitchingState extends Component {
     handleEasySetting(e) {
         const { groupSelect, onOffSelect, lampCheckboxState, luxGroup, broadcastLux, disabled } = this.state;
         const cmdType = groupSelect + onOffSelect;
-        const chkFlagStr =  disabled ? '0000' : `${lampCheckboxState},${broadcastLux},${broadcastLux},${luxGroup},${luxGroup}`;
+        const chkFlagStr =  disabled ? '1100' : `${lampCheckboxState},${broadcastLux},${broadcastLux},${luxGroup},${luxGroup}`;
         console.log(chkFlagStr);
         this.props.uploadEasySet(cmdType, chkFlagStr);
     }
@@ -109,7 +109,7 @@ export default class LampSwitchingState extends Component {
     handleRestoreTimeControl(e) {
         const { groupSelect, onOffSelect, lampCheckboxState, luxGroup, broadcastLux, disabled } = this.state;
         const cmdType = "恢复时控"
-        const chkFlagStr =  disabled ? '0000' : `${lampCheckboxState},${broadcastLux},${broadcastLux},${luxGroup},${luxGroup}`;
+        const chkFlagStr =  disabled ? '1100' : `${lampCheckboxState},${broadcastLux},${broadcastLux},${luxGroup},${luxGroup}`;
 
         this.props.uploadEasySet(cmdType, chkFlagStr);
     }
