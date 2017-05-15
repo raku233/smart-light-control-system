@@ -54,7 +54,7 @@ function viewData(state = initialState, action) {
     case UPDATE_LIGHTNUM: {
         return {
             ...state,
-            ...action.payload.lightNum
+            lightNum: action.payload.lightNum
         };
     }
     default: {
