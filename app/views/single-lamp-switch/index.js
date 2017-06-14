@@ -17,7 +17,11 @@ class SingleLampSwitch extends Component {
         return (
             <div style={{ height: '100%', display: 'flex' }}>
                 <DeviceList {...deviceList} {...deviceListActions} {...rodListActions}></DeviceList>
-                <QueueAnim className="v-mls-anim-wrapper" delay={100} interval={200} type={['right', 'left']} ease={['easeOutQuart', 'easeInOutQuart']}>
+                <QueueAnim 
+                  className="v-mls-anim-wrapper" 
+                  delay={100} interval={200} 
+                  type={['right', 'left']} 
+                  ease={['easeOutQuart', 'easeInOutQuart']}>
                     { devID ? [
                         <div key="config" style={{ flex: 1, height: '100%' }}>
                             <SingleLampParameterTable key="table" {...rodList} {...rodListActions} />

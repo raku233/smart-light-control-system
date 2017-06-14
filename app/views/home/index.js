@@ -5,15 +5,13 @@ import { push } from 'react-router-redux';
 
 import { actions } from './redux';
 
-import PreviewList from '../../components/home/previewList';
+import './index.css';
 
 class Home extends Component {
     render() {
-        const { list, listActions, push } = this.props;
         return (
-            <div>
-                 <h1>Home</h1>
-                <PreviewList {...list} {...listActions} push={push} />
+            <div className="v-home-container">
+                 <h1 className="v-home-title" >欢迎使用智慧路灯管理系统</h1>
             </div>
         );
     }
